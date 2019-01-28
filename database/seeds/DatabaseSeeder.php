@@ -18,13 +18,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@test.com',
             'password' => Hash::make('admin'),
-            'role' => 2
+            'role' => 'admin'
         ]);
         User::create([
             'name' => 'User',
             'email' => 'user@test.com',
             'password' => Hash::make('secret'),
-            'role' => 1
+            'role' => 'editor'
         ]);
         // $this->call(UsersTableSeeder::class);
     }

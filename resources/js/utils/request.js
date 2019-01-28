@@ -2,6 +2,7 @@ import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import store from '../store'
 import { getToken } from '@/utils/auth'
+import {setToken} from "./auth";
 
 // Create axios instance
 console.log(process.env)
@@ -15,6 +16,7 @@ service.interceptors.request.use(
   config => {
     if (store.getters.token) {
       config.headers['X-Token'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+      config.headers['Authorization'] = 'Bearer ' + getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
     }
     return config
   },
@@ -27,7 +29,14 @@ service.interceptors.request.use(
 
 // response pre-processing
 service.interceptors.response.use(
-  response => response.data,
+  response => {
+      if (response.headers.authorization) {
+          setToken(response.headers.authorization)
+          response.data.token = response.headers.authorization
+      }
+
+      return response.data
+  },
   error => {
     console.log('err' + error) // for debug
     Message({

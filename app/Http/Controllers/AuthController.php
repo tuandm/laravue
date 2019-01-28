@@ -31,6 +31,15 @@ class AuthController extends Controller
         return response()->json((new JsonResponse())->success([]), Response::HTTP_OK);
     }
 
+    public function user(Request $request)
+    {
+        $user = User::find(Auth::user()->id);
+        return response()->json([
+            'status' => 'success',
+            'data' => $user
+        ]);
+    }
+
     /**
      * @return mixed
      */
