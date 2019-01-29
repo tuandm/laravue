@@ -29,6 +29,7 @@
 @task('run_composer')
     echo "Starting deployment ({{ $release }})"
     cd {{ $new_release_dir }}
+    echo "Running composer..."
     composer install --prefer-dist --no-scripts -q -o
 @endtask
 
@@ -44,7 +45,7 @@
     php artisan storage:link
     php artisan migrate --force
 
-    echo "Runing npm..."
+    echo "Running npm..."
     npm install
     npm run production
 @endtask
@@ -60,7 +61,7 @@
 
 @task('clean_old_releases')
     # This will list our releases by modification time and delete all but the 2 most recent.
-    purging=$(ls -dt {{ $release_dir }}/* | tail -n +2);
+    purging=$(ls -dt {{ $releases_dir }}/* | tail -n +2);
 
     if [ "$purging" != "" ]; then
         echo Purging old releases: $purging;
