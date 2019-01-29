@@ -35,6 +35,6 @@ deploy_production:
   environment:
     name: production
     url: http://laravue.cipherpols.com
-  when: manual
+  when: on_success
   only:
     - master

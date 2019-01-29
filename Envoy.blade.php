@@ -13,8 +13,9 @@
 @story('deploy')
     clone_repository
     run_composer
-    update_symlinks
     run_deploy_scripts
+    update_symlinks
+    clean_old_releases
 @endstory
 
 @task('clone_repository')
@@ -42,6 +43,8 @@
     php artisan view:clear
     php artisan storage:link
     php artisan migrate --force
+
+    echo "Runing npm..."
     npm install
     npm run production
 @endtask
@@ -53,4 +56,16 @@
 
     echo 'Linking current release'
     ln -nfs {{ $new_release_dir }} {{ $app_dir }}/current
+@endtask
+
+@task('clean_old_releases')
+    # This will list our releases by modification time and delete all but the 2 most recent.
+    purging=$(ls -dt {{ $release_dir }}/* | tail -n +2);
+
+    if [ "$purging" != "" ]; then
+        echo Purging old releases: $purging;
+        rm -rf $purging;
+    else
+        echo "No releases found for purging at this time";
+    fi
 @endtask
