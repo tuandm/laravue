@@ -24,7 +24,6 @@
         "babel-preset-env": "^1.7.0",
         "babel-preset-stage-2": "^6.24.1",
         "bootstrap": "^4.0.0",
-        "cross-env": "^5.1",
         "jquery": "^3.2",
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.5",
@@ -39,6 +38,7 @@
     },
     "dependencies": {
         "@websanova/vue-auth": "^2.21.14-beta",
+        "cross-env": "^5.1",
         "element-ui": "^2.4.11",
         "js-cookie": "^2.2.0",
         "normalize.css": "^8.0.1",
