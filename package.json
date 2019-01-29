@@ -35,7 +35,6 @@
     },
     "dependencies": {
         "axios": "^0.18",
-        "@websanova/vue-auth": "^2.21.14-beta",
         "cross-env": "^5.1",
         "element-ui": "^2.4.11",
         "js-cookie": "^2.2.0",
@@ -43,7 +42,6 @@
         "nprogress": "^0.2.0",
         "svg-sprite-loader": "^4.1.3",
         "vue": "^2.5.17",
-        "vue-axios": "^2.1.4",
         "vue-router": "^3.0.2",
         "vue-template-compiler": "^2.5.22",
         "vuex": "^3.1.0"
