@@ -1,5 +1,15 @@
 const mix = require('laravel-mix');
 
+function resolve(dir) {
+   return path.join(__dirname, '/resources/js', dir);
+}
+
+Mix.listen('configReady', (webpackConfig) => {
+   // Add "svg" to image loader test
+   let imageLoaderConfig = webpackConfig.module.rules.find(rule => String(rule.test) === String(/(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/));
+   imageLoaderConfig.exclude = resolve('icons');
+})
+
 mix.webpackConfig({
    resolve: {
       extensions: ['.js', '.vue', '.json'],
@@ -8,6 +18,18 @@ mix.webpackConfig({
          '@': __dirname + '/resources/js'
       },
    },
+   module: {
+      rules: [
+         {
+            test: /\.svg$/,
+            loader: 'svg-sprite-loader',
+            include: [resolve('icons')],
+            options: {
+               symbolId: 'icon-[name]'
+            }
+         },
+      ]
+   }
 });
 
 /*

@@ -5,7 +5,6 @@ import { getToken } from '@/utils/auth'
 import {setToken} from "./auth";
 
 // Create axios instance
-console.log(process.env)
 const service = axios.create({
   baseURL: process.env.MIX_BASE_API,
   timeout: 5000 // Request timeout
