@@ -27,17 +27,18 @@ export const constantRouterMap = [
   { path: '/404', component: () => import('@/views/404'), hidden: true },
 
   {
-    path: '/',
+    path: '',
     component: Layout,
-    redirect: '/dashboard',
-    name: 'Dashboard',
-    hidden: true,
-    children: [{
-      path: 'dashboard',
-      component: () => import('@/views/dashboard/index')
-    }]
+    redirect: 'dashboard',
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index'),
+        name: 'Dashboard',
+        meta: { title: 'Dashboard', icon: 'dashboard', noCache: true }
+      }
+    ]
   },
-
   {
     path: '/example',
     component: Layout,
@@ -150,3 +151,5 @@ export default new Router({
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
+
+export const asyncRouterMap = []

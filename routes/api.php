@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Laravue\Faker;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,34 +28,23 @@ Route::prefix('auth')->group(function () {
     });
 });
 
-Route::post('/user/login', function(Request $request) {
-    $username = $request->input('username');
-    $password = $request->input('password');
-    if ($username === 'admin' && $password === 'admin') {
-        return response()->json([
-            'data' => array_merge(
-                factory('App\User')->make()->toArray(),
-                ['roles' => ['admin']]
-            )
-        ]);
-    } else {
-        abort(404, 'User is not found');
-    }
-});
+// Fake APIs
+Route::get('/table/list', function () {
+    $rowsNumber = mt_rand(20, 30);
+    $data = [];
+    for ($rowIndex = 0; $rowIndex < $rowsNumber; $rowIndex++) {
+        $row = [
+            'author' => Faker::randomString(mt_rand(5, 10)),
+            'display_time' => Faker::randomDateTime()->format('Y-m-d H:i:s'),
+            'id' => mt_rand(100000, 100000000),
+            'pageviews' => mt_rand(100, 10000),
+            'status' => Faker::randomInArray(['deleted', 'published', 'draft']),
+            'title' => Faker::randomString(mt_rand(20, 50)),
+        ];
 
-Route::get('/user/info', function() {
-    return response()->json([
-        'data' => array_merge(
-            factory('App\User')->make()->toArray(),
-            ['roles' => ['admin']]
-        )
-    ]);
-});
-
-Route::get('/users', function () {
-    if (rand(1, 10) < 3) {
-        abort(500, 'We could not retrieve the users');
+        $data[] = $row;
     }
 
-    return factory('App\User', 10)->make();
+    return response()->json(new \App\Laravue\JsonResponse(['items' => $data]));
 });
+

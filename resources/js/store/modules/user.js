@@ -59,7 +59,8 @@ const user = {
             reject('getInfo: role must be set')
           }
           commit('SET_NAME', data.name)
-          commit('SET_AVATAR', data.avatar)
+          // commit('SET_AVATAR', data.avatar)
+          commit('SET_AVATAR', 'http://i.pravatar.cc/32');
           resolve(response)
         }).catch(error => {
           reject(error)
