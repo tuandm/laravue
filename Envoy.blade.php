@@ -47,6 +47,8 @@
 
     echo "Running npm..."
     npm install
+    echo "Temporarily fix for terser minifying"
+    npm i terser@3.14
     npm run production
 @endtask
 
