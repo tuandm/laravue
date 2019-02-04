@@ -36,6 +36,7 @@
     "dependencies": {
         "axios": "^0.18",
         "cross-env": "^5.1",
+        "echarts": "^4.2.0-rc.2",
         "element-ui": "^2.4.11",
         "js-cookie": "^2.2.0",
         "normalize.css": "^8.0.1",
@@ -44,6 +45,7 @@
         "svgo": "^1.1.1",
         "url-loader": "^1.1.2",
         "vue": "^2.5.17",
+        "vue-count-to": "^1.0.13",
         "vue-i18n": "^8.8.0",
         "vue-router": "^3.0.2",
         "vue-template-compiler": "^2.5.22",
