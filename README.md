@@ -39,3 +39,10 @@ npm run dev
 
 ## Deployment and/or CI/CD
 This project uses [Envoy](https://laravel.com/docs/5.7/envoy) for deployment, and [GitLab CI/CD](https://about.gitlab.com/product/continuous-integration/). Please check `Envoy.blade.php` and `.gitlab-ci.yml` for more detail.
+
+## LICENSE
+[MIT](https://github.com/tuandm/laravue/blob/master/LICENSE)
+
+Copyright (c) 2019 Tuan Duong
+
+[PanJiaChen's MIT LICENSE](https://github.com/PanJiaChen/vue-element-admin/blob/master/LICENSE)
