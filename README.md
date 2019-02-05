@@ -44,4 +44,5 @@ This project uses [Envoy](https://laravel.com/docs/5.7/envoy) for deployment, an
 [MIT](https://github.com/tuandm/laravue/blob/master/LICENSE)
 
 Copyright (c) 2019 Tuan Duong
+
 [PanJiaChen's MIT LICENSE](https://github.com/PanJiaChen/vue-element-admin/blob/master/LICENSE)
