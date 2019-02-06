@@ -8,6 +8,7 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '../views/layout/Layout'
+import chartsRouter from './modules/charts'
 
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -73,7 +74,7 @@ export const constantRouterMap = [
       }
     ]
   },
-
+  chartsRouter,
   {
     path: '/nested',
     component: Layout,
