@@ -11,7 +11,7 @@
         class="tags-view-item"
         @click.middle.native="closeSelectedTag(tag)"
         @contextmenu.prevent.native="openMenu(tag,$event)">
-        {{ tag.title }}
+        {{ generateTitle(tag.title) }}
         <span class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
       </router-link>
     </scroll-pane>
@@ -26,7 +26,7 @@
 
 <script>
 import ScrollPane from '@/components/ScrollPane'
-// import { generateTitle } from '@/utils/i18n'
+import { generateTitle } from '@/utils/i18n'
 
 export default {
   components: { ScrollPane },
@@ -138,7 +138,8 @@ export default {
     },
     closeMenu() {
       this.visible = false
-    }
+    },
+    generateTitle
   }
 }
 </script>
