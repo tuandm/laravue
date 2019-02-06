@@ -22,7 +22,7 @@ unit_test:
     - php artisan migrate
     - vendor/bin/phpunit
 
-deploy_production:
+deploy_staging:
   stage: deploy
   script:
     - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
@@ -33,7 +33,7 @@ deploy_production:
 
     - ~/.composer/vendor/bin/envoy run deploy --commit="$CI_COMMIT_SHA"
   environment:
-    name: production
+    name: staging
     url: http://laravue.cipherpols.com
   when: on_success
   only:
