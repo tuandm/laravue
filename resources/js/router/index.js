@@ -8,6 +8,9 @@ Vue.use(Router)
 
 /* Layout */
 import Layout from '../views/layout/Layout'
+
+/* Router for modules */
+import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 
 /**
@@ -74,6 +77,7 @@ export const constantRouterMap = [
       }
     ]
   },
+  componentsRouter,
   chartsRouter,
   {
     path: '/nested',
