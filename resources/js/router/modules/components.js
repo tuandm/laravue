@@ -14,15 +14,21 @@ const componentsRouter = {
   children: [
     {
       path: 'tinymce',
-      component: () => import('@/views/components-demo/tinymce'),
+      component: () => import('@/views/components-demo/Tinymce'),
       name: 'TinymceDemo',
       meta: { title: 'tinymce' }
     },
     {
       path: 'markdown',
-      component: () => import('@/views/components-demo/markdown'),
+      component: () => import('@/views/components-demo/Markdown'),
       name: 'MarkdownDemo',
       meta: { title: 'markdown' }
+    },
+    {
+      path: 'json-editor',
+      component: () => import('@/views/components-demo/JsonEditor'),
+      name: 'JsonEditorDemo',
+      meta: { title: 'jsonEditor' }
     },
   ]
 }
