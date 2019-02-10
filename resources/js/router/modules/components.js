@@ -30,6 +30,24 @@ const componentsRouter = {
       name: 'JsonEditorDemo',
       meta: { title: 'jsonEditor' }
     },
+    {
+      path: 'splitpane',
+      component: () => import('@/views/components-demo/SplitPane'),
+      name: 'SplitpaneDemo',
+      meta: { title: 'splitPane' }
+    },
+    {
+      path: 'avatar-upload',
+      component: () => import('@/views/components-demo/AvatarUpload'),
+      name: 'AvatarUploadDemo',
+      meta: { title: 'avatarUpload' }
+    },
+    {
+      path: 'dropzone',
+      component: () => import('@/views/components-demo/Dropzone'),
+      name: 'DropzoneDemo',
+      meta: { title: 'dropzone' }
+    },
   ]
 }
 

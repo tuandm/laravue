@@ -36,6 +36,7 @@
     "dependencies": {
         "axios": "^0.18",
         "cross-env": "^5.1",
+        "dropzone": "^5.5.1",
         "echarts": "^4.2.0-rc.2",
         "element-ui": "^2.4.11",
         "js-cookie": "^2.2.0",
