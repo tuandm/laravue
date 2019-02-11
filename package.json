@@ -55,5 +55,8 @@
         "vue-splitpane": "^1.0.2",
         "vue-template-compiler": "^2.5.22",
         "vuex": "^3.1.0"
+    },
+    "resolutions": {
+        "ajv": "6.8.1"
     }
 }
