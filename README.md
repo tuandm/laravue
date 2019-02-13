@@ -12,7 +12,7 @@ This Laravel-Vue project is inspired by the awesome [vue-element-admin](http://p
 
 ** [Laravel](https://laravel.com/)
 
-The project is based on [ES2015+](http://es6.ruanyifeng.com/), [vue](https://cn.vuejs.org/index.html), [vuex](https://vuex.vuejs.org/zh-cn/), [vue-router](https://router.vuejs.org/zh-cn/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element).
+The project is based on [ES2015+](http://es6-features.org), [vue](https://vuejs.org/), [vuex](https://vuex.vuejs.org/), [vue-router](https://router.vuejs.org/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element).
 
 ## API
 API will be served by Laravel. In this project, you need to run migration and data feeder to generate sample data for authentication/authorization, other APIs will be faked.
