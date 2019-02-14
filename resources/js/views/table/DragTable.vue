@@ -61,7 +61,6 @@
 
 <script>
 import { fetchList } from '@/api/article'
-import Sortable from 'sortablejs'
 
 export default {
   name: 'DragTable',
