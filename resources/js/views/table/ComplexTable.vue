@@ -218,9 +218,7 @@ export default {
         this.total = response.data.total
 
         // Just to simulate the time of the request
-        setTimeout(() => {
-          this.listLoading = false
-        }, 1.5 * 1000)
+        this.listLoading = false
       })
     },
     handleFilter() {
@@ -229,7 +227,7 @@ export default {
     },
     handleModifyStatus(row, status) {
       this.$message({
-        message: '操作成功',
+        message: 'Successful operation',
         type: 'success'
       })
       row.status = status
