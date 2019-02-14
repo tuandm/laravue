@@ -58,4 +58,12 @@ final class Faker
     {
         return $array[array_rand($array)];
     }
+
+    /**
+     * @return bool
+     */
+    public static function randomBoolean(): bool
+    {
+        return (bool) mt_rand(0, 1);
+    }
 }

@@ -12,6 +12,7 @@ import Layout from '../views/layout/Layout'
 /* Router for modules */
 import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
+import tableRouter from './modules/table'
 
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -117,6 +118,7 @@ export const constantRouterMap = [
   },
   componentsRouter,
   chartsRouter,
+  tableRouter,
   {
     path: '/nested',
     component: Layout,
