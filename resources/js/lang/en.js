@@ -1,4 +1,8 @@
 export default {
+  common: {
+    back: 'Back',
+    return: 'Return'
+  },
   route: {
     dashboard: 'Dashboard',
     introduction: 'Introduction',

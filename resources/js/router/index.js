@@ -13,6 +13,9 @@ import Layout from '../views/layout/Layout'
 import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
+import nestedRouter from './modules/nested'
+import errorRouter from './modules/error'
+import excelRouter from './modules/excel'
 
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -29,7 +32,7 @@ import tableRouter from './modules/table'
 **/
 export const constantRouterMap = [
   { path: '/login', component: () => import('@/views/login/index'), hidden: true },
-  { path: '/404', component: () => import('@/views/404'), hidden: true },
+  { path: '/404', component: () => import('@/views/ErrorPage/404'), hidden: true },
 
   {
     path: '',
@@ -117,6 +120,7 @@ export const constantRouterMap = [
     ]
   },
   componentsRouter,
+  nestedRouter,
   chartsRouter,
   tableRouter,
   {
@@ -125,70 +129,48 @@ export const constantRouterMap = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/tab/index'),
+        component: () => import('@/views/tab'),
         name: 'Tab',
         meta: { title: 'tab', icon: 'tab' }
       }
     ]
   },
+  errorRouter,
+  excelRouter,
   {
-    path: '/nested',
+    path: '/zip',
     component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: 'Nested',
-      icon: 'nested'
-    },
+    redirect: '/zip/download',
+    alwaysShow: true,
+    meta: { title: 'zip', icon: 'zip' },
     children: [
       {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
+        path: 'download',
+        component: () => import('@/views/zip'),
+        name: 'ExportZip',
+        meta: { title: 'exportZip' }
       }
     ]
   },
-
+  {
+    path: '/pdf',
+    component: Layout,
+    redirect: '/pdf/index',
+    meta: { title: 'PDF', icon: 'pdf' },
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/pdf/index'),
+        name: 'PDF',
+        meta: { title: 'PDF' }
+      }
+    ]
+  },
+  {
+    path: '/pdf/download',
+    component: () => import('@/views/pdf/Download'),
+    hidden: true
+  },
   {
     path: 'external-link',
     component: Layout,
@@ -204,7 +186,7 @@ export const constantRouterMap = [
 ]
 
 export default new Router({
-  // mode: 'history', //后端支持可开
+  // mode: 'history', // Require service support
   scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
