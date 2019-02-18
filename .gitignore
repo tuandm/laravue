@@ -2,9 +2,11 @@
 /public/hot
 /public/storage
 /public/js
+/public/css
 /storage/*.key
 /vendor
 /public/*.js
+/public/*.js.map
 .env
 .idea
 .phpunit.result.cache

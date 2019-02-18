@@ -1,8 +1,6 @@
 import axios from 'axios'
-import { Message, MessageBox } from 'element-ui'
-import store from '../store'
-import { getToken } from '@/utils/auth'
-import {setToken} from "./auth";
+import { Message } from 'element-ui'
+import { getToken, setToken } from '@/utils/auth'
 
 // Create axios instance
 const service = axios.create({
@@ -13,9 +11,11 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(
   config => {
-    if (store.getters.token) {
+    let token = getToken();
+    if (token) {
       config.headers['Authorization'] = 'Bearer ' + getToken() // Set JWT token
     }
+
     return config
   },
   error => {

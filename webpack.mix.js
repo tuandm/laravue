@@ -1,4 +1,11 @@
 const mix = require('laravel-mix');
+let webpack = require('webpack');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+
+function publicPath(dir) {
+   return path.join(__dirname, '/public', dir);
+}
 
 function resolve(dir) {
    return path.join(__dirname, '/resources/js', dir);
@@ -28,7 +35,8 @@ mix.webpackConfig({
                symbolId: 'icon-[name]'
             }
          },
-      ]
+      ],
+
    }
 });
 
@@ -44,5 +52,16 @@ mix.webpackConfig({
  */
 
 mix.js('resources/js/app.js', 'public/js')
+   .extract(['vue', 'axios', 'vuex', 'vue-router', 'vue-i18n', 'element-ui'])
    .sourceMaps()
+   .webpackConfig({
+      output: {
+         path: publicPath('/'),
+         publicPath: '/',
+      },
+      devtool: 'cheap-source-map'
+   })
+   .options({
+      processCssUrls: false
+   })
    .sass('resources/sass/app.scss', 'public/css');

@@ -12,7 +12,8 @@
     </div>
 
     <script src=/static/tinymce4.7.5/tinymce.min.js></script>
-    <script src=/static/sortable.min.js></script>
+    <script src="{{ mix('js/manifest.js') }}"></script>
+    <script src="{{ mix('js/vendor.js') }}"></script>
     <script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>
