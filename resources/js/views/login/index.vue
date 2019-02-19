@@ -1,12 +1,13 @@
 <template>
   <div class="login-container">
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <h3 class="title">Laravel Vue Admin</h3>
+      <h3 class="title">{{ $t('login.title') }}</h3>
+      <lang-select class="set-language" />
       <el-form-item prop="email">
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
-        <el-input v-model="loginForm.email" name="email" type="text" auto-complete="on" placeholder="Email" />
+        <el-input v-model="loginForm.email" name="email" type="text" auto-complete="on" :placeholder="$t('login.email')" />
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
@@ -37,10 +38,12 @@
 </template>
 
 <script>
+import LangSelect from '@/components/LangSelect'
 import { isEmailValid } from '@/utils/validate'
 
 export default {
   name: 'Login',
+  components: { LangSelect },
   data() {
     const validateEmail = (rule, value, callback) => {
       if (!isEmailValid(value)) {
@@ -191,6 +194,12 @@ $light_gray:#eee;
     color: $dark_gray;
     cursor: pointer;
     user-select: none;
+  }
+  .set-language {
+    color: #fff;
+    position: absolute;
+    top: 40px;
+    right: 35px;
   }
 }
 </style>

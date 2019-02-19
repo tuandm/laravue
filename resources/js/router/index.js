@@ -13,6 +13,7 @@ import Layout from '../views/layout/Layout'
 import componentsRouter from './modules/components'
 import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
+import exampleRouter from './modules/example'
 import nestedRouter from './modules/nested'
 import errorRouter from './modules/error'
 import excelRouter from './modules/excel'
@@ -74,28 +75,6 @@ export const constantRouterMap = [
     ]
   },
   {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
     path: '/form',
     component: Layout,
     children: [
@@ -123,6 +102,7 @@ export const constantRouterMap = [
   nestedRouter,
   chartsRouter,
   tableRouter,
+  exampleRouter,
   {
     path: '/tab',
     component: Layout,
@@ -160,7 +140,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'index',
-        component: () => import('@/views/pdf/index'),
+        component: () => import('@/views/pdf'),
         name: 'PDF',
         meta: { title: 'PDF' }
       }
@@ -172,12 +152,24 @@ export const constantRouterMap = [
     hidden: true
   },
   {
+    path: '/i18n',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/i18n'),
+        name: 'I18n',
+        meta: { title: 'i18n', icon: 'international' }
+      }
+    ]
+  },
+  {
     path: 'external-link',
     component: Layout,
     children: [
       {
         path: 'https://github.com/tuandm/laravue',
-        meta: { title: 'External Link', icon: 'link' }
+        meta: { title: 'externalLink', icon: 'link' }
       }
     ]
   },
