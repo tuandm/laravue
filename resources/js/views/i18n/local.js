@@ -40,7 +40,7 @@ export default {
       three: 'Three'
     }
   },
-  es: {
+  vi: {
     i18nView: {
       title: 'Switch Language',
       note: 'The internationalization of this project is based on vue-i18n',
@@ -49,15 +49,15 @@ export default {
       tableDate: 'tableDate',
       tableName: 'tableName',
       tableAddress: 'tableAddress',
-      default: 'default:',
+      default: 'mặc định:',
       primary: 'primary',
-      success: 'success',
-      info: 'info',
-      warning: 'warning',
-      danger: 'danger',
-      one: 'One',
-      two: 'Two',
-      three: 'Three'
+      success: 'thành công',
+      info: 'thông tin',
+      warning: 'cảnh báo',
+      danger: 'nguy hiểm',
+      one: 'Một',
+      two: 'Hai',
+      three: 'Ba'
     }
   }
 }
