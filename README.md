@@ -43,14 +43,22 @@ API will be served by Laravel. In this project, you need to run migration and da
 You have to check installation guide of Laravel (https://laravel.com/docs/5.7)
 
 ```bash
-# Clone the project
+# Clone the project and run composer
 git clone https://github.com/tuandm/laravue.git
-
-# Composer
+cd laravue
 composer install
 
-# Migration and DB seeder (after changing your .env)
+# Create .env from .env.example
+cp .env.example .env
+
+# Generate application key
+php artisan key:generate
+
+# Migration and DB seeder (after changing your DB settings in .env)
 php artisan migrate --seed
+
+# Generate JWT secret key
+php artisan jwt:secret
 
 # install dependency
 npm install

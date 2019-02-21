@@ -3,6 +3,8 @@
 /public/storage
 /public/js
 /public/css
+/public/images/vendor
+/public/images/*.gif
 /storage/*.key
 /vendor
 /public/*.js
