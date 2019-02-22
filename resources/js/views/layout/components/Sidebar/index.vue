@@ -22,10 +22,11 @@ export default {
   components: { SidebarItem },
   computed: {
     ...mapGetters([
-      'sidebar'
+      'sidebar',
+      'permission_routers'
     ]),
     routes() {
-      return this.$router.options.routes
+      return this.$store.state.permission.routers
     },
     isCollapse() {
       return !this.sidebar.opened

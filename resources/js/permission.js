@@ -1,14 +1,17 @@
 import router from './router'
 import store from './store'
+import { Message } from 'element-ui'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
-import { Message } from 'element-ui'
 import { getToken } from '@/utils/auth'
+
+NProgress.configure({ showSpinner: true })// NProgress Configuration
 
 // permission judge function
 function hasPermission(roles, permissionRoles) {
   if (roles.indexOf('admin') >= 0) {
-    return true // admin permission passed directly
+    // Admin should have all permissions
+    return true
   }
 
   if (!permissionRoles) {
@@ -18,13 +21,15 @@ function hasPermission(roles, permissionRoles) {
   return roles.some(role => permissionRoles.indexOf(role) >= 0)
 }
 
-const whiteList = ['/login'] // No redirect for login page
+const whiteList = ['/login', '/auth-redirect'] // no redirect whitelist
+
 router.beforeEach((to, from, next) => {
-  NProgress.start()
+  NProgress.start() // Start the progress bar
   if (getToken()) {
     if (to.path === '/login') {
+      // Skip login page for logged users
       next({ path: '/' })
-      NProgress.done() // if current page is dashboard will not trigger	afterEach hook, so manually handle it
+      NProgress.done()
     } else {
       if (store.getters.roles.length === 0) {
         store.dispatch('GetInfo').then(res => { // Get user information
@@ -43,7 +48,12 @@ router.beforeEach((to, from, next) => {
           })
         })
       } else {
-        next()
+        // Double check permission role 
+        if (hasPermission(store.getters.roles, to.meta.roles)) {
+          next()
+        } else {
+          next({ path: '/401', replace: true, query: { noGoBack: true } })
+        }
       }
     }
   } else {
@@ -56,6 +66,8 @@ router.beforeEach((to, from, next) => {
   }
 })
 
+
+// After router hooks are resolved, finish progress bar
 router.afterEach(() => {
   NProgress.done()
 })

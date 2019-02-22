@@ -1,5 +1,4 @@
 import { asyncRouterMap, constantRouterMap } from '@/router'
-
 /**
  * Check if it matches the current user right by meta.role
  * @param roles

@@ -14,14 +14,20 @@ use Illuminate\Contracts\Support\Jsonable;
 
 /**
  * Simple response object for Laravue application
+ * Response format:
+ * {
+ *   'success': true|false,
+ *   'data': [], 
+ *   'error': ''  
+ * }
  * Class JsonResponse
  *
  * @package App\Laravue
  */
 class JsonResponse implements \JsonSerializable
 {
-    const STATUS_SUCCESS = 'success';
-    const STATUS_ERROR = 'error';
+    const STATUS_SUCCESS = true;
+    const STATUS_ERROR = false;
 
     /**
      * Data to be returned
@@ -86,7 +92,7 @@ class JsonResponse implements \JsonSerializable
     public function jsonSerialize()
     {
         return [
-            'success' => $this->success ? static::STATUS_SUCCESS : static::STATUS_ERROR,
+            'success' => $this->success,
             'data' => $this->data,
             'error' => $this->error,
         ];

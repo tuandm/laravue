@@ -2,13 +2,15 @@
 /public/hot
 /public/storage
 /public/js
-/public/css
-/public/images/vendor
+/public/css/*.css
+/public/css/*.map
+/public/images/*
 /public/images/*.gif
 /storage/*.key
 /vendor
 /public/*.js
 /public/*.js.map
+public/mix-manifest.json
 .env
 .idea
 .phpunit.result.cache

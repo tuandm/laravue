@@ -95,6 +95,21 @@ const user = {
         removeToken()
         resolve()
       })
+    },
+
+    /**
+     * Change role of user
+     * This method is to demo the directive v-permission.
+     * 
+     * @param {*} param0 
+     * @param {*} role 
+     */
+    ChangeRoles({ commit, dispatch }, role) {
+      return new Promise(resolve => {
+        commit('SET_ROLES', [role])
+        dispatch('GenerateRoutes', { roles: [role] }) // Re-render sidebar menu with new permission
+        resolve()
+      })
     }
   }
 }
