@@ -21,7 +21,7 @@
 ## Introduction
 [Laravue](http://laravue.cipherpols.com) is a beautiful dashboard based on [Laravel](https://laravel.com/), [vue](https://github.com/vuejs/vue) and use the UI Toolkit [element](https://github.com/ElemeFE/element).
 
-This Laravel-Vue project is inspired by the awesome [vue-element-admin](http://panjiachen.github.io/vue-element-admin) (many thanks to [PanJiaChen](https://github.com/PanJiaChen) for the great works). Newest development stack of Laravel/Vue such as i18n, Envoy, vue-router,.. will be applied into this project.
+This Laravel-Vue admin is inspired by the awesome [vue-element-admin](http://panjiachen.github.io/vue-element-admin) (many thanks to [PanJiaChen](https://github.com/PanJiaChen) for the great works). Newest development stack of Laravel/Vue such as i18n, Envoy, vue-router,.. will be applied into this project.
 
 <p align="center">
   <img width="900" src="http://doc.laravue.cipherpols.com/assets/screenshot.png">
@@ -34,13 +34,13 @@ This Laravel-Vue project is inspired by the awesome [vue-element-admin](http://p
 
 ** [Laravel](https://laravel.com/)
 
-The project is based on [ES2015+](http://es6.ruanyifeng.com/), [vue](https://cn.vuejs.org/index.html), [vuex](https://vuex.vuejs.org/zh-cn/), [vue-router](https://router.vuejs.org/zh-cn/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element).
+The project is built on top of [Laravel](https://laravel.com), [vue](https://cn.vuejs.org/index.html), [vuex](https://vuex.vuejs.org/zh-cn/), [vue-router](https://router.vuejs.org/zh-cn/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element). Since this is positioned as an enterprise management solution, it is recommended to use it to start a project.
 
 ## API
 API will be served by Laravel. In this project, you need to run migration and data feeder to generate sample data for authentication/authorization, other APIs will be faked.
 
 ## Getting started
-You have to check installation guide of Laravel (https://laravel.com/docs/5.7)
+This project is built build on top of fresh latest version Laravel (5.7). You should check the installation guide of Laravel [here](https://laravel.com/docs/5.7)
 
 ```bash
 # Clone the project and run composer
@@ -64,7 +64,10 @@ php artisan jwt:secret
 npm install
 
 # develop
-npm run dev
+npm run dev # or npm run watch
+
+# Build on production
+npm run production
 ```
 
 ## Deployment and/or CI/CD

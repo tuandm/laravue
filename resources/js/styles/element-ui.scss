@@ -9,7 +9,7 @@
   display: none;
 }
 
-//暂时性解决diolag 问题 https://github.com/ElemeFE/element/issues/2461
+// Temporarily resolve the dialog issue: https://github.com/ElemeFE/element/issues/2461
 .el-dialog {
   transform: none;
   left: 0;

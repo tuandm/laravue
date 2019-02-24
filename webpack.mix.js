@@ -49,7 +49,7 @@ mix.webpackConfig({
  */
 
 mix.js('resources/js/app.js', 'public/js')
-  // .extract(['vue', 'axios', 'vuex', 'vue-router', 'vue-i18n', 'element-ui']) // Seems laravel mix has issue with vendor extraction, we are working on this.
+  // .extract(['vue', 'axios', 'vuex', 'vue-router', 'vue-i18n', 'element-ui']) // Issue of webpack:  https://github.com/JeffreyWay/laravel-mix/issues/1870
   .options({
     processCssUrls: false
   })
