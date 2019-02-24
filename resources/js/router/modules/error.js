@@ -4,12 +4,12 @@ import Layout from '@/views/layout/Layout'
 const errorRouter = {
   path: '/error',
   component: Layout,
-    redirect: 'noredirect',
-    name: 'ErrorPages',
-    meta: {
-      title: 'errorPages',
-      icon: '404'
-    },
+  redirect: 'noredirect',
+  name: 'ErrorPages',
+  meta: {
+    title: 'errorPages',
+    icon: '404'
+  },
   children: [
     {
       path: '401',

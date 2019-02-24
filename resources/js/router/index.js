@@ -17,6 +17,7 @@ import exampleRouter from './modules/example'
 import nestedRouter from './modules/nested'
 import errorRouter from './modules/error'
 import excelRouter from './modules/excel'
+import permissionRouter from './modules/permission'
 
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -32,9 +33,38 @@ import excelRouter from './modules/excel'
   }
 **/
 export const constantRouterMap = [
-  { path: '/login', component: () => import('@/views/login/index'), hidden: true },
-  { path: '/404', component: () => import('@/views/ErrorPage/404'), hidden: true },
-
+  {
+    path: '/redirect',
+    component: Layout,
+    hidden: true,
+    children: [
+      {
+        path: '/redirect/:path*',
+        component: () => import('@/views/redirect/index')
+      }
+    ]
+  },
+  {
+    path: '/login',
+    component: () => import('@/views/login/index'),
+    hidden: true
+  },
+  {
+    path: '/auth-redirect',
+    component: () => import('@/views/login/AuthRedirect'),
+    hidden: true
+  },
+  {
+    path: '/404',
+    redirect: {name: 'Page404'},
+    component: () => import('@/views/ErrorPage/404'),
+    hidden: true
+  },
+  {
+    path: '/401',
+    component: () => import('@/views/ErrorPage/401'),
+    hidden: true
+  },
   {
     path: '',
     component: Layout,
@@ -86,6 +116,16 @@ export const constantRouterMap = [
       }
     ]
   },
+]
+
+export default new Router({
+  // mode: 'history', // Require service support
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRouterMap
+})
+
+export const asyncRouterMap = [
+  permissionRouter,
   {
     path: '/icon',
     component: Layout,
@@ -99,8 +139,8 @@ export const constantRouterMap = [
     ]
   },
   componentsRouter,
-  nestedRouter,
   chartsRouter,
+  nestedRouter,
   tableRouter,
   exampleRouter,
   {
@@ -173,14 +213,5 @@ export const constantRouterMap = [
       }
     ]
   },
-
   { path: '*', redirect: '/404', hidden: true }
 ]
-
-export default new Router({
-  // mode: 'history', // Require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
-})
-
-export const asyncRouterMap = []
