@@ -10,7 +10,6 @@
 /vendor
 /public/*.js
 /public/*.js.map
-public/mix-manifest.json
 .env
 .idea
 .phpunit.result.cache
