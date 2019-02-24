@@ -40,7 +40,7 @@ The project is built on top of [Laravel](https://laravel.com), [vue](https://cn.
 API will be served by Laravel. In this project, you need to run migration and data feeder to generate sample data for authentication/authorization, other APIs will be faked.
 
 ## Getting started
-This project is built build on top of fresh latest version Laravel (5.7). You should check the installation guide of Laravel [here](https://laravel.com/docs/5.7)
+This project is built on top of fresh latest version Laravel (5.7). You should check the installation guide of Laravel [here](https://laravel.com/docs/5.7)
 
 ```bash
 # Clone the project and run composer
