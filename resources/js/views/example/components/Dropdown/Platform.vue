@@ -20,27 +20,27 @@ export default {
     value: {
       required: true,
       default: () => [],
-      type: Array
-    }
+      type: Array,
+    },
   },
   data() {
     return {
       platformsOptions: [
         { key: 'a-platform', name: 'a-platform' },
         { key: 'b-platform', name: 'b-platform' },
-        { key: 'c-platform', name: 'c-platform' }
-      ]
-    }
+        { key: 'c-platform', name: 'c-platform' },
+      ],
+    };
   },
   computed: {
     platforms: {
       get() {
-        return this.value
+        return this.value;
       },
       set(val) {
-        this.$emit('input', val)
-      }
-    }
-  }
-}
+        this.$emit('input', val);
+      },
+    },
+  },
+};
 </script>

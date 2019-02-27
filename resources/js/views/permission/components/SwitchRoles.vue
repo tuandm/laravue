@@ -13,18 +13,18 @@
 export default {
   computed: {
     roles() {
-      return this.$store.getters.roles
+      return this.$store.getters.roles;
     },
     switchRoles: {
       get() {
-        return this.roles[0]
+        return this.roles[0];
       },
       set(val) {
         this.$store.dispatch('ChangeRoles', val).then(() => {
-          this.$emit('change')
-        })
-      }
-    }
-  }
-}
+          this.$emit('change');
+        });
+      },
+    },
+  },
+};
 </script>

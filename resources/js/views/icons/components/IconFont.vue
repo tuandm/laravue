@@ -17,14 +17,14 @@
 </template>
 
 <script>
-import icons from "./../RequireIcons";
-import clipboard from "@/utils/clipboard";
+import icons from './../RequireIcons';
+import clipboard from '@/utils/clipboard';
 
 export default {
-  name: "iconFont",
+  name: 'iconFont',
   data() {
     return {
-      iconsMap: icons
+      iconsMap: icons,
     };
   },
   methods: {
@@ -33,8 +33,8 @@ export default {
     },
     handleClipboard(text, event) {
       clipboard(text, event);
-    }
-  }
+    },
+  },
 };
 </script>
 

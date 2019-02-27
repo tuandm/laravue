@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import LangSelect from '@/components/LangSelect'
-import { isEmailValid } from '@/utils/validate'
+import LangSelect from '@/components/LangSelect';
+import { isEmailValid } from '@/utils/validate';
 
 export default {
   name: 'Login',
@@ -47,66 +47,66 @@ export default {
   data() {
     const validateEmail = (rule, value, callback) => {
       if (!isEmailValid(value)) {
-        callback(new Error('Please enter the correct email'))
+        callback(new Error('Please enter the correct email'));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
     const validatePass = (rule, value, callback) => {
       if (value.length < 4) {
-        callback(new Error('Password cannot be less than 4 digits'))
+        callback(new Error('Password cannot be less than 4 digits'));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
     return {
       loginForm: {
         email: 'admin@test.com',
-        password: 'admin'
+        password: 'admin',
       },
       loginRules: {
         email: [{ required: true, trigger: 'blur', validator: validateEmail }],
-        password: [{ required: true, trigger: 'blur', validator: validatePass }]
+        password: [{ required: true, trigger: 'blur', validator: validatePass }],
       },
       loading: false,
       pwdType: 'password',
-      redirect: undefined
-    }
+      redirect: undefined,
+    };
   },
   watch: {
     $route: {
       handler: function(route) {
-        this.redirect = route.query && route.query.redirect
+        this.redirect = route.query && route.query.redirect;
       },
-      immediate: true
-    }
+      immediate: true,
+    },
   },
   methods: {
     showPwd() {
       if (this.pwdType === 'password') {
-        this.pwdType = ''
+        this.pwdType = '';
       } else {
-        this.pwdType = 'password'
+        this.pwdType = 'password';
       }
     },
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.loading = true
+          this.loading = true;
           this.$store.dispatch('Login', this.loginForm).then(() => {
-            this.loading = false
-            this.$router.push({ path: this.redirect || '/' })
+            this.loading = false;
+            this.$router.push({ path: this.redirect || '/' });
           }).catch(() => {
-            this.loading = false
-          })
+            this.loading = false;
+          });
         } else {
-          console.log('error submit!!')
-          return false
+          console.log('error submit!!');
+          return false;
         }
-      })
-    }
-  }
-}
+      });
+    },
+  },
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss">

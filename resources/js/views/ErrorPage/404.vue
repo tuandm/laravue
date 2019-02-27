@@ -26,10 +26,10 @@ export default {
   name: 'Page404',
   computed: {
     message() {
-      return 'The bodyguard said that you can\'t enter this page...'
-    }
-  }
-}
+      return 'The bodyguard said that you can\'t enter this page...';
+    },
+  },
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { getList } from '@/api/table'
+import { getList } from '@/api/table';
 
 export default {
   filters: {
@@ -51,28 +51,28 @@ export default {
       const statusMap = {
         published: 'success',
         draft: 'gray',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
+        deleted: 'danger',
+      };
+      return statusMap[status];
+    },
   },
   data() {
     return {
       list: null,
-      listLoading: true
-    }
+      listLoading: true,
+    };
   },
   created() {
-    this.fetchData()
+    this.fetchData();
   },
   methods: {
     fetchData() {
-      this.listLoading = true
+      this.listLoading = true;
       getList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.listLoading = false
-      })
-    }
-  }
-}
+        this.list = response.data.items;
+        this.listLoading = false;
+      });
+    },
+  },
+};
 </script>

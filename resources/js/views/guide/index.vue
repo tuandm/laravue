@@ -10,25 +10,25 @@
 </template>
 
 <script>
-import Driver from 'driver.js' // import driver.js
-import 'driver.js/dist/driver.min.css' // import driver.js css
-import steps from './DefineSteps'
+import Driver from 'driver.js'; // import driver.js
+import 'driver.js/dist/driver.min.css'; // import driver.js css
+import steps from './DefineSteps';
 
 export default {
   name: 'Guide',
   data() {
     return {
-      driver: null
-    }
+      driver: null,
+    };
   },
   mounted() {
-    this.driver = new Driver()
+    this.driver = new Driver();
   },
   methods: {
     guide() {
-      this.driver.defineSteps(steps)
-      this.driver.start()
-    }
-  }
-}
+      this.driver.defineSteps(steps);
+      this.driver.start();
+    },
+  },
+};
 </script>

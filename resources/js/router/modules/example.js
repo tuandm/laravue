@@ -1,5 +1,5 @@
 /** When your routing table is too long, you can split it into small modules**/
-import Layout from '@/views/layout/Layout'
+import Layout from '@/views/layout/Layout';
 
 const exampleRouter = {
   path: '/example',
@@ -8,29 +8,29 @@ const exampleRouter = {
   name: 'Example',
   meta: {
     title: 'example',
-    icon: 'example'
+    icon: 'example',
   },
   children: [
     {
       path: 'create',
       component: () => import('@/views/example/Create'),
       name: 'CreateArticle',
-      meta: { title: 'createArticle', icon: 'edit' }
+      meta: { title: 'createArticle', icon: 'edit' },
     },
     {
       path: 'edit/:id(\\d+)',
       component: () => import('@/views/example/Edit'),
       name: 'EditArticle',
       meta: { title: 'editArticle', noCache: true },
-      hidden: true
+      hidden: true,
     },
     {
       path: 'list',
       component: () => import('@/views/example/List'),
       name: 'ArticleList',
-      meta: { title: 'articleList', icon: 'list' }
-    }
-  ]
-}
+      meta: { title: 'articleList', icon: 'list' },
+    },
+  ],
+};
 
-export default exampleRouter
+export default exampleRouter;

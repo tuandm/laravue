@@ -1,32 +1,32 @@
-import { debounce } from '@/utils'
+import { debounce } from '@/utils';
 
 export default {
   data() {
     return {
-      sidebarElm: null
-    }
+      sidebarElm: null,
+    };
   },
   mounted() {
     this.__resizeHandler = debounce(() => {
       if (this.chart) {
-        this.chart.resize()
+        this.chart.resize();
       }
-    }, 100)
-    window.addEventListener('resize', this.__resizeHandler)
+    }, 100);
+    window.addEventListener('resize', this.__resizeHandler);
 
-    this.sidebarElm = document.getElementsByClassName('sidebar-container')[0]
-    this.sidebarElm && this.sidebarElm.addEventListener('transitionend', this.sidebarResizeHandler)
+    this.sidebarElm = document.getElementsByClassName('sidebar-container')[0];
+    this.sidebarElm && this.sidebarElm.addEventListener('transitionend', this.sidebarResizeHandler);
   },
   beforeDestroy() {
-    window.removeEventListener('resize', this.__resizeHandler)
+    window.removeEventListener('resize', this.__resizeHandler);
 
-    this.sidebarElm && this.sidebarElm.removeEventListener('transitionend', this.sidebarResizeHandler)
+    this.sidebarElm && this.sidebarElm.removeEventListener('transitionend', this.sidebarResizeHandler);
   },
   methods: {
     sidebarResizeHandler(e) {
       if (e.propertyName === 'width') {
-        this.__resizeHandler()
+        this.__resizeHandler();
       }
-    }
-  }
-}
+    },
+  },
+};

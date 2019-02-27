@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/article'
+import { fetchList } from '@/api/article';
 
 export default {
   filters: {
@@ -61,16 +61,16 @@ export default {
       const statusMap = {
         published: 'success',
         draft: 'info',
-        deleted: 'danger'
-      }
-      return statusMap[status]
-    }
+        deleted: 'danger',
+      };
+      return statusMap[status];
+    },
   },
   props: {
     type: {
       type: String,
-      default: 'CN'
-    }
+      default: 'CN',
+    },
   },
   data() {
     return {
@@ -79,24 +79,24 @@ export default {
         page: 1,
         limit: 5,
         type: this.type,
-        sort: '+id'
+        sort: '+id',
       },
-      loading: false
-    }
+      loading: false,
+    };
   },
   created() {
-    this.getList()
+    this.getList();
   },
   methods: {
     getList() {
-      this.loading = true
-      this.$emit('create') // for test
+      this.loading = true;
+      this.$emit('create'); // for test
       fetchList(this.listQuery).then(response => {
-        this.list = response.data.items
-        this.loading = false
-      })
-    }
-  }
-}
+        this.list = response.data.items;
+        this.loading = false;
+      });
+    },
+  },
+};
 </script>
 

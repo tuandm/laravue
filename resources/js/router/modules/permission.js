@@ -1,5 +1,5 @@
 /** When your routing table is too long, you can split it into small modules**/
-import Layout from '@/views/layout/Layout'
+import Layout from '@/views/layout/Layout';
 
 const permissionRouter = {
   path: '/permission',
@@ -9,7 +9,7 @@ const permissionRouter = {
   meta: {
     title: 'permission',
     icon: 'lock',
-    roles: ['admin', 'editor'] // you can set roles in root nav
+    roles: ['admin', 'editor'], // you can set roles in root nav
   },
   children: [
     {
@@ -18,19 +18,19 @@ const permissionRouter = {
       name: 'PagePermission',
       meta: {
         title: 'pagePermission',
-        roles: ['admin'] // or you can only set roles in sub nav
-      }
+        roles: ['admin'], // or you can only set roles in sub nav
+      },
     },
     {
       path: 'directive',
       component: () => import('@/views/permission/Directive'),
       name: 'DirectivePermission',
       meta: {
-        title: 'directivePermission'
+        title: 'directivePermission',
         // if do not set roles, means: this page does not require permission
-      }
-    }
-  ]
-}
+      },
+    },
+  ],
+};
 
-export default permissionRouter
+export default permissionRouter;

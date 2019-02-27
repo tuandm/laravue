@@ -37,14 +37,14 @@
 </template>
 
 <script>
-import Todo from './Todo.vue'
+import Todo from './Todo.vue';
 
-const STORAGE_KEY = 'todos'
+const STORAGE_KEY = 'todos';
 const filters = {
   all: todos => todos,
   active: todos => todos.filter(todo => !todo.done),
-  completed: todos => todos.filter(todo => todo.done)
-}
+  completed: todos => todos.filter(todo => todo.done),
+};
 const defalutList = [
   { text: 'star this repository', done: false },
   { text: 'fork this repository', done: false },
@@ -53,72 +53,72 @@ const defalutList = [
   { text: 'vue', done: true },
   { text: 'element-ui', done: true },
   { text: 'axios', done: true },
-  { text: 'webpack', done: true }
-]
+  { text: 'webpack', done: true },
+];
 export default {
   components: { Todo },
   filters: {
     pluralize: (n, w) => n === 1 ? w : w + 's',
-    capitalize: s => s.charAt(0).toUpperCase() + s.slice(1)
+    capitalize: s => s.charAt(0).toUpperCase() + s.slice(1),
   },
   data() {
     return {
       visibility: 'all',
       filters,
       // todos: JSON.parse(window.localStorage.getItem(STORAGE_KEY)) || defalutList
-      todos: defalutList
-    }
+      todos: defalutList,
+    };
   },
   computed: {
     allChecked() {
-      return this.todos.every(todo => todo.done)
+      return this.todos.every(todo => todo.done);
     },
     filteredTodos() {
-      return filters[this.visibility](this.todos)
+      return filters[this.visibility](this.todos);
     },
     remaining() {
-      return this.todos.filter(todo => !todo.done).length
-    }
+      return this.todos.filter(todo => !todo.done).length;
+    },
   },
   methods: {
     setLocalStorage() {
-      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todos))
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(this.todos));
     },
     addTodo(e) {
-      const text = e.target.value
+      const text = e.target.value;
       if (text.trim()) {
         this.todos.push({
           text,
-          done: false
-        })
-        this.setLocalStorage()
+          done: false,
+        });
+        this.setLocalStorage();
       }
-      e.target.value = ''
+      e.target.value = '';
     },
     toggleTodo(val) {
-      val.done = !val.done
-      this.setLocalStorage()
+      val.done = !val.done;
+      this.setLocalStorage();
     },
     deleteTodo(todo) {
-      this.todos.splice(this.todos.indexOf(todo), 1)
-      this.setLocalStorage()
+      this.todos.splice(this.todos.indexOf(todo), 1);
+      this.setLocalStorage();
     },
     editTodo({ todo, value }) {
-      todo.text = value
-      this.setLocalStorage()
+      todo.text = value;
+      this.setLocalStorage();
     },
     clearCompleted() {
-      this.todos = this.todos.filter(todo => !todo.done)
-      this.setLocalStorage()
+      this.todos = this.todos.filter(todo => !todo.done);
+      this.setLocalStorage();
     },
     toggleAll({ done }) {
       this.todos.forEach(todo => {
-        todo.done = done
-        this.setLocalStorage()
-      })
-    }
-  }
-}
+        todo.done = done;
+        this.setLocalStorage();
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss">

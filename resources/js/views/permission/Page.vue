@@ -10,18 +10,17 @@
 </template>
 
 <script>
-import SwitchRoles from './components/SwitchRoles'
-import { generateTitle } from '@/utils/i18n'
+import SwitchRoles from './components/SwitchRoles';
 
-export default{
+export default {
   name: 'PagePermission',
   components: { SwitchRoles },
   methods: {
     handleRolesChange() {
-      this.$router.push({ path: '/permission/index?' + +new Date() })
-    }
-  }
-}
+      this.$router.push({ path: '/permission/index?' + +new Date() });
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 .app-container {

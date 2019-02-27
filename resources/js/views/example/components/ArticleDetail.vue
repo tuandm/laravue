@@ -103,35 +103,35 @@
 </template>
 
 <script>
-import Tinymce from "@/components/Tinymce";
-import Upload from "@/components/Upload/SingleImage";
-import MDinput from "@/components/MDinput";
-import Sticky from "@/components/Sticky"; // Sticky header
-import { validateURL } from "@/utils/validate";
-import { fetchArticle } from "@/api/article";
-import { userSearch } from "@/api/remoteSearch";
+import Tinymce from '@/components/Tinymce';
+import Upload from '@/components/Upload/SingleImage';
+import MDinput from '@/components/MDinput';
+import Sticky from '@/components/Sticky'; // Sticky header
+import { validateURL } from '@/utils/validate';
+import { fetchArticle } from '@/api/article';
+import { userSearch } from '@/api/remoteSearch';
 import {
   CommentDropdown,
   PlatformDropdown,
-  SourceUrlDropdown
-} from "./Dropdown";
+  SourceUrlDropdown,
+} from './Dropdown';
 
 const defaultForm = {
-  status: "draft",
-  title: "",
-  content: "",
-  content_short: "",
-  source_uri: "",
-  image_uri: "",
+  status: 'draft',
+  title: '',
+  content: '',
+  content_short: '',
+  source_uri: '',
+  image_uri: '',
   display_time: undefined,
   id: undefined,
-  platforms: ["a-platform"],
+  platforms: ['a-platform'],
   comment_disabled: false,
-  importance: 0
+  importance: 0,
 };
 
 export default {
-  name: "ArticleDetail",
+  name: 'ArticleDetail',
   components: {
     Tinymce,
     MDinput,
@@ -139,22 +139,22 @@ export default {
     Sticky,
     CommentDropdown,
     PlatformDropdown,
-    SourceUrlDropdown
+    SourceUrlDropdown,
   },
   props: {
     isEdit: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   data() {
     const validateRequire = (rule, value, callback) => {
-      if (value === "") {
+      if (value === '') {
         this.$message({
-          message: rule.field + " is required",
-          type: "error"
+          message: rule.field + ' is required',
+          type: 'error',
         });
-        callback(new Error(rule.field + " is required"));
+        callback(new Error(rule.field + ' is required'));
       } else {
         callback();
       }
@@ -165,10 +165,10 @@ export default {
           callback();
         } else {
           this.$message({
-            message: "External URL is invalid.",
-            type: "error"
+            message: 'External URL is invalid.',
+            type: 'error',
           });
-          callback(new Error("External URL is invalid."));
+          callback(new Error('External URL is invalid.'));
         }
       } else {
         callback();
@@ -182,9 +182,9 @@ export default {
         image_uri: [{ validator: validateRequire }],
         title: [{ validator: validateRequire }],
         content: [{ validator: validateRequire }],
-        source_uri: [{ validator: validateSourceUri, trigger: "blur" }]
+        source_uri: [{ validator: validateSourceUri, trigger: 'blur' }],
       },
-      tempRoute: {}
+      tempRoute: {},
     };
   },
   computed: {
@@ -193,7 +193,7 @@ export default {
     },
     lang() {
       return this.$store.getters.language;
-    }
+    },
   },
   created() {
     if (this.isEdit) {
@@ -226,15 +226,15 @@ export default {
     },
     setTagsViewTitle() {
       const title =
-        this.lang === "zh"
-          ? "编辑文章"
-          : this.lang === "vi"
-          ? "Chỉnh sửa"
-          : "Edit Article"; // Should move to i18n
+        this.lang === 'zh'
+          ? '编辑文章'
+          : this.lang === 'vi'
+            ? 'Chỉnh sửa'
+            : 'Edit Article'; // Should move to i18n
       const route = Object.assign({}, this.tempRoute, {
-        title: `${title}-${this.postForm.id}`
+        title: `${title}-${this.postForm.id}`,
       });
-      this.$store.dispatch("updateVisitedView", route);
+      this.$store.dispatch('updateVisitedView', route);
     },
     submitForm() {
       this.postForm.display_time = parseInt(this.display_time / 1000);
@@ -243,15 +243,15 @@ export default {
         if (valid) {
           this.loading = true;
           this.$notify({
-            title: "Success",
-            message: "Article has been published successfully",
-            type: "success",
-            duration: 2000
+            title: 'Success',
+            message: 'Article has been published successfully',
+            type: 'success',
+            duration: 2000,
           });
-          this.postForm.status = "published";
+          this.postForm.status = 'published';
           this.loading = false;
         } else {
-          console.log("error submit!!");
+          console.log('error submit!!');
           return false;
         }
       });
@@ -262,26 +262,26 @@ export default {
         this.postForm.title.length === 0
       ) {
         this.$message({
-          message: "Please enter required title and content",
-          type: "warning"
+          message: 'Please enter required title and content',
+          type: 'warning',
         });
         return;
       }
       this.$message({
-        message: "Successfully saved",
-        type: "success",
+        message: 'Successfully saved',
+        type: 'success',
         showClose: true,
-        duration: 1000
+        duration: 1000,
       });
-      this.postForm.status = "draft";
+      this.postForm.status = 'draft';
     },
     getRemoteUserList(query) {
       userSearch(query).then(response => {
         if (!response.data.items) return;
         this.userListOptions = response.data.items.map(v => v.name);
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -21,17 +21,17 @@
 </template>
 
 <script>
-import IconFont from "./components/IconFont";
-import ElementUI from "./components/ElementUi";
+import IconFont from './components/IconFont';
+import ElementUI from './components/ElementUi';
 
 export default {
-  name: "Icons",
+  name: 'Icons',
   components: { IconFont, ElementUI },
   data() {
     return {
-      activeName: "IC"
+      activeName: 'IC',
     };
-  }
+  },
 };
 </script>
 

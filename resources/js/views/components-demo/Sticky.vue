@@ -35,13 +35,13 @@
 
     <div class="components-container">
       <code>Sticky header, {{ $t('components.stickyTips') }}</code>
-      <div v-for="n in 60">Placeholder</div>      
+      <div v-for="n in 60">Placeholder {{ n }} </div>
     </div>
   </div>
 </template>
 
 <script>
-import Sticky from '@/components/Sticky'
+import Sticky from '@/components/Sticky';
 
 export default {
   name: 'StickyDemo',
@@ -54,16 +54,16 @@ export default {
       platformsOptions: [
         { key: 'a-platform', name: 'platformA' },
         { key: 'b-platform', name: 'platformB' },
-        { key: 'c-platform', name: 'platformC' }
+        { key: 'c-platform', name: 'platformC' },
       ],
       pickerOptions: {
         disabledDate(time) {
-          return time.getTime() > Date.now()
-        }
-      }
-    }
-  }
-}
+          return time.getTime() > Date.now();
+        },
+      },
+    };
+  },
+};
 </script>
 
 <style scoped>
