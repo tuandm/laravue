@@ -1,7 +1,7 @@
 export default {
   common: {
     back: 'Quay lại',
-    return: 'Trở về'
+    return: 'Trở về',
   },
   route: {
     dashboard: 'Dashboard',
@@ -66,7 +66,7 @@ export default {
     theme: 'Theme',
     clipboardDemo: 'Clipboard',
     i18n: 'I18n',
-    externalLink: 'Liên kết ngoài'
+    externalLink: 'Liên kết ngoài',
   },
   navbar: {
     logOut: 'Đăng xuất',
@@ -74,7 +74,7 @@ export default {
     github: 'Github',
     screenfull: 'Toàn màn hình',
     theme: 'Theme',
-    size: 'Global Size'
+    size: 'Global Size',
   },
   login: {
     title: 'Đăng nhập',
@@ -84,21 +84,21 @@ export default {
     password: 'Mật khẩu',
     any: 'any',
     thirdparty: 'Hoặc đăng nhập với',
-    thirdpartyTips: 'Không thể giả lập, xi vui lòng áp dụng tùy theo tình huống nghiệp vụ của bạn! ! !'
+    thirdpartyTips: 'Không thể giả lập, xi vui lòng áp dụng tùy theo tình huống nghiệp vụ của bạn! ! !',
   },
   documentation: {
     documentation: 'Tài liệu',
     github: 'Github Repository',
-    laravel: 'Laravel'
+    laravel: 'Laravel',
   },
   permission: {
     roles: 'Nhóm của bạn',
     switchRoles: 'Đổi nhóm',
-    tips: 'Trong vài trường hợp sẽ không thích hợp để dùng v-permission, như là thành phần Tab hay el-table-column và các trường hợp render DOM không đồng bộ, khi đó chỉ có thể xử lý bằng tay với v-if.'
+    tips: 'Trong vài trường hợp sẽ không thích hợp để dùng v-permission, như là thành phần Tab hay el-table-column và các trường hợp render DOM không đồng bộ, khi đó chỉ có thể xử lý bằng tay với v-if.',
   },
   guide: {
     description: 'Trang hướng dẫn sẽ có ích cho những người mới vào website lần đầu. Bạn có thể giới thiệu sơ lược các chức năng của website. Kiểm tra demo',
-    button: 'Hiện hướng dẫn'
+    button: 'Hiện hướng dẫn',
   },
   components: {
     documentation: 'Tài liệu',
@@ -107,7 +107,7 @@ export default {
     stickyTips: 'When the page is scrolled to the preset position will be sticky on the top.',
     backToTopTips1: 'When the page is scrolled to the specified position, the Back to Top button appears in the lower right corner',
     backToTopTips2: 'You can customize the style of the button, show / hide, height of appearance, height of the return. If you need a text prompt, you can use element-ui el-tooltip elements externally',
-    imageUploadTips: 'Since I was using only the vue@1 version, and it is not compatible with mockjs at the moment, I modified it myself, and if you are going to use it, it is better to use official version.'
+    imageUploadTips: 'Since I was using only the vue@1 version, and it is not compatible with mockjs at the moment, I modified it myself, and if you are going to use it, it is better to use official version.',
   },
   table: {
     dynamicTips1: 'Fixed header, sorted by header order',
@@ -133,34 +133,34 @@ export default {
     draft: 'Draft',
     delete: 'Delete',
     cancel: 'Cancel',
-    confirm: 'Confirm'
+    confirm: 'Confirm',
   },
   errorLog: {
     tips: 'Please click the bug icon in the upper right corner',
     description: 'Now the management system are basically the form of the spa, it enhances the user experience, but it also increases the possibility of page problems, a small negligence may lead to the entire page deadlock. Fortunately Vue provides a way to catch handling exceptions, where you can handle errors or report exceptions.',
-    documentation: 'Document introduction'
+    documentation: 'Document introduction',
   },
   excel: {
     export: 'Export',
     selectedExport: 'Export Selected Items',
-    placeholder: 'Please enter the file name(default excel-list)'
+    placeholder: 'Please enter the file name(default excel-list)',
   },
   zip: {
     export: 'Export',
-    placeholder: 'Please enter the file name(default file)'
+    placeholder: 'Please enter the file name(default file)',
   },
   pdf: {
-    tips: 'Here we use window.print() to implement the feature of downloading pdf.'
+    tips: 'Here we use window.print() to implement the feature of downloading pdf.',
   },
   theme: {
     change: 'Change Theme',
     documentation: 'Theme documentation',
-    tips: 'Tips: It is different from the theme-pick on the navbar is two different skinning methods, each with different application scenarios. Refer to the documentation for details.'
+    tips: 'Tips: It is different from the theme-pick on the navbar is two different skinning methods, each with different application scenarios. Refer to the documentation for details.',
   },
   tagsView: {
     refresh: 'Refresh',
     close: 'Close',
     closeOthers: 'Close Others',
-    closeAll: 'Close All'
-  }
-}
+    closeAll: 'Close All',
+  },
+};

@@ -55,26 +55,26 @@
 </template>
 
 <script>
-import permission from '@/directive/permission' // Permission directive (v-permission)
-import checkPermission from '@/utils/permission' // Permission checking
-import SwitchRoles from './components/SwitchRoles'
+import permission from '@/directive/permission'; // Permission directive (v-permission)
+import checkPermission from '@/utils/permission'; // Permission checking
+import SwitchRoles from './components/SwitchRoles';
 
-export default{
+export default {
   name: 'DirectivePermission',
   components: { SwitchRoles },
   directives: { permission },
   data() {
     return {
-      key: 1 // In order to re-initialize the command each time switching permissions
-    }
+      key: 1, // In order to re-initialize the command each time switching permissions
+    };
   },
   methods: {
     checkPermission,
     handleRolesChange() {
-      this.key++
-    }
-  }
-}
+      this.key++;
+    },
+  },
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
@@ -96,4 +96,3 @@ export default{
   }
 }
 </style>
-

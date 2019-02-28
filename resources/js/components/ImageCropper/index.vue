@@ -113,13 +113,13 @@ import request from '@/utils/request'
 import language from './utils/language.js'
 import mimes from './utils/mimes.js'
 import data2blob from './utils/data2blob.js'
-import effectRipple from './utils/effectRipple.js'
+import effectRipple from './utils/effect-ripple.js'
 export default {
   props: {
     // Upload field name
     field: {
       type: String,
-      'default': 'avatar'
+      'default': 'avatar',
     },
     // Identify 
     ki: {

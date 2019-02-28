@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import ImageCropper from '@/components/ImageCropper'
-import PanThumb from '@/components/PanThumb'
+import ImageCropper from '@/components/ImageCropper';
+import PanThumb from '@/components/PanThumb';
 
 export default {
   name: 'AvatarUploadDemo',
@@ -33,20 +33,20 @@ export default {
     return {
       imagecropperShow: false,
       imagecropperKey: 0,
-      image: 'https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191'
-    }
+      image: 'https://wpimg.wallstcn.com/577965b9-bb9e-4e02-9f0c-095b41417191',
+    };
   },
   methods: {
     cropSuccess(resData) {
-      this.imagecropperShow = false
-      this.imagecropperKey = this.imagecropperKey + 1
-      this.image = resData.files.avatar
+      this.imagecropperShow = false;
+      this.imagecropperKey = this.imagecropperKey + 1;
+      this.image = resData.files.avatar;
     },
     close() {
-      this.imagecropperShow = false
-    }
-  }
-}
+      this.imagecropperShow = false;
+    },
+  },
+};
 </script>
 
 <style scoped>

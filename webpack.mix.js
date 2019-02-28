@@ -1,25 +1,30 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix')
+require('laravel-mix-eslint')
 
 function publicPath(dir) {
-  return path.join(__dirname, '/public', dir);
+  return path.join(__dirname, '/public', dir)
 }
 
 function resolve(dir) {
-  return path.join(__dirname, '/resources/js', dir);
+  return path.join(__dirname, '/resources/js', dir)
 }
 
-Mix.listen('configReady', (webpackConfig) => {
+Mix.listen('configReady', webpackConfig => {
   // Add "svg" to image loader test
-  let imageLoaderConfig = webpackConfig.module.rules.find(rule => String(rule.test) === String(/(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/));
-  imageLoaderConfig.exclude = resolve('icons');
+  const imageLoaderConfig = webpackConfig.module.rules.find(
+    rule =>
+      String(rule.test) ===
+      String(/(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/)
+  )
+  imageLoaderConfig.exclude = resolve('icons')
 })
 
 mix.webpackConfig({
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
-      'vue$': 'vue/dist/vue.esm.js',
-      '@': __dirname + '/resources/js'
+      vue$: 'vue/dist/vue.esm.js',
+      '@': __dirname + '/resources/js',
     },
   },
   module: {
@@ -29,13 +34,12 @@ mix.webpackConfig({
         loader: 'svg-sprite-loader',
         include: [resolve('icons')],
         options: {
-          symbolId: 'icon-[name]'
-        }
+          symbolId: 'icon-[name]',
+        },
       },
     ],
-
-  }
-});
+  },
+})
 
 /*
  |--------------------------------------------------------------------------
@@ -48,23 +52,24 @@ mix.webpackConfig({
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix
+  .js('resources/js/app.js', 'public/js')
   // .extract(['vue', 'axios', 'vuex', 'vue-router', 'vue-i18n', 'element-ui']) // Issue of webpack:  https://github.com/JeffreyWay/laravel-mix/issues/1870
   .options({
-    processCssUrls: false
+    processCssUrls: false,
   })
-  .sass('resources/js/styles/index.scss', 'public/css/app.css');
+  .sass('resources/js/styles/index.scss', 'public/css/app.css')
+  .eslint()
 
 if (mix.inProduction()) {
-  mix.version();
+  mix.version()
 } else {
   // Development settings
-  mix.sourceMaps()
-    .webpackConfig({
-      output: {
-        path: publicPath('/'),
-        publicPath: '/',
-      },
-      devtool: 'cheap-eval-source-map' // Fastest for development
-    });
+  mix.sourceMaps().webpackConfig({
+    output: {
+      path: publicPath('/'),
+      publicPath: '/',
+    },
+    devtool: 'cheap-eval-source-map', // Fastest for development
+  })
 }

@@ -41,8 +41,8 @@
   Auth: Lei.j1ang
   Created: 2018/1/19-14:54
 */
-import TreeTable from '@/components/TreeTable'
-import treeToArray from './custom-eval'
+import TreeTable from '@/components/TreeTable';
+import treeToArray from './custom-eval';
 
 export default {
   name: 'CustomTreeTableDemo',
@@ -61,7 +61,7 @@ export default {
             id: 2,
             event: 'Event 2',
             timeLine: 10,
-            comment: 'No'
+            comment: 'No',
           },
           {
             id: 3,
@@ -73,13 +73,13 @@ export default {
                 id: 4,
                 event: 'Event 4',
                 timeLine: 5,
-                comment: 'No'
+                comment: 'No',
               },
               {
                 id: 5,
                 event: 'Event 5',
                 timeLine: 10,
-                comment: 'No'
+                comment: 'No',
               },
               {
                 id: 6,
@@ -97,41 +97,41 @@ export default {
                         id: 71,
                         event: 'Event 71',
                         timeLine: 25,
-                        comment: '10'
+                        comment: '10',
                       },
                       {
                         id: 72,
                         event: 'Event 72',
                         timeLine: 5,
-                        comment: '13'
+                        comment: '13',
                       },
                       {
                         id: 73,
                         event: 'Event 73',
                         timeLine: 20,
-                        comment: '22'
-                      }
-                    ]
+                        comment: '22',
+                      },
+                    ],
                   },
                   {
                     id: 8,
                     event: 'Event 8',
                     timeLine: 25,
-                    comment: 'No'
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+                    comment: 'No',
+                  },
+                ],
+              },
+            ],
+          },
+        ],
       },
-      args: [null, null, 'timeLine']
-    }
+      args: [null, null, 'timeLine'],
+    };
   },
   methods: {
     message(row) {
-      this.$message.info(row.event)
-    }
-  }
-}
+      this.$message.info(row.event);
+    },
+  },
+};
 </script>

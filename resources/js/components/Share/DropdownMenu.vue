@@ -16,25 +16,25 @@ export default {
     items: {
       type: Array,
       default: function() {
-        return []
-      }
+        return [];
+      },
     },
     title: {
       type: String,
-      default: 'vue'
-    }
+      default: 'vue',
+    },
   },
   data() {
     return {
-      isActive: false
-    }
+      isActive: false,
+    };
   },
   methods: {
     clickTitle() {
-      this.isActive = !this.isActive
-    }
-  }
-}
+      this.isActive = !this.isActive;
+    },
+  },
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" >

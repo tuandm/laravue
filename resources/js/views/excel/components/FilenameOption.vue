@@ -11,18 +11,18 @@ export default {
   props: {
     value: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   computed: {
     filename: {
       get() {
-        return this.value
+        return this.value;
       },
       set(val) {
-        this.$emit('input', val)
-      }
-    }
-  }
-}
+        this.$emit('input', val);
+      },
+    },
+  },
+};
 </script>

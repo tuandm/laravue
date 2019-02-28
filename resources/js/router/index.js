@@ -1,23 +1,23 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 
 // in development-env not use lazy-loading, because lazy-loading too many pages will cause webpack hot update too slow. so only in production use lazy-loading;
 // detail: https://panjiachen.github.io/vue-element-admin-site/#/lazy-loading
 
-Vue.use(Router)
+Vue.use(Router);
 
 /* Layout */
-import Layout from '../views/layout/Layout'
+import Layout from '../views/layout/Layout';
 
 /* Router for modules */
-import componentsRouter from './modules/components'
-import chartsRouter from './modules/charts'
-import tableRouter from './modules/table'
-import exampleRouter from './modules/example'
-import nestedRouter from './modules/nested'
-import errorRouter from './modules/error'
-import excelRouter from './modules/excel'
-import permissionRouter from './modules/permission'
+import componentsRouter from './modules/components';
+import chartsRouter from './modules/charts';
+import tableRouter from './modules/table';
+import exampleRouter from './modules/example';
+import nestedRouter from './modules/nested';
+import errorRouter from './modules/error';
+import excelRouter from './modules/excel';
+import permissionRouter from './modules/permission';
 
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -40,30 +40,30 @@ export const constantRouterMap = [
     children: [
       {
         path: '/redirect/:path*',
-        component: () => import('@/views/redirect/index')
-      }
-    ]
+        component: () => import('@/views/redirect/index'),
+      },
+    ],
   },
   {
     path: '/login',
     component: () => import('@/views/login/index'),
-    hidden: true
+    hidden: true,
   },
   {
     path: '/auth-redirect',
     component: () => import('@/views/login/AuthRedirect'),
-    hidden: true
+    hidden: true,
   },
   {
     path: '/404',
-    redirect: {name: 'Page404'},
+    redirect: { name: 'Page404' },
     component: () => import('@/views/ErrorPage/404'),
-    hidden: true
+    hidden: true,
   },
   {
     path: '/401',
     component: () => import('@/views/ErrorPage/401'),
-    hidden: true
+    hidden: true,
   },
   {
     path: '',
@@ -74,9 +74,9 @@ export const constantRouterMap = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', noCache: true }
-      }
-    ]
+        meta: { title: 'Dashboard', icon: 'dashboard', noCache: true },
+      },
+    ],
   },
   {
     path: '/documentation',
@@ -87,9 +87,9 @@ export const constantRouterMap = [
         path: 'index',
         component: () => import('@/views/documentation/index'),
         name: 'Documentation',
-        meta: { title: 'documentation', icon: 'documentation', noCache: true }
-      }
-    ]
+        meta: { title: 'documentation', icon: 'documentation', noCache: true },
+      },
+    ],
   },
   {
     path: '/guide',
@@ -100,9 +100,9 @@ export const constantRouterMap = [
         path: 'index',
         component: () => import('@/views/guide/index'),
         name: 'Guide',
-        meta: { title: 'guide', icon: 'guide', noCache: true }
-      }
-    ]
+        meta: { title: 'guide', icon: 'guide', noCache: true },
+      },
+    ],
   },
   {
     path: '/form',
@@ -112,17 +112,17 @@ export const constantRouterMap = [
         path: 'index',
         name: 'Form',
         component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
-      }
-    ]
+        meta: { title: 'Form', icon: 'form' },
+      },
+    ],
   },
-]
+];
 
 export default new Router({
   // mode: 'history', // Require service support
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
-})
+  routes: constantRouterMap,
+});
 
 export const asyncRouterMap = [
   permissionRouter,
@@ -134,9 +134,9 @@ export const asyncRouterMap = [
         path: 'index',
         component: () => import('@/views/icons/index'),
         name: 'Icons',
-        meta: { title: 'icons', icon: 'icon', noCache: true }
-      }
-    ]
+        meta: { title: 'icons', icon: 'icon', noCache: true },
+      },
+    ],
   },
   componentsRouter,
   chartsRouter,
@@ -151,9 +151,9 @@ export const asyncRouterMap = [
         path: 'index',
         component: () => import('@/views/tab'),
         name: 'Tab',
-        meta: { title: 'tab', icon: 'tab' }
-      }
-    ]
+        meta: { title: 'tab', icon: 'tab' },
+      },
+    ],
   },
   errorRouter,
   excelRouter,
@@ -168,9 +168,9 @@ export const asyncRouterMap = [
         path: 'download',
         component: () => import('@/views/zip'),
         name: 'ExportZip',
-        meta: { title: 'exportZip' }
-      }
-    ]
+        meta: { title: 'exportZip' },
+      },
+    ],
   },
   {
     path: '/pdf',
@@ -182,14 +182,14 @@ export const asyncRouterMap = [
         path: 'index',
         component: () => import('@/views/pdf'),
         name: 'PDF',
-        meta: { title: 'PDF' }
-      }
-    ]
+        meta: { title: 'PDF' },
+      },
+    ],
   },
   {
     path: '/pdf/download',
     component: () => import('@/views/pdf/Download'),
-    hidden: true
+    hidden: true,
   },
   {
     path: '/i18n',
@@ -199,9 +199,9 @@ export const asyncRouterMap = [
         path: 'index',
         component: () => import('@/views/i18n'),
         name: 'I18n',
-        meta: { title: 'i18n', icon: 'international' }
-      }
-    ]
+        meta: { title: 'i18n', icon: 'international' },
+      },
+    ],
   },
   {
     path: 'external-link',
@@ -209,9 +209,9 @@ export const asyncRouterMap = [
     children: [
       {
         path: 'https://github.com/tuandm/laravue',
-        meta: { title: 'externalLink', icon: 'link' }
-      }
-    ]
+        meta: { title: 'externalLink', icon: 'link' },
+      },
+    ],
   },
-  { path: '*', redirect: '/404', hidden: true }
-]
+  { path: '*', redirect: '/404', hidden: true },
+];

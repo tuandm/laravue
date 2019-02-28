@@ -19,18 +19,18 @@ export default {
   props: {
     value: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     comment_disabled: {
       get() {
-        return this.value
+        return this.value;
       },
       set(val) {
-        this.$emit('input', val)
-      }
-    }
-  }
-}
+        this.$emit('input', val);
+      },
+    },
+  },
+};
 </script>

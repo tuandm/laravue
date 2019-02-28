@@ -13,7 +13,7 @@
     <el-table-column v-for="(column, index) in columns" v-else :key="column.value" :label="column.text" :width="column.width">
       <template slot-scope="scope">
         <!-- Todo -->
-        <!-- eslint-disable-next-line vue/no-confusing-v-for-v-if -->
+        <!-- eslint-disable-next-line vue/no-use-v-if-with-v-for -->
         <span v-for="space in scope.row._level" v-if="index === 0" :key="space" class="ms-tree-space"/>
         <span v-if="iconShow(index,scope.row)" class="tree-ctrl" @click="toggleExpanded(scope.$index)">
           <i v-if="!scope.row._expanded" class="el-icon-plus"/>
@@ -31,7 +31,7 @@
   Auth: Lei.j1ang
   Created: 2018/1/19-13:59
 */
-import treeToArray from './eval'
+import treeToArray from './eval';
 export default {
   name: 'TreeTable',
   props: {
@@ -63,7 +63,8 @@ export default {
       const func = this.evalFunc || treeToArray
       const args = this.evalArgs ? [tmp, this.expandAll].concat(this.evalArgs) : [tmp, this.expandAll]
       return func.apply(null, args)
-    }
+    },
+    firstRowInLevv
   },
   methods: {
     showRow: function(row) {

@@ -13,18 +13,18 @@ export default {
   props: {
     value: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   computed: {
     autoWidth: {
       get() {
-        return this.value
+        return this.value;
       },
       set(val) {
-        this.$emit('input', val)
-      }
-    }
-  }
-}
+        this.$emit('input', val);
+      },
+    },
+  },
+};
 </script>

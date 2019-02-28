@@ -3,69 +3,69 @@
 </template>
 
 <script>
-import echarts from 'echarts'
-import resize from './mixins/resize'
+import echarts from 'echarts';
+import resize from './mixins/resize';
 
 export default {
   mixins: [resize],
   props: {
     className: {
       type: String,
-      default: 'chart'
+      default: 'chart',
     },
     id: {
       type: String,
-      default: 'chart'
+      default: 'chart',
     },
     width: {
       type: String,
-      default: '200px'
+      default: '200px',
     },
     height: {
       type: String,
-      default: '200px'
-    }
+      default: '200px',
+    },
   },
   data() {
     return {
-      chart: null
-    }
+      chart: null,
+    };
   },
   mounted() {
-    this.initChart()
+    this.initChart();
   },
   beforeDestroy() {
     if (!this.chart) {
-      return
+      return;
     }
-    this.chart.dispose()
-    this.chart = null
+    this.chart.dispose();
+    this.chart = null;
   },
   methods: {
     initChart() {
-      this.chart = echarts.init(document.getElementById(this.id))
+      this.chart = echarts.init(document.getElementById(this.id));
 
-      const xAxisData = []
-      const data = []
-      const data2 = []
+      const xAxisData = [];
+      const data = [];
+      const data2 = [];
       for (let i = 0; i < 50; i++) {
-        xAxisData.push(i)
-        data.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5)
-        data2.push((Math.sin(i / 5) * (i / 5 + 10) + i / 6) * 3)
+        xAxisData.push(i);
+        data.push((Math.sin(i / 5) * (i / 5 - 10) + i / 6) * 5);
+        data2.push((Math.sin(i / 5) * (i / 5 + 10) + i / 6) * 3);
       }
       this.chart.setOption(
         {
           backgroundColor: '#08263a',
           grid: {
             left: '5%',
-            right: '5%'
+            right: '5%',
           },
           xAxis: [{
             show: false,
-            data: xAxisData
+            data: xAxisData,
           }, {
             show: false,
-            data: xAxisData
+            data: xAxisData,
           }],
           visualMap: {
             show: false,
@@ -73,27 +73,27 @@ export default {
             max: 50,
             dimension: 0,
             inRange: {
-              color: ['#4a657a', '#308e92', '#b1cfa5', '#f5d69f', '#f5898b', '#ef5055']
-            }
+              color: ['#4a657a', '#308e92', '#b1cfa5', '#f5d69f', '#f5898b', '#ef5055'],
+            },
           },
           yAxis: {
             axisLine: {
-              show: false
+              show: false,
             },
             axisLabel: {
               textStyle: {
-                color: '#4a657a'
-              }
+                color: '#4a657a',
+              },
             },
             splitLine: {
               show: true,
               lineStyle: {
-                color: '#08263f'
-              }
+                color: '#08263f',
+              },
             },
             axisTick: {
-              show: false
-            }
+              show: false,
+            },
           },
           series: [{
             name: 'back',
@@ -105,9 +105,9 @@ export default {
                 opacity: 0.4,
                 barBorderRadius: 5,
                 shadowBlur: 3,
-                shadowColor: '#111'
-              }
-            }
+                shadowColor: '#111',
+              },
+            },
           }, {
             name: 'Simulate Shadow',
             type: 'line',
@@ -119,16 +119,16 @@ export default {
             animationDuration: 1200,
             lineStyle: {
               normal: {
-                color: 'transparent'
-              }
+                color: 'transparent',
+              },
             },
             areaStyle: {
               normal: {
                 color: '#08263a',
                 shadowBlur: 50,
-                shadowColor: '#000'
-              }
-            }
+                shadowColor: '#000',
+              },
+            },
           }, {
             name: 'front',
             type: 'bar',
@@ -137,20 +137,20 @@ export default {
             z: 3,
             itemStyle: {
               normal: {
-                barBorderRadius: 5
-              }
-            }
+                barBorderRadius: 5,
+              },
+            },
           }],
           animationEasing: 'elasticOut',
           animationEasingUpdate: 'elasticOut',
           animationDelay(idx) {
-            return idx * 20
+            return idx * 20;
           },
           animationDelayUpdate(idx) {
-            return idx * 20
-          }
-        })
-    }
-  }
-}
+            return idx * 20;
+          },
+        });
+    },
+  },
+};
 </script>

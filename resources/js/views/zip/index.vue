@@ -35,43 +35,43 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/article'
+import { fetchList } from '@/api/article';
 
 export default {
   name: 'ExportZip',
-  data() {
+  data () {
     return {
       list: null,
       listLoading: true,
       downloadLoading: false,
-      filename: ''
-    }
+      filename: '',
+    };
   },
-  created() {
-    this.fetchData()
+  created () {
+    this.fetchData();
   },
   methods: {
-    fetchData() {
-      this.listLoading = true
+    fetchData () {
+      this.listLoading = true;
       fetchList().then(response => {
-        this.list = response.data.items
-        this.listLoading = false
-      })
+        this.list = response.data.items;
+        this.listLoading = false;
+      });
     },
-    handleDownload() {
-      this.downloadLoading = true
+    handleDownload () {
+      this.downloadLoading = true;
       import('@/vendor/Export2Zip').then(zip => {
-        const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date']
-        const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time']
-        const list = this.list
-        const data = this.formatJson(filterVal, list)
-        zip.export_txt_to_zip(tHeader, data, this.filename, this.filename)
-        this.downloadLoading = false
-      })
+        const tHeader = ['Id', 'Title', 'Author', 'Readings', 'Date'];
+        const filterVal = ['id', 'title', 'author', 'pageviews', 'display_time'];
+        const list = this.list;
+        const data = this.formatJson(filterVal, list);
+        zip.export_txt_to_zip(tHeader, data, this.filename, this.filename);
+        this.downloadLoading = false;
+      });
     },
-    formatJson(filterVal, jsonData) {
-      return jsonData.map(v => filterVal.map(j => v[j]))
-    }
-  }
-}
+    formatJson (filterVal, jsonData) {
+      return jsonData.map(v => filterVal.map(j => v[j]));
+    },
+  },
+};
 </script>

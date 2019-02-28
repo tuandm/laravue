@@ -59,22 +59,22 @@ export default {
         delivery: false,
         type: [],
         resource: '',
-        desc: ''
-      }
-    }
+        desc: '',
+      },
+    };
   },
   methods: {
     onSubmit() {
-      this.$message('submit!')
+      this.$message('submit!');
     },
     onCancel() {
       this.$message({
         message: 'cancel!',
-        type: 'warning'
-      })
-    }
-  }
-}
+        type: 'warning',
+      });
+    },
+  },
+};
 </script>
 
 <style scoped>

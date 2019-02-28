@@ -10,26 +10,26 @@ export default {
   props: {
     iconClass: {
       type: String,
-      required: true
+      required: true,
     },
     className: {
       type: String,
-      default: ''
-    }
+      default: '',
+    },
   },
   computed: {
     iconName() {
-      return `#icon-${this.iconClass}`
+      return `#icon-${this.iconClass}`;
     },
     svgClass() {
       if (this.className) {
-        return 'svg-icon ' + this.className
+        return 'svg-icon ' + this.className;
       } else {
-        return 'svg-icon'
+        return 'svg-icon';
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style scoped>

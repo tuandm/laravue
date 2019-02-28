@@ -1,4 +1,4 @@
-import request from '@/utils/request'
+import request from '@/utils/request';
 
 export function login(email, password) {
   return request({
@@ -6,21 +6,21 @@ export function login(email, password) {
     method: 'post',
     data: {
       email,
-      password
-    }
-  })
+      password,
+    },
+  });
 }
 
 export function getInfo(token) {
   return request({
     url: '/auth/user',
-    method: 'get'
-  })
+    method: 'get',
+  });
 }
 
 export function logout() {
   return request({
     url: '/auth/logout',
-    method: 'post'
-  })
+    method: 'post',
+  });
 }

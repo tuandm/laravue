@@ -23,40 +23,40 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/transaction'
+import { fetchList } from '@/api/transaction';
 
 export default {
   filters: {
     statusFilter(status) {
       const statusMap = {
         success: 'success',
-        pending: 'danger'
-      }
-      return statusMap[status]
+        pending: 'danger',
+      };
+      return statusMap[status];
     },
     orderNoFilter(str) {
-      return str
-    }
+      return str;
+    },
   },
   data() {
     return {
-      list: [{order_no: '1', price: '2', status: 'pending'}],
+      list: [{ order_no: '1', price: '2', status: 'pending' }],
       loading: true,
-    }
+    };
   },
   created() {
-    this.fetchData()
+    this.fetchData();
   },
   methods: {
     fetchData() {
       fetchList()
-      .then(response => {
-        this.list = response.data.items.slice(0, 8)
-      })
-      .then(() => {
-        this.loading = false
-      })
-    }
-  }
-}
+        .then(response => {
+          this.list = response.data.items.slice(0, 8);
+        })
+        .then(() => {
+          this.loading = false;
+        });
+    },
+  },
+};
 </script>

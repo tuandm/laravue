@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import DropdownMenu from '@/components/Share/DropdownMenu'
+import DropdownMenu from '@/components/Share/DropdownMenu';
 
 export default {
   name: 'Documentation',
@@ -20,11 +20,11 @@ export default {
         { title: 'Vue Router', href: 'https://router.vuejs.org/' },
         { title: 'vue-admin-template', href: 'https://github.com/PanJiaChen/vue-admin-template' },
         { title: 'vue-element-admin', href: 'https://github.com/PanJiaChen/vue-element-admin' },
-        { title: 'Axios', href: 'https://github.com/axios/axios' }
-      ]
-    }
-  }
-}
+        { title: 'Axios', href: 'https://github.com/axios/axios' },
+      ],
+    };
+  },
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
