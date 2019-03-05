@@ -10,6 +10,14 @@
         "dashboard"
     ],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "Tuan Duong",
+            "email": "bacduong@gmail.com",
+            "homepage": "https://laravue.dev",
+            "role": "Developer"
+        }
+    ],
     "require": {
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",
