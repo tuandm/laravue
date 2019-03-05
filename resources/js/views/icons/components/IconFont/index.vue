@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import icons from './../RequireIcons';
+import icons from './require-icons';
 import clipboard from '@/utils/clipboard';
 
 export default {

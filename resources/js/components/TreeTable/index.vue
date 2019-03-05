@@ -35,54 +35,52 @@ import treeToArray from './eval';
 export default {
   name: 'TreeTable',
   props: {
-    /* eslint-disable */
     data: {
       type: [Array, Object],
-      required: true
+      required: true,
     },
     columns: {
       type: Array,
-      default: () => []
+      default: () => [],
     },
     evalFunc: Function,
     evalArgs: Array,
     expandAll: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   computed: {
     // Formated data source
     formatData: function() {
-      let tmp
+      let tmp;
       if (!Array.isArray(this.data)) {
-        tmp = [this.data]
+        tmp = [this.data];
       } else {
-        tmp = this.data
+        tmp = this.data;
       }
-      const func = this.evalFunc || treeToArray
-      const args = this.evalArgs ? [tmp, this.expandAll].concat(this.evalArgs) : [tmp, this.expandAll]
-      return func.apply(null, args)
+      const func = this.evalFunc || treeToArray;
+      const args = this.evalArgs ? [tmp, this.expandAll].concat(this.evalArgs) : [tmp, this.expandAll];
+      return func.apply(null, args);
     },
-    firstRowInLevv
   },
   methods: {
     showRow: function(row) {
-      const show = (row.row.parent ? (row.row.parent._expanded && row.row.parent._show) : true)
-      row.row._show = show
-      return show ? 'animation:treeTableShow 1s;-webkit-animation:treeTableShow 1s;' : 'display:none;'
+      const show = (row.row.parent ? (row.row.parent._expanded && row.row.parent._show) : true);
+      row.row._show = show;
+      return show ? 'animation:treeTableShow 1s;-webkit-animation:treeTableShow 1s;' : 'display:none;';
     },
     // Switch to whether the lower level is expanded
     toggleExpanded: function(trIndex) {
-      const record = this.formatData[trIndex]
-      record._expanded = !record._expanded
+      const record = this.formatData[trIndex];
+      record._expanded = !record._expanded;
     },
     // Icon display
     iconShow(index, record) {
-      return (index === 0 && record.children && record.children.length > 0)
-    }
-  }
-}
+      return (index === 0 && record.children && record.children.length > 0);
+    },
+  },
+};
 </script>
 <style rel="stylesheet/css">
   @keyframes treeTableShow {

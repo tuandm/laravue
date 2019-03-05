@@ -55,7 +55,7 @@ export default {
       window.addEventListener('resize', this.__resizeHandler);
     }
 
-    // 监听侧边栏的变化
+    // Monitor the sidebar changes
     this.sidebarElm = document.getElementsByClassName('sidebar-container')[0];
     this.sidebarElm && this.sidebarElm.addEventListener('transitionend', this.sidebarResizeHandler);
   },

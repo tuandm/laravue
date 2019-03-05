@@ -1,6 +1,6 @@
 <template>
   <div class="icons-container">
-    <p class="warn-content" v-if="false">
+    <p class="warn-content" v-show="false">
       <a
         href="https://panjiachen.github.io/vue-element-admin-site/guide/advanced/icon.html"
         target="_blank"

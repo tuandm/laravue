@@ -4,6 +4,12 @@
 */
 'use strict';
 import Vue from 'vue';
+/**
+ * @param {*} data
+ * @param {Boolean} expandAll
+ * @param {*} parent
+ * @param {Number} level
+ */
 export default function treeToArray(data, expandAll, parent = null, level = null) {
   let tmp = [];
   Array.from(data).forEach(function(record) {

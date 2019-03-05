@@ -33,7 +33,7 @@ export default {
   data() {
     return {
       errGif: errGif + '?' + +new Date(),
-      ewizardClap: 'https://wpimg.wallstcn.com/007ef517-bafd-4066-aae4-6883632d9646',
+      ewizardClap: 'https://i.redd.it/7jvcbsfjz1h11.gif',
       dialogVisible: false,
     };
   },

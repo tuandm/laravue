@@ -53,6 +53,7 @@ const tagsView = {
         }
       }
     },
+
     DEL_OTHERS_CACHED_VIEWS: (state, view) => {
       for (const i of state.cachedViews) {
         if (i === view.name) {

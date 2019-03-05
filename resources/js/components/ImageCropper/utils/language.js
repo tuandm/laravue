@@ -56,6 +56,25 @@ export default {
       lowestPx: 'Image\'s size is too low. Expected at least: ',
     },
   },
+  vi: {
+    hint: 'Nhấp chuột hoặc kéo file vào đây để tải lên',
+    loading: 'Đang tải lên…',
+    noSupported: 'Trình duyệt không hỗ trợ, Xin vui lòng dùng IE10+ hoặc trình duyệt khác',
+    success: 'Tải lên thành công',
+    fail: 'Tải lên thất bại',
+    preview: 'Xem trước',
+    btn: {
+      off: 'Hủy',
+      close: 'Đóng',
+      back: 'Quay lại',
+      save: 'Lưu',
+    },
+    error: {
+      onlyImg: 'Chỉ hỗ trợ hình ảnh',
+      outOfSize: 'Kích thước vượt quá: ',
+      lowestPx: 'Kích thước hình ảnh quá nhỏ. Tối thiểu là: ',
+    },
+  },
   ro: {
     hint: 'Atinge sau trage fișierul aici',
     loading: 'Se încarcă',

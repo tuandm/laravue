@@ -33,7 +33,7 @@
     "lodash": "^4.17.5",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "resolve-url-loader": "^2.3.2",
-    "sass": "^1.17.0",
+    "sass": "^1.17.2",
     "sass-loader": "^7.1.0",
     "script-loader": "^0.7.2",
     "svg-sprite-loader": "^4.1.3",

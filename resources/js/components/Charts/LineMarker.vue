@@ -71,7 +71,7 @@ export default {
           itemWidth: 14,
           itemHeight: 5,
           itemGap: 13,
-          data: ['CMCC', 'CTCC', 'CUCC'],
+          data: ['API', 'Search', 'Log'],
           right: '4%',
           textStyle: {
             fontSize: 12,
@@ -119,7 +119,7 @@ export default {
           },
         }],
         series: [{
-          name: 'CMCC',
+          name: 'API',
           type: 'line',
           smooth: true,
           symbol: 'circle',
@@ -148,12 +148,11 @@ export default {
               color: 'rgb(137,189,27)',
               borderColor: 'rgba(137,189,2,0.27)',
               borderWidth: 12,
-
             },
           },
           data: [220, 182, 191, 134, 150, 120, 110, 125, 145, 122, 165, 122],
         }, {
-          name: 'CTCC',
+          name: 'Search',
           type: 'line',
           smooth: true,
           symbol: 'circle',
@@ -182,12 +181,11 @@ export default {
               color: 'rgb(0,136,212)',
               borderColor: 'rgba(0,136,212,0.2)',
               borderWidth: 12,
-
             },
           },
           data: [120, 110, 125, 145, 122, 165, 122, 220, 182, 191, 134, 150],
         }, {
-          name: 'CUCC',
+          name: 'Log',
           type: 'line',
           smooth: true,
           symbol: 'circle',
