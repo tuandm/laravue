@@ -1,10 +1,13 @@
 {
-    "name": "laravel/laravel",
+    "name": "tuandm/laravue",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "The beautiful dashboard for Laravue buiit by VueJS.",
     "keywords": [
-        "framework",
-        "laravel"
+        "laravel",
+        "laravue",
+        "vue",
+        "admin",
+        "dashboard"
     ],
     "license": "MIT",
     "require": {

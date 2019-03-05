@@ -40,7 +40,7 @@ The project is built on top of [Laravel](https://laravel.com), [vue](https://cn.
 API will be served by Laravel. In this project, you need to run migration and data feeder to generate sample data for authentication/authorization, other APIs will be faked.
 
 ## Getting started
-This project is built on top of fresh latest version Laravel (5.7). You should check the installation guide of Laravel [here](https://laravel.com/docs/5.7)
+This project is built on top of fresh latest version Laravel (5.8). You should check the installation guide of Laravel [here](https://laravel.com/docs/5.8)
 
 ```bash
 # Clone the project and run composer
@@ -71,4 +71,4 @@ npm run production
 ```
 
 ## Deployment and/or CI/CD
-This project uses [Envoy](https://laravel.com/docs/5.7/envoy) for deployment, and [GitLab CI/CD](https://about.gitlab.com/product/continuous-integration/). Please check `Envoy.blade.php` and `.gitlab-ci.yml` for more detail.
+This project uses [Envoy](https://laravel.com/docs/5.8/envoy) for deployment, and [GitLab CI/CD](https://about.gitlab.com/product/continuous-integration/). Please check `Envoy.blade.php` and `.gitlab-ci.yml` for more detail.
