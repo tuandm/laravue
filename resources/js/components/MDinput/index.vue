@@ -114,7 +114,7 @@ export default {
     name: String,
     type: {
       type: String,
-      default: 'text'
+      default: 'text',
     },
     value: [String, Number],
     placeholder: String,
@@ -127,68 +127,68 @@ export default {
     maxlength: Number,
     required: {
       type: Boolean,
-      default: true
+      default: true,
     },
     autoComplete: {
       type: String,
-      default: 'off'
+      default: 'off',
     },
     validateEvent: {
       type: Boolean,
-      default: true
-    }
+      default: true,
+    },
   },
   data() {
     return {
       currentValue: this.value,
       focus: false,
-      fillPlaceHolder: null
-    }
+      fillPlaceHolder: null,
+    };
   },
   computed: {
     computedClasses() {
       return {
         'material--active': this.focus,
         'material--disabled': this.disabled,
-        'material--raised': Boolean(this.focus || this.currentValue) // has value
-      }
-    }
+        'material--raised': Boolean(this.focus || this.currentValue), // has value
+      };
+    },
   },
   watch: {
     value(newValue) {
-      this.currentValue = newValue
-    }
+      this.currentValue = newValue;
+    },
   },
   methods: {
     handleModelInput(event) {
-      const value = event.target.value
-      this.$emit('input', value)
+      const value = event.target.value;
+      this.$emit('input', value);
       if (this.$parent.$options.componentName === 'ElFormItem') {
         if (this.validateEvent) {
-          this.$parent.$emit('el.form.change', [value])
+          this.$parent.$emit('el.form.change', [value]);
         }
       }
-      this.$emit('change', value)
+      this.$emit('change', value);
     },
     handleMdFocus(event) {
-      this.focus = true
-      this.$emit('focus', event)
+      this.focus = true;
+      this.$emit('focus', event);
       if (this.placeholder && this.placeholder !== '') {
-        this.fillPlaceHolder = this.placeholder
+        this.fillPlaceHolder = this.placeholder;
       }
     },
     handleMdBlur(event) {
-      this.focus = false
-      this.$emit('blur', event)
-      this.fillPlaceHolder = null
+      this.focus = false;
+      this.$emit('blur', event);
+      this.fillPlaceHolder = null;
       if (this.$parent.$options.componentName === 'ElFormItem') {
         if (this.validateEvent) {
-          this.$parent.$emit('el.form.blur', [this.currentValue])
+          this.$parent.$emit('el.form.blur', [this.currentValue]);
         }
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

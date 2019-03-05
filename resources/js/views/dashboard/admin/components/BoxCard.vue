@@ -1,11 +1,11 @@
 <template>
   <el-card class="box-card-component" style="margin-left:8px;">
     <div slot="header" class="box-card-header">
-      <img src="https://wpimg.wallstcn.com/e7d23d71-cf19-4b90-a1cc-f56af8c0903d.png">
+      <img src="https://lonelyplanetimages.imgix.net/mastheads/GettyImages-538096543_medium.jpg?sharp=10&vib=20&w=1200">
     </div>
     <div style="position:relative;">
       <pan-thumb :image="avatar" class="panThumb"/>
-      <mallki class-name="mallki-text" text="Laravue"/>
+      <div class="mallki-text">Laravue</div>
       <div style="padding-top:35px;" class="progress-item">
         <span>Laravel</span>
         <el-progress :percentage="70"/>
@@ -29,10 +29,9 @@
 <script>
 import { mapGetters } from 'vuex';
 import PanThumb from '@/components/PanThumb';
-import Mallki from '@/components/TextHoverEffect/Mallki';
 
 export default {
-  components: { PanThumb, Mallki },
+  components: { PanThumb },
 
   filters: {
     statusFilter(status) {

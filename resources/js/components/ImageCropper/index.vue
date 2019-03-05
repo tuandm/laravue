@@ -13,7 +13,7 @@
             <i class="vicp-icon1-bottom"/>
           </i>
           <span v-show="loading !== 1" class="vicp-hint">{{ lang.hint }}</span>
-          <span v-show="!isSupported" class="vicp-no-supported-hint">{{ lang.noSupported }}</span>
+          <span v-show="!isSupported" class="vicp-step-supported-hint">{{ lang.stepSupported }}</span>
           <input v-show="false" v-if="step == 1" ref="fileinput" type="file" @change="handleChange">
         </div>
         <div v-show="hasError" class="vicp-error">
@@ -59,18 +59,18 @@
               <i class="vicp-icon6" @mousedown="startZoomAdd" @mouseout="endZoomAdd" @mouseup="endZoomAdd"/>
             </div>
 
-            <div v-if="!noRotate" class="vicp-rotate">
+            <div v-if="!stepRotate" class="vicp-rotate">
               <i @mousedown="startRotateLeft" @mouseout="endRotate" @mouseup="endRotate">↺</i>
               <i @mousedown="startRotateRight" @mouseout="endRotate" @mouseup="endRotate">↻</i>
             </div>
           </div>
           <div v-show="true" class="vicp-crop-right">
             <div class="vicp-preview">
-              <div v-if="!noSquare" class="vicp-preview-item">
+              <div v-if="!stepSquare" class="vicp-preview-item">
                 <img :src="createImgUrl" :style="previewStyle">
                 <span>{{ lang.preview }}</span>
               </div>
-              <div v-if="!noCircle" class="vicp-preview-item vicp-preview-item-circle">
+              <div v-if="!stepCircle" class="vicp-preview-item vicp-preview-item-circle">
                 <img :src="createImgUrl" :style="previewStyle">
                 <span>{{ lang.preview }}</span>
               </div>
@@ -108,12 +108,13 @@
 
 <script>
 /* eslint-disable */
-'use strict'
-import request from '@/utils/request'
-import language from './utils/language.js'
-import mimes from './utils/mimes.js'
-import data2blob from './utils/data2blob.js'
-import effectRipple from './utils/effect-ripple.js'
+'use strict';
+import request from '@/utils/request';
+import language from './utils/language.js';
+import mimes from './utils/mimes.js';
+import data2blob from './utils/data2blob.js';
+import effectRipple from './utils/effect-ripple.js';
+
 export default {
   props: {
     // Upload field name
@@ -121,105 +122,106 @@ export default {
       type: String,
       'default': 'avatar',
     },
-    // Identify 
+    // Identify
     ki: {
-      'default': 0
+      'default': 0,
     },
-    // Show the control or not
+    // Show the control or stept
     value: {
-      'default': true
+      'default': true,
     },
     // URL to upload
     url: {
       type: String,
-      'default': ''
+      'default': '',
     },
     // Other data to be uploaded along with file, as in object format
     params: {
       type: Object,
-      'default': null
+      'default': null,
     },
     // Add custom headers
     headers: {
       type: Object,
-      'default': null
+      'default': null,
     },
     // Width to crop
     width: {
       type: Number,
-      default: 200
+      default: 200,
     },
     // Height to crop
     height: {
       type: Number,
-      default: 200
+      default: 200,
     },
-    // 不显示旋转功能
-    noRotate: {
+    // Show/hide rotation function
+    stepRotate: {
       type: Boolean,
-      default: true
+      default: true,
     },
     // Circle when preview image
-    noCircle: {
+    stepCircle: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // Square when preview image
-    noSquare: {
+    stepSquare: {
       type: Boolean,
-      default: false
+      default: false,
     },
     // Max-size of single file
     maxSize: {
       type: Number,
-      'default': 10240
+      'default': 10240,
     },
     // Language type
     langType: {
       type: String,
-      'default': 'en'
+      'default': 'en',
     },
     // Language pack
     langExt: {
       type: Object,
-      'default': null
+      'default': null,
     },
     // Image format
     imgFormat: {
       type: String,
-      'default': 'png'
+      'default': 'png',
     },
     // For cross-domain support, credentials will be sent
     withCredentials: {
       type: Boolean,
-      'default': false
-    }
+      'default': false,
+    },
   },
   data() {
-    const that = this
+    const that = this;
     const {
       imgFormat,
       langType,
       langExt,
       width,
-      height
-    } = that
-    let isSupported = true
-    const allowImgFormat = [
+      height,
+    } = that;
+    let isSupported = true;
+    const allowedImgFormat = [
       'jpg',
-      'png'
-    ]
-    const tempImgFormat = allowImgFormat.indexOf(imgFormat) === -1 ? 'jpg' : imgFormat
-    const lang = language[langType] ? language[langType] : language['en']
-    const mime = mimes[tempImgFormat]
+      'png',
+    ];
+    const tempImgFormat = allowedImgFormat.indexOf(imgFormat) === -1 ? 'jpg' : imgFormat;
+    const lang = language[langType] ? language[langType] : language['en'];
+    const mime = mimes[tempImgFormat];
     // Specification image format
-    that.imgFormat = tempImgFormat
+    that.imgFormat = tempImgFormat;
     if (langExt) {
-      Object.assign(lang, langExt)
+      Object.assign(lang, langExt);
     }
     if (typeof FormData !== 'function') {
-      isSupported = false
+      isSupported = false;
     }
+
     return {
       // Mime image
       mime,
@@ -231,8 +233,8 @@ export default {
       isSupportTouch: document.hasOwnProperty('ontouchstart'),
       // Step
       step: 1, // 1 - select file, 2 - crop, 3 - upload
-      // 上传状态及进度
-      loading: 0, // 0 - not started, 1 - is being loaded, 2 - success, 3 - error
+      // Upload status and progress
+      loading: 0, // 0 - stept started, 1 - is being loaded, 2 - success, 3 - error
       progress: 0,
       // Is the any error?
       hasError: false,
@@ -250,17 +252,17 @@ export default {
         mX: 0, // Mouse pressed coordinates
         mY: 0,
         x: 0, // scale original coordinates
-        y: 0
+        y: 0,
       },
       // Generate container size for image preview
       previewContainer: {
         width: 100,
-        height: 100
+        height: 100,
       },
       // Original container size
       sourceImgContainer: { // sic
         width: 240,
-        height: 184 // If the generated graph scale is consistent with this, there will be a bug, first change to a special format
+        height: 184, // If the generated graph scale is consistent with this, there will be a bug, first change to a special format
       },
       // Original image display attribute
       scale: {
@@ -279,28 +281,29 @@ export default {
         minWidth: 0, // Min width
         minHeight: 0,
         naturalWidth: 0, // Original width
-        naturalHeight: 0
-      }
-    }
+        naturalHeight: 0,
+      },
+    };
   },
   computed: {
     // Progress bar
     progressStyle() {
       const {
-        progress
-      } = this
+        progress,
+      } = this;
+
       return {
-        width: progress + '%'
-      }
+        width: progress + '%',
+      };
     },
     // Original image
     sourceImgStyle() {
       const {
         scale,
-        sourceImgMasking
-      } = this
-      const top = scale.y + sourceImgMasking.y + 'px'
-      const left = scale.x + sourceImgMasking.x + 'px'
+        sourceImgMasking,
+      } = this;
+      const top = scale.y + sourceImgMasking.y + 'px';
+      const left = scale.x + sourceImgMasking.x + 'px';
       return {
         top,
         left,
@@ -310,8 +313,8 @@ export default {
         '-ms-transform': 'rotate(' + scale.degree + 'deg)', // Compatible with IE9
         '-moz-transform': 'rotate(' + scale.degree + 'deg)', // Compatible with FireFox
         '-webkit-transform': 'rotate(' + scale.degree + 'deg)', // Safari and Chrome
-        '-o-transform': 'rotate(' + scale.degree + 'deg)' // Opera
-      }
+        '-o-transform': 'rotate(' + scale.degree + 'deg)', // Opera
+      };
     },
     // Original mark attribute
     sourceImgMasking() {
@@ -319,383 +322,386 @@ export default {
         width,
         height,
         ratio,
-        sourceImgContainer
-      } = this
-      const sic = sourceImgContainer
-      const sicRatio = sic.width / sic.height // Original container aspect ratio
-      let x = 0
-      let y = 0
-      let w = sic.width
-      let h = sic.height
-      let scale = 1
+        sourceImgContainer,
+      } = this;
+      const sic = sourceImgContainer;
+      const sicRatio = sic.width / sic.height; // Original container aspect ratio
+      let x = 0;
+      let y = 0;
+      let w = sic.width;
+      let h = sic.height;
+      let scale = 1;
       if (ratio < sicRatio) {
-        scale = sic.height / height
-        w = sic.height * ratio
-        x = (sic.width - w) / 2
+        scale = sic.height / height;
+        w = sic.height * ratio;
+        x = (sic.width - w) / 2;
       }
       if (ratio > sicRatio) {
-        scale = sic.width / width
-        h = sic.width / ratio
-        y = (sic.height - h) / 2
+        scale = sic.width / width;
+        h = sic.width / ratio;
+        y = (sic.height - h) / 2;
       }
       return {
         scale, // The mask is relatively wide and the demand is zoomed
         x,
         y,
         width: w,
-        height: h
-      }
+        height: h,
+      };
     },
     // Original mark style
     sourceImgShadeStyle() {
       const {
         sourceImgMasking,
-        sourceImgContainer
-      } = this
-      const sic = sourceImgContainer
-      const sim = sourceImgMasking
-      const w = sim.width == sic.width ? sim.width : (sic.width - sim.width) / 2
-      const h = sim.height == sic.height ? sim.height : (sic.height - sim.height) / 2
+        sourceImgContainer,
+      } = this;
+      const sic = sourceImgContainer;
+      const sim = sourceImgMasking;
+      const w = sim.width === sic.width ? sim.width : (sic.width - sim.width) / 2;
+      const h = sim.height === sic.height ? sim.height : (sic.height - sim.height) / 2;
       return {
         width: w + 'px',
-        height: h + 'px'
-      }
+        height: h + 'px',
+      };
     },
     previewStyle() {
       const {
         width,
         height,
         ratio,
-        previewContainer
-      } = this
-      const pc = previewContainer
-      let w = pc.width
-      let h = pc.height
-      const pcRatio = w / h
+        previewContainer,
+      } = this;
+      const pc = previewContainer;
+      let w = pc.width;
+      let h = pc.height;
+      const pcRatio = w / h;
       if (ratio < pcRatio) {
-        w = pc.height * ratio
+        w = pc.height * ratio;
       }
       if (ratio > pcRatio) {
-        h = pc.width / ratio
+        h = pc.width / ratio;
       }
       return {
         width: w + 'px',
-        height: h + 'px'
-      }
-    }
+        height: h + 'px',
+      };
+    },
   },
   watch: {
     value(newValue) {
-      if (newValue && this.loading != 1) {
-        this.reset()
+      if (newValue && this.loading !== 1) {
+        this.reset();
       }
-    }
+    },
   },
   methods: {
     // Click ripple effect
     ripple(e) {
-      effectRipple(e)
+      effectRipple(e);
     },
     // Close control
     off() {
       setTimeout(() => {
-        this.$emit('input', false)
-        this.$emit('close')
-        if (this.step == 3 && this.loading == 2) {
-          this.setStep(1)
+        this.$emit('input', false);
+        this.$emit('close');
+        if (this.step === 3 && this.loading === 2) {
+          this.setStep(1);
         }
-      }, 200)
+      }, 200);
     },
     // Setup steps
-    setStep(no) {
+    setStep(step) {
       // This delay to show animation effect :)
       setTimeout(() => {
-        this.step = no
-      }, 200)
+        this.step = step;
+      }, 200);
     },
     /* Picture selection area function binding
      ---------------------------------------------------------------*/
     preventDefault(e) {
-      e.preventDefault()
-      return false
+      e.preventDefault();
+      return false;
     },
     handleClick(e) {
       if (this.loading !== 1) {
         if (e.target !== this.$refs.fileinput) {
-          e.preventDefault()
+          e.preventDefault();
           if (document.activeElement !== this.$refs) {
-            this.$refs.fileinput.click()
+            this.$refs.fileinput.click();
           }
         }
       }
     },
     handleChange(e) {
-      e.preventDefault()
+      e.preventDefault();
       if (this.loading !== 1) {
-        const files = e.target.files || e.dataTransfer.files
-        this.reset()
+        const files = e.target.files || e.dataTransfer.files;
+        this.reset();
         if (this.checkFile(files[0])) {
-          this.setSourceImg(files[0])
+          this.setSourceImg(files[0]);
         }
       }
     },
     /* ---------------------------------------------------------------*/
     // Check if the selected file is suitable
     checkFile(file) {
-      let that = this,
-        {
-          lang,
-          maxSize
-        } = that
+      const that = this;
+      const {
+        lang,
+        maxSize,
+      } = that;
       // Image only
       if (file.type.indexOf('image') === -1) {
-        that.hasError = true
-        that.errorMsg = lang.error.onlyImg
-        return false
+        that.hasError = true;
+        that.errorMsg = lang.error.onlyImg;
+        return false;
       }
       // Check file size
       if (file.size / 1024 > maxSize) {
-        that.hasError = true
-        that.errorMsg = lang.error.outOfSize + maxSize + 'kb'
-        return false
+        that.hasError = true;
+        that.errorMsg = lang.error.outOfSize + maxSize + 'kb';
+        return false;
       }
-      return true
+      return true;
     },
     // Reset control
     reset() {
-      const that = this
-      that.loading = 0
-      that.hasError = false
-      that.errorMsg = ''
-      that.progress = 0
+      const that = this;
+      that.loading = 0;
+      that.hasError = false;
+      that.errorMsg = '';
+      that.progress = 0;
     },
     // Set image source
     setSourceImg(file) {
-      let that = this,
-        fr = new FileReader()
+      const that = this;
+      const fr = new FileReader();
+
       fr.onload = function(e) {
-        that.sourceImgUrl = fr.result
-        that.startCrop()
-      }
-      fr.readAsDataURL(file)
+        that.sourceImgUrl = fr.result;
+        that.startCrop();
+      };
+      fr.readAsDataURL(file);
     },
     // Preparing before cropping
     startCrop() {
-      let that = this,
-        {
-          width,
-          height,
-          ratio,
-          scale,
-          sourceImgUrl,
-          sourceImgMasking,
-          lang
-        } = that,
-        sim = sourceImgMasking,
-        img = new Image()
-      img.src = sourceImgUrl
+      const that = this;
+      const {
+        width,
+        height,
+        ratio,
+        scale,
+        sourceImgUrl,
+        sourceImgMasking,
+        lang,
+      } = that;
+      const sim = sourceImgMasking;
+      const img = new Image();
+      img.src = sourceImgUrl;
       img.onload = function() {
-        let nWidth = img.naturalWidth,
-          nHeight = img.naturalHeight,
-          nRatio = nWidth / nHeight,
-          w = sim.width,
-          h = sim.height,
-          x = 0,
-          y = 0
+        const nWidth = img.naturalWidth;
+        const nHeight = img.naturalHeight;
+        const nRatio = nWidth / nHeight;
+        let w = sim.width;
+        let h = sim.height;
+        let x = 0;
+        let y = 0;
         // Image size don't meet the minimum requirement
         if (nWidth < width || nHeight < height) {
-          that.hasError = true
-          that.errorMsg = lang.error.lowestPx + width + '*' + height
-          return false
+          that.hasError = true;
+          that.errorMsg = lang.error.lowestPx + width + '*' + height;
+          return false;
         }
         if (ratio > nRatio) {
-          h = w / nRatio
-          y = (sim.height - h) / 2
+          h = w / nRatio;
+          y = (sim.height - h) / 2;
         }
         if (ratio < nRatio) {
-          w = h * nRatio
-          x = (sim.width - w) / 2
+          w = h * nRatio;
+          x = (sim.width - w) / 2;
         }
-        scale.range = 0
-        scale.x = x
-        scale.y = y
-        scale.width = w
-        scale.height = h
-        scale.degree = 0
-        scale.minWidth = w
-        scale.minHeight = h
-        scale.maxWidth = nWidth * sim.scale
-        scale.maxHeight = nHeight * sim.scale
-        scale.naturalWidth = nWidth
-        scale.naturalHeight = nHeight
-        that.sourceImg = img
-        that.createImg()
-        that.setStep(2)
-      }
+        scale.range = 0;
+        scale.x = x;
+        scale.y = y;
+        scale.width = w;
+        scale.height = h;
+        scale.degree = 0;
+        scale.minWidth = w;
+        scale.minHeight = h;
+        scale.maxWidth = nWidth * sim.scale;
+        scale.maxHeight = nHeight * sim.scale;
+        scale.naturalWidth = nWidth;
+        scale.naturalHeight = nHeight;
+        that.sourceImg = img;
+        that.createImg();
+        that.setStep(2);
+      };
     },
     // Mouse presses the picture ready to move
     imgStartMove(e) {
-      e.preventDefault()
+      e.preventDefault();
       // Support for touch events, mouse events are invalid
       if (this.isSupportTouch && !e.targetTouches) {
-        return false
+        return false;
       }
-      let et = e.targetTouches ? e.targetTouches[0] : e,
-        {
-          sourceImgMouseDown,
-          scale
-        } = this,
-        simd = sourceImgMouseDown
-        simd.mX = et.screenX
-        simd.mY = et.screenY
-        simd.x = scale.x
-        simd.y = scale.y
-        simd.on = true
+      const et = e.targetTouches ? e.targetTouches[0] : e;
+      const {
+        sourceImgMouseDown,
+        scale,
+      } = this;
+      const simd = sourceImgMouseDown;
+      simd.mX = et.screenX;
+      simd.mY = et.screenY;
+      simd.x = scale.x;
+      simd.y = scale.y;
+      simd.on = true;
     },
     // Move when the mouse is pressed, the picture moves
     imgMove(e) {
-      e.preventDefault()
+      e.preventDefault();
       // Support for touch events, mouse events are invalid
       if (this.isSupportTouch && !e.targetTouches) {
-        return false
+        return false;
       }
-      let et = e.targetTouches ? e.targetTouches[0] : e,
-        {
-          sourceImgMouseDown: {
-            on,
-            mX,
-            mY,
-            x,
-            y
-          },
-          scale,
-          sourceImgMasking
-        } = this,
-        sim = sourceImgMasking,
-        nX = et.screenX,
-        nY = et.screenY,
-        dX = nX - mX,
-        dY = nY - mY,
-        rX = x + dX,
-        rY = y + dY
-      if (!on) return
+      const et = e.targetTouches ? e.targetTouches[0] : e;
+      const {
+        sourceImgMouseDown: {
+          on,
+          mX,
+          mY,
+          x,
+          y,
+        },
+        scale,
+        sourceImgMasking,
+      } = this;
+      const sim = sourceImgMasking;
+      const nX = et.screenX;
+      const nY = et.screenY;
+      const dX = nX - mX;
+      const dY = nY - mY;
+      let rX = x + dX;
+      let rY = y + dY;
+      if (!on) {
+        return;
+      };
       if (rX > 0) {
-        rX = 0
+        rX = 0;
       }
       if (rY > 0) {
-        rY = 0
+        rY = 0;
       }
       if (rX < sim.width - scale.width) {
-        rX = sim.width - scale.width
+        rX = sim.width - scale.width;
       }
       if (rY < sim.height - scale.height) {
-        rY = sim.height - scale.height
+        rY = sim.height - scale.height;
       }
-      scale.x = rX
-      scale.y = rY
+      scale.x = rX;
+      scale.y = rY;
     },
-     // Button press to start rotating to the right
+    // Button press to start rotating to the right
     startRotateRight(e) {
-      let that = this,
-        {
-          scale
-        } = that
-      scale.rotateRight = true
+      const that = this;
+      const {
+        scale,
+      } = that;
+      scale.rotateRight = true;
       function rotate() {
         if (scale.rotateRight) {
-          const degree = ++scale.degree
-          that.createImg(degree)
+          const degree = ++scale.degree;
+          that.createImg(degree);
           setTimeout(function() {
-            rotate()
-          }, 60)
+            rotate();
+          }, 60);
         }
       }
-      rotate()
+      rotate();
     },
     // Button press to start rotating to the left
     startRotateLeft(e) {
-      let that = this,
-        {
-          scale
-        } = that
-      scale.rotateLeft = true
+      const that = this;
+      const {
+        scale,
+      } = that;
+      scale.rotateLeft = true;
       function rotate() {
         if (scale.rotateLeft) {
-          const degree = --scale.degree
-          that.createImg(degree)
+          const degree = --scale.degree;
+          that.createImg(degree);
           setTimeout(function() {
-            rotate()
-          }, 60)
+            rotate();
+          }, 60);
         }
       }
-      rotate()
+      rotate();
     },
     // Stop rotation
     endRotate() {
       const {
-        scale
-      } = this
-      scale.rotateLeft = false
-      scale.rotateRight = false
+        scale,
+      } = this;
+      scale.rotateLeft = false;
+      scale.rotateRight = false;
     },
     // Button press to zoom in
     startZoomAdd(e) {
-      let that = this,
-        {
-          scale
-        } = that
-      scale.zoomAddOn = true
+      const that = this;
+      const {
+        scale,
+      } = that;
+      scale.zoomAddOn = true;
       function zoom() {
         if (scale.zoomAddOn) {
-          const range = scale.range >= 100 ? 100 : ++scale.range
-          that.zoomImg(range)
+          const range = scale.range >= 100 ? 100 : ++scale.range;
+          that.zoomImg(range);
           setTimeout(function() {
-            zoom()
-          }, 60)
+            zoom();
+          }, 60);
         }
       }
-      zoom()
+      zoom();
     },
     // Button release or remove to cancel zoom in
     endZoomAdd(e) {
-      this.scale.zoomAddOn = false
+      this.scale.zoomAddOn = false;
     },
     // Button press to start zooming out
     startZoomSub(e) {
-      let that = this,
-        {
-          scale
-        } = that
-      scale.zoomSubOn = true
+      const that = this;
+      const {
+        scale,
+      } = that;
+      scale.zoomSubOn = true;
       function zoom() {
         if (scale.zoomSubOn) {
-          const range = scale.range <= 0 ? 0 : --scale.range
-          that.zoomImg(range)
+          const range = scale.range <= 0 ? 0 : --scale.range;
+          that.zoomImg(range);
           setTimeout(function() {
-            zoom()
-          }, 60)
+            zoom();
+          }, 60);
         }
       }
-      zoom()
+      zoom();
     },
     // Button release or remove to cancel zoom out
     endZoomSub(e) {
       const {
-        scale
-      } = this
-      scale.zoomSubOn = false
+        scale,
+      } = this;
+      scale.zoomSubOn = false;
     },
     zoomChange(e) {
-      this.zoomImg(e.target.value)
+      this.zoomImg(e.target.value);
     },
     // Zoom original
     zoomImg(newRange) {
-      const that = this
+      const that = this;
       const {
         sourceImgMasking,
         sourceImgMouseDown,
-        scale
-      } = this
+        scale,
+      } = this;
       const {
         maxWidth,
         maxHeight,
@@ -705,151 +711,151 @@ export default {
         height,
         x,
         y,
-        range
-      } = scale
-      const sim = sourceImgMasking
+        range,
+      } = scale;
+      const sim = sourceImgMasking;
       // Mask width
-      const sWidth = sim.width
-      const sHeight = sim.height
+      const sWidth = sim.width;
+      const sHeight = sim.height;
       // New width and height
-      const nWidth = minWidth + (maxWidth - minWidth) * newRange / 100
-      const nHeight = minHeight + (maxHeight - minHeight) * newRange / 100
+      const nWidth = minWidth + (maxWidth - minWidth) * newRange / 100;
+      const nHeight = minHeight + (maxHeight - minHeight) * newRange / 100;
       // New coordinates (scaled according to the center point of the mask)
-      let nX = sWidth / 2 - (nWidth / width) * (sWidth / 2 - x)
-      let nY = sHeight / 2 - (nHeight / height) * (sHeight / 2 - y)
+      let nX = sWidth / 2 - (nWidth / width) * (sWidth / 2 - x);
+      let nY = sHeight / 2 - (nHeight / height) * (sHeight / 2 - y);
       // Determine if the new coordinates exceed the mask limit
       if (nX > 0) {
-        nX = 0
+        nX = 0;
       }
       if (nY > 0) {
-        nY = 0
+        nY = 0;
       }
       if (nX < sWidth - nWidth) {
-        nX = sWidth - nWidth
+        nX = sWidth - nWidth;
       }
       if (nY < sHeight - nHeight) {
-        nY = sHeight - nHeight
+        nY = sHeight - nHeight;
       }
       // Process scaling
-      scale.x = nX
-      scale.y = nY
-      scale.width = nWidth
-      scale.height = nHeight
-      scale.range = newRange
+      scale.x = nX;
+      scale.y = nY;
+      scale.width = nWidth;
+      scale.height = nHeight;
+      scale.range = newRange;
       setTimeout(function() {
-        if (scale.range == newRange) {
-          that.createImg()
+        if (scale.range === newRange) {
+          that.createImg();
         }
-      }, 300)
+      }, 300);
     },
-     // Generate image
+    // Generate image
     createImg(e) {
-      let that = this,
-        {
-          mime,
-          sourceImg,
-          scale: {
-            x,
-            y,
-            width,
-            height,
-            degree
-          },
-          sourceImgMasking: {
-            scale
-          }
-        } = that,
-        canvas = that.$refs.canvas,
-        ctx = canvas.getContext('2d')
+      const that = this;
+      const {
+        mime,
+        sourceImg,
+        scale: {
+          x,
+          y,
+          width,
+          height,
+          degree,
+        },
+        sourceImgMasking: {
+          scale,
+        },
+      } = that;
+      const canvas = that.$refs.canvas;
+      const ctx = canvas.getContext('2d');
       if (e) {
         // Cancel the mouse to move the state
-        that.sourceImgMouseDown.on = false
+        that.sourceImgMouseDown.on = false;
       }
-      canvas.width = that.width
-      canvas.height = that.height
-      ctx.clearRect(0, 0, that.width, that.height)
+      canvas.width = that.width;
+      canvas.height = that.height;
+      ctx.clearRect(0, 0, that.width, that.height);
       // Set the transparent area to the white bottom
-      ctx.fillStyle = '#fff'
-      ctx.fillRect(0, 0, that.width, that.height)
-      ctx.translate(that.width * 0.5, that.height * 0.5)
-      ctx.rotate(Math.PI * degree / 180)
-      ctx.translate(-that.width * 0.5, -that.height * 0.5)
-      ctx.drawImage(sourceImg, x / scale, y / scale, width / scale, height / scale)
-      that.createImgUrl = canvas.toDataURL(mime)
+      ctx.fillStyle = '#fff';
+      ctx.fillRect(0, 0, that.width, that.height);
+      ctx.translate(that.width * 0.5, that.height * 0.5);
+      ctx.rotate(Math.PI * degree / 180);
+      ctx.translate(-that.width * 0.5, -that.height * 0.5);
+      ctx.drawImage(sourceImg, x / scale, y / scale, width / scale, height / scale);
+      that.createImgUrl = canvas.toDataURL(mime);
     },
     prepareUpload() {
       const {
         url,
         createImgUrl,
         field,
-        ki
-      } = this
-      this.$emit('crop-success', createImgUrl, field, ki)
+        ki,
+      } = this;
+      this.$emit('crop-success', createImgUrl, field, ki);
       if (typeof url === 'string' && url) {
-        this.upload()
+        this.upload();
       } else {
-        this.off()
+        this.off();
       }
     },
     // Upload image
     upload() {
-      let that = this,
-        {
-          lang,
-          imgFormat,
-          mime,
-          url,
-          params,
-          headers,
-          field,
-          ki,
-          createImgUrl,
-          withCredentials
-        } = this,
-        fmData = new FormData()
-      fmData.append(field, data2blob(createImgUrl, mime), field + '.' + imgFormat)
+      const that = this;
+      const {
+        lang,
+        imgFormat,
+        mime,
+        url,
+        params,
+        headers,
+        field,
+        ki,
+        createImgUrl,
+        withCredentials,
+      } = this;
+      const fmData = new FormData();
+      fmData.append(field, data2blob(createImgUrl, mime), field + '.' + imgFormat);
       // Add other paramaters
       if (typeof params === 'object' && params) {
         Object.keys(params).forEach((k) => {
-          fmData.append(k, params[k])
-        })
+          fmData.append(k, params[k]);
+        });
       }
       // Monitor progress callback
       const uploadProgress = function(event) {
         if (event.lengthComputable) {
-          that.progress = 100 * Math.round(event.loaded) / event.total
+          that.progress = 100 * Math.round(event.loaded) / event.total;
         }
-      }
+      };
       // Upload files
-      that.reset()
-      that.loading = 1
-      that.setStep(3)
+      that.reset();
+      that.loading = 1;
+      that.setStep(3);
       request({
         url,
         method: 'post',
-        data: fmData
+        data: fmData,
       }).then(resData => {
-        that.loading = 2
-        that.$emit('crop-upload-success', resData.data)
+        that.loading = 2;
+        that.$emit('crop-upload-success', resData.data);
       }).catch(err => {
         if (that.value) {
-          that.loading = 3
-          that.hasError = true
-          that.errorMsg = lang.fail
-          that.$emit('crop-upload-fail', err, field, ki)
+          that.loading = 3;
+          that.hasError = true;
+          that.errorMsg = lang.fail;
+          that.$emit('crop-upload-fail', err, field, ki);
         }
-      })
-    }
+      });
+    },
   },
   created() {
     // Binding button esc to hide this plugin event
     document.addEventListener('keyup', (e) => {
-      if (this.value && (e.key == 'Escape' || e.keyCode == 27)) {
-        this.off()
+      if (this.value && (e.key === 'Escape' || e.keyCode === 27)) {
+        this.off();
       }
-    })
-  }
-}
+    });
+  },
+};
 </script>
 
 <style>
@@ -991,14 +997,14 @@ export default {
           display: block;
           height: 12.6px;
           border: 6px solid rgba(0, 0, 0, 0.3);
-          border-top: none; }
+          border-top: stepne; }
       .vue-image-crop-upload .vicp-wrap .vicp-step1 .vicp-drop-area .vicp-hint {
         display: block;
         padding: 15px;
         font-size: 14px;
         color: #666;
         line-height: 30px; }
-      .vue-image-crop-upload .vicp-wrap .vicp-step1 .vicp-drop-area .vicp-no-supported-hint {
+      .vue-image-crop-upload .vicp-wrap .vicp-step1 .vicp-drop-area .vicp-step-supported-hint {
         display: block;
         position: absolute;
         top: 0;
@@ -1030,10 +1036,10 @@ export default {
             position: absolute;
             display: block;
             cursor: move;
-            -webkit-user-select: none;
-               -moz-user-select: none;
-                -ms-user-select: none;
-                    user-select: none; }
+            -webkit-user-select: stepne;
+               -moz-user-select: stepne;
+                -ms-user-select: stepne;
+                    user-select: stepne; }
           .vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-left .vicp-img-container .vicp-img-shade {
             -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
                     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
@@ -1128,47 +1134,47 @@ export default {
             height: 8px;
             vertical-align: top;
             background: transparent;
-            -webkit-appearance: none;
-               -moz-appearance: none;
-                    appearance: none;
+            -webkit-appearance: stepne;
+               -moz-appearance: stepne;
+                    appearance: stepne;
             cursor: pointer;
             /* Slider
                ---------------------------------------------------------------*/
             /* Track
                ---------------------------------------------------------------*/ }
             .vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-left .vicp-range input[type=range]:focus {
-              outline: none; }
+              outline: stepne; }
             .vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-left .vicp-range input[type=range]::-webkit-slider-thumb {
               -webkit-box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
                       box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
-              -webkit-appearance: none;
-                      appearance: none;
+              -webkit-appearance: stepne;
+                      appearance: stepne;
               margin-top: -3px;
               width: 12px;
               height: 12px;
               background-color: #61c091;
               border-radius: 100%;
-              border: none;
+              border: stepne;
               -webkit-transition: 0.2s;
               transition: 0.2s; }
             .vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-left .vicp-range input[type=range]::-moz-range-thumb {
               box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
-              -moz-appearance: none;
-                   appearance: none;
+              -moz-appearance: stepne;
+                   appearance: stepne;
               width: 12px;
               height: 12px;
               background-color: #61c091;
               border-radius: 100%;
-              border: none;
+              border: stepne;
               -webkit-transition: 0.2s;
               transition: 0.2s; }
             .vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-left .vicp-range input[type=range]::-ms-thumb {
               box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.18);
-              appearance: none;
+              appearance: stepne;
               width: 12px;
               height: 12px;
               background-color: #61c091;
-              border: none;
+              border: stepne;
               border-radius: 100%;
               -webkit-transition: 0.2s;
               transition: 0.2s; }
@@ -1193,7 +1199,7 @@ export default {
               height: 6px;
               cursor: pointer;
               border-radius: 2px;
-              border: none;
+              border: stepne;
               background-color: rgba(68, 170, 119, 0.3); }
             .vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-left .vicp-range input[type=range]::-moz-range-track {
               box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
@@ -1201,7 +1207,7 @@ export default {
               height: 6px;
               cursor: pointer;
               border-radius: 2px;
-              border: none;
+              border: stepne;
               background-color: rgba(68, 170, 119, 0.3); }
             .vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-left .vicp-range input[type=range]::-ms-track {
               box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12);
@@ -1212,7 +1218,7 @@ export default {
               color: transparent;
               height: 6px;
               border-radius: 2px;
-              border: none; }
+              border: stepne; }
             .vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-left .vicp-range input[type=range]::-ms-fill-lower {
               background-color: rgba(68, 170, 119, 0.3); }
             .vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-left .vicp-range input[type=range]::-ms-fill-upper {
@@ -1257,10 +1263,10 @@ export default {
               background-color: #fff;
               border: 1px solid rgba(0, 0, 0, 0.15);
               overflow: hidden;
-              -webkit-user-select: none;
-                 -moz-user-select: none;
-                  -ms-user-select: none;
-                      user-select: none; }
+              -webkit-user-select: stepne;
+                 -moz-user-select: stepne;
+                  -ms-user-select: stepne;
+                      user-select: stepne; }
             .vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-right .vicp-preview .vicp-preview-item.vicp-preview-item-circle {
               margin-right: 0; }
               .vue-image-crop-upload .vicp-wrap .vicp-step2 .vicp-crop .vicp-crop-right .vicp-preview .vicp-preview-item.vicp-preview-item-circle img {
@@ -1334,10 +1340,10 @@ export default {
         color: #4a7;
         border-radius: 2px;
         overflow: hidden;
-        -webkit-user-select: none;
-           -moz-user-select: none;
-            -ms-user-select: none;
-                user-select: none; }
+        -webkit-user-select: stepne;
+           -moz-user-select: stepne;
+            -ms-user-select: stepne;
+                user-select: stepne; }
         .vue-image-crop-upload .vicp-wrap .vicp-operate a:hover {
           background-color: rgba(0, 0, 0, 0.03); }
     .vue-image-crop-upload .vicp-wrap .vicp-error,
@@ -1396,11 +1402,11 @@ export default {
   border-radius: 100%;
   background-color: rgba(0, 0, 0, 0.15);
   background-clip: padding-box;
-  pointer-events: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  pointer-events: stepne;
+  -webkit-user-select: stepne;
+     -moz-user-select: stepne;
+      -ms-user-select: stepne;
+          user-select: stepne;
   -webkit-transform: scale(0);
       -ms-transform: scale(0);
           transform: scale(0);

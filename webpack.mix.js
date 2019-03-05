@@ -1,12 +1,12 @@
-const mix = require('laravel-mix')
-require('laravel-mix-eslint')
+const mix = require('laravel-mix');
+require('laravel-mix-eslint');
 
 function publicPath(dir) {
-  return path.join(__dirname, '/public', dir)
+  return path.join(__dirname, '/public', dir);
 }
 
 function resolve(dir) {
-  return path.join(__dirname, '/resources/js', dir)
+  return path.join(__dirname, '/resources/js', dir);
 }
 
 Mix.listen('configReady', webpackConfig => {
@@ -15,16 +15,16 @@ Mix.listen('configReady', webpackConfig => {
     rule =>
       String(rule.test) ===
       String(/(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/)
-  )
-  imageLoaderConfig.exclude = resolve('icons')
-})
+  );
+  imageLoaderConfig.exclude = resolve('icons');
+});
 
 mix.webpackConfig({
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       vue$: 'vue/dist/vue.esm.js',
-      '@': __dirname + '/resources/js',
+      '@': path.join(__dirname, '/resources/js'),
     },
   },
   module: {
@@ -39,7 +39,7 @@ mix.webpackConfig({
       },
     ],
   },
-})
+});
 
 /*
  |--------------------------------------------------------------------------
@@ -59,10 +59,10 @@ mix
     processCssUrls: false,
   })
   .sass('resources/js/styles/index.scss', 'public/css/app.css')
-  .eslint()
+  .eslint();
 
 if (mix.inProduction()) {
-  mix.version()
+  mix.version();
 } else {
   // Development settings
   mix.sourceMaps().webpackConfig({
@@ -71,5 +71,5 @@ if (mix.inProduction()) {
       publicPath: '/',
     },
     devtool: 'cheap-eval-source-map', // Fastest for development
-  })
+  });
 }

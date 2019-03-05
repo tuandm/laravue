@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: 'LSticky',
+  name: 'Sticky',
   props: {
     stickyTop: {
       type: Number,

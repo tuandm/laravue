@@ -97,7 +97,9 @@ export default {
       });
     },
     destroyEditor() {
-      if (!this.editor) return;
+      if (!this.editor) {
+        return;
+      }
       this.editor.off('change');
       this.editor.remove();
     },

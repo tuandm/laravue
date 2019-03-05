@@ -51,6 +51,7 @@ export default {
       fullscreen: false,
       languageTypeList: {
         'en': 'en',
+        'vi': 'vi',
         'zh': 'zh_CN',
       },
     };

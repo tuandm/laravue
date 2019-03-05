@@ -20,7 +20,7 @@ module.exports = {
     'vue/comma-dangle': ['error', 'always-multiline'],
     'comma-dangle': ['error', 'always-multiline'],
     'semi': ['error', 'always'],
-    "no-mixed-operators": [
+    'no-mixed-operators': [
       "error",
       {
         "groups": [
@@ -31,7 +31,9 @@ module.exports = {
         ],
         "allowSamePrecedence": true
       }
-    ]
+    ],
+    'curly': [1, 'all'],
+    'brace-style': [2, '1tbs'],
   },
 
   overrides: [

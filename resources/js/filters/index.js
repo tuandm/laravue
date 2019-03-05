@@ -1,7 +1,7 @@
 // set function parseTime,formatTime to filter
 export { parseTime, formatTime } from '@/utils';
 
-function pluralize(time, label) {
+export function pluralize(time, label) {
   if (time === 1) {
     return time + label;
   }
@@ -19,7 +19,7 @@ export function timeAgo(time) {
   }
 }
 
-/* 数字 格式化*/
+/* Number formating*/
 export function numberFormatter(num, digits) {
   const si = [
     { value: 1E18, symbol: 'E' },

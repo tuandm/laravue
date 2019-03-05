@@ -1,17 +1,17 @@
-/**
- * Created by jiachenpan on 16/11/18.
- */
-
+import { pluralize } from '@/filters';
 export function parseTime(time, cFormat) {
   if (arguments.length === 0) {
     return null;
   }
+
   const format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}';
   let date;
   if (typeof time === 'object') {
     date = time;
   } else {
-    if (('' + time).length === 10) time = parseInt(time) * 1000;
+    if (('' + time).length === 10) {
+      time = parseInt(time) * 1000;
+    }
     date = new Date(time);
   }
   const formatObj = {
@@ -26,12 +26,16 @@ export function parseTime(time, cFormat) {
   const timeStr = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
     let value = formatObj[key];
     // Note: getDay() returns 0 on Sunday
-    if (key === 'a') { return ['日', '一', '二', '三', '四', '五', '六'][value ]; }
+    if (key === 'a') {
+      return ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][value];
+    }
     if (result.length > 0 && value < 10) {
       value = '0' + value;
     }
+
     return value || 0;
   });
+
   return timeStr;
 }
 
@@ -43,31 +47,28 @@ export function formatTime(time, option) {
   const diff = (now - d) / 1000;
 
   if (diff < 30) {
-    return '刚刚';
+    return 'Just now';
   } else if (diff < 3600) {
     // less 1 hour
-    return Math.ceil(diff / 60) + '分钟前';
+    return pluralize(Math.ceil(diff / 60), ' minute') + ' ago';
   } else if (diff < 3600 * 24) {
-    return Math.ceil(diff / 3600) + '小时前';
+    return pluralize(Math.ceil(diff / 3600), ' hour') + ' ago';
   } else if (diff < 3600 * 24 * 2) {
-    return '1天前';
+    return '1 day ago';
   }
   if (option) {
     return parseTime(time, option);
   } else {
     return (
-      d.getMonth() +
-      1 +
-      '月' +
-      d.getDate() +
-      '日' +
-      d.getHours() +
-      '时' +
-      d.getMinutes() +
-      '分'
+      pluralize(d.getMonth() + 1, ' month') + ' ' +
+      pluralize(d.getDate(), ' day') + ' ' +
+      pluralize(d.getHours(), ' day') + ' ' +
+      pluralize(d.getMinutes(), ' minute')
     );
   }
 }
+const now = Date.now() / 3600;
+console.log(formatTime(now - 3600));
 
 export function isExternal(path) {
   return /^(https?:|mailto:|tel:)/.test(path);
@@ -77,28 +78,32 @@ export function debounce(func, wait, immediate) {
   let timeout, args, context, timestamp, result;
 
   const later = function () {
-    // 据上一次触发时间间隔
-    const last = +new Date() - timestamp;
+    // According to the last trigger interval
+    const last = new Date().getTime() - timestamp;
 
-    // 上次被包装函数被调用时间间隔last小于设定时间间隔wait
+    // The last time the wrapped function was called, the interval is last less than the set time interval wait
     if (last < wait && last > 0) {
       timeout = setTimeout(later, wait - last);
     } else {
       timeout = null;
-      // 如果设定为immediate===true，因为开始边界已经调用过了此处无需调用
+      // If it is set to immediate===true, since the start boundary has already been called, there is no need to call it here.
       if (!immediate) {
         result = func.apply(context, args);
-        if (!timeout) context = args = null;
+        if (!timeout) {
+          context = args = null;
+        }
       }
     }
   };
 
   return function (...args) {
     context = this;
-    timestamp = +new Date();
+    timestamp = new Date().getTime();
     const callNow = immediate && !timeout;
-    // 如果延时不存在，重新设定延时
-    if (!timeout) timeout = setTimeout(later, wait);
+    // If the delay does not exist, reset the delay
+    if (!timeout) {
+      timeout = setTimeout(later, wait);
+    }
     if (callNow) {
       result = func.apply(context, args);
       context = args = null;

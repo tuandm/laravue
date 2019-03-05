@@ -9,7 +9,9 @@ Math.easeInOutQuad = function(t, b, c, d) {
 
 // requestAnimationFrame for Smart Animating http://goo.gl/sx5sts
 var requestAnimFrame = (function() {
-  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) { window.setTimeout(callback, 1000 / 60); };
+  return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function(callback) {
+    window.setTimeout(callback, 1000 / 60);
+  };
 })();
 
 // because it's so fucking difficult to detect the scrolling element, just move them all

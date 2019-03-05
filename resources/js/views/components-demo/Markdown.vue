@@ -42,9 +42,10 @@
 import MarkdownEditor from '@/components/MarkdownEditor';
 
 const content = `
+### Markdown Editor
 **This is test**
 
-* vue
+* Laravue
 * element
 * webpack
 
@@ -71,7 +72,6 @@ export default {
   methods: {
     getHtml() {
       this.html = this.$refs.markdownEditor.getHtml();
-      console.log(this.html);
     },
   },
 };

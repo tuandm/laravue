@@ -111,7 +111,6 @@ export default {
           },
           axisLabel: {
             interval: 0,
-
           },
           data: xData,
         }],
@@ -148,12 +147,10 @@ export default {
           handleSize: '110%',
           handleStyle: {
             color: '#d3dee5',
-
           },
           textStyle: {
             color: '#fff' },
           borderColor: '#90979c',
-
         }, {
           type: 'inside',
           show: true,
@@ -197,7 +194,6 @@ export default {
             4078,
           ],
         },
-
         {
           name: 'male',
           type: 'bar',
