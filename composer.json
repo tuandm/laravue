@@ -1,6 +1,5 @@
 {
     "name": "tuandm/laravue",
-    "type": "project",
     "description": "The beautiful dashboard for Laravue buiit by VueJS.",
     "keywords": [
         "laravel",
@@ -18,6 +17,7 @@
             "role": "Developer"
         }
     ],
+    "type": "project",
     "require": {
         "php": "^7.1.3",
         "fideloper/proxy": "^4.0",

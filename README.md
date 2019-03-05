@@ -44,7 +44,7 @@ This project is built on top of fresh latest version Laravel (5.8). You should c
 
 ```bash
 # Clone the project and run composer
-git clone https://github.com/tuandm/laravue.git
+composer create-project tuandm/laravue
 cd laravue
 composer install
 
