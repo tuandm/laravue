@@ -46,13 +46,6 @@ This project is built on top of fresh latest version Laravel (5.8). You should c
 # Clone the project and run composer
 composer create-project tuandm/laravue
 cd laravue
-composer install
-
-# Create .env from .env.example
-cp .env.example .env
-
-# Generate application key
-php artisan key:generate
 
 # Migration and DB seeder (after changing your DB settings in .env)
 php artisan migrate --seed
