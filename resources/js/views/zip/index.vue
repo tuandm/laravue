@@ -6,7 +6,7 @@
     <el-table v-loading="listLoading" :data="list" element-loading-text="拼命加载中" border fit highlight-current-row>
       <el-table-column align="center" label="ID" width="95">
         <template slot-scope="scope">
-          {{ scope.$index }}
+          {{ ++scope.$index }}
         </template>
       </el-table-column>
       <el-table-column label="Title">
