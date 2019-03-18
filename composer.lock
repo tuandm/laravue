@@ -2682,16 +2682,16 @@
         },
         {
             "name": "tuandm/laravue-core",
-            "version": "0.3.1",
+            "version": "0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tuandm/laravue-core.git",
-                "reference": "5eb54933b8c302cde5572527c1b4d8db2463d387"
+                "reference": "3207bf4038a0ea07980ea5e43c9d8f64a4c241f6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tuandm/laravue-core/zipball/5eb54933b8c302cde5572527c1b4d8db2463d387",
-                "reference": "5eb54933b8c302cde5572527c1b4d8db2463d387",
+                "url": "https://api.github.com/repos/tuandm/laravue-core/zipball/3207bf4038a0ea07980ea5e43c9d8f64a4c241f6",
+                "reference": "3207bf4038a0ea07980ea5e43c9d8f64a4c241f6",
                 "shasum": ""
             },
             "require": {
@@ -2723,7 +2723,7 @@
                 }
             ],
             "description": "A Laravel package to provide a beatiful datashboard built by VueJS and Element-UI",
-            "time": "2019-03-18T03:17:49+00:00"
+            "time": "2019-03-18T15:22:57+00:00"
         },
         {
             "name": "tymon/jwt-auth",

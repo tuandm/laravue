@@ -23,7 +23,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "tuandm/laravue-core": "^0.3.1",
+        "tuandm/laravue-core": "^0.3.2",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
