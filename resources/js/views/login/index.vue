@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import LangSelect from '@/components/LangSelect';
+import LangSelect from '@core/components/LangSelect';
 import { isEmailValid } from '@/utils/validate';
 
 export default {

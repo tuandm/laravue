@@ -7,7 +7,7 @@
   </div>
 </template>
 <script>
-import DropdownMenu from '@/components/Share/DropdownMenu';
+import DropdownMenu from '@core/components/Share/DropdownMenu';
 
 export default {
   name: 'Documentation',

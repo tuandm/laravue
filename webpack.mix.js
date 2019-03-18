@@ -1,12 +1,12 @@
 const mix = require('laravel-mix');
 require('laravel-mix-eslint');
 
-function publicPath(dir) {
-  return path.join(__dirname, '/public', dir);
-}
-
 function resolve(dir) {
-  return path.join(__dirname, '/resources/js', dir);
+  return path.join(
+    __dirname,
+    '/vendor/tuandm/laravue-core/src/resources/js',
+    dir
+  );
 }
 
 Mix.listen('configReady', webpackConfig => {
@@ -25,6 +25,7 @@ mix.webpackConfig({
     alias: {
       vue$: 'vue/dist/vue.esm.js',
       '@': path.join(__dirname, '/resources/js'),
+      '@core': path.join(__dirname, '/vendor/tuandm/laravue-core/src/resources/js'),
     },
   },
   module: {
@@ -66,10 +67,6 @@ if (mix.inProduction()) {
 } else {
   // Development settings
   mix.sourceMaps().webpackConfig({
-    output: {
-      path: publicPath('/'),
-      publicPath: '/',
-    },
     devtool: 'cheap-eval-source-map', // Fastest for development
   });
 }

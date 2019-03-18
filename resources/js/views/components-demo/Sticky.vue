@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import Sticky from '@/components/Sticky';
+import Sticky from '@core/components/Sticky';
 
 export default {
   name: 'StickyDemo',

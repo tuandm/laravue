@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import Tinymce from '@/components/Tinymce';
+import Tinymce from '@core/components/Tinymce';
 
 export default {
   name: 'TinymceDemo',
