@@ -4,7 +4,7 @@ require('laravel-mix-eslint');
 function resolve(dir) {
   return path.join(
     __dirname,
-    '/vendor/tuandm/laravue-core/src/resources/js',
+    '/resources/js',
     dir
   );
 }
