@@ -23,8 +23,8 @@
 </template>
 
 <script>
-import ImageCropper from '@/components/ImageCropper';
-import PanThumb from '@/components/PanThumb';
+import ImageCropper from '@core/components/ImageCropper';
+import PanThumb from '@core/components/PanThumb';
 
 export default {
   name: 'AvatarUploadDemo',

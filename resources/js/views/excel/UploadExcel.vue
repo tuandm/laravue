@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import UploadExcelComponent from '@/components/UploadExcel/index.vue';
+import UploadExcelComponent from '@core/components/UploadExcel/index.vue';
 
 export default {
   name: 'UploadExcel',

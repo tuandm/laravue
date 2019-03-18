@@ -103,10 +103,10 @@
 </template>
 
 <script>
-import Tinymce from '@/components/Tinymce';
-import Upload from '@/components/Upload/SingleImage';
-import MDinput from '@/components/MDinput';
-import Sticky from '@/components/Sticky'; // Sticky header
+import Tinymce from '@core/components/Tinymce';
+import Upload from '@core/components/Upload/SingleImage';
+import MDinput from '@core/components/MDinput';
+import Sticky from '@core/components/Sticky'; // Sticky header
 import { validateURL } from '@/utils/validate';
 import { fetchArticle } from '@/api/article';
 import { userSearch } from '@/api/remoteSearch';

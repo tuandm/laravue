@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import MarkdownEditor from '@/components/MarkdownEditor';
+import MarkdownEditor from '@core/components/MarkdownEditor';
 
 const content = `
 ### Markdown Editor

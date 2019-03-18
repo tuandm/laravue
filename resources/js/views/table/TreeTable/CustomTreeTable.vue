@@ -41,7 +41,7 @@
   Auth: Lei.j1ang
   Created: 2018/1/19-14:54
 */
-import TreeTable from '@/components/TreeTable';
+import TreeTable from '@core/components/TreeTable';
 import treeToArray from './custom-eval';
 
 export default {

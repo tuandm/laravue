@@ -67,8 +67,6 @@ export function formatTime(time, option) {
     );
   }
 }
-const now = Date.now() / 3600;
-console.log(formatTime(now - 3600));
 
 export function isExternal(path) {
   return /^(https?:|mailto:|tel:)/.test(path);
