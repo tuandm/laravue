@@ -17,33 +17,22 @@
 </p>
 
 # Laravue
+[Laravue](https://laravue.dev) is a beautiful dashboard for Laravel inspired by [vue-element-admin](http://panjiachen.github.io/vue-element-admin) but beyond that. With the powerful Laravel framework as backend, Laravue appears to be a full-stack solution for an enterprise administrative application.
 
-## Introduction
-[Laravue](https://laravue.dev) is a beautiful dashboard based on [Laravel](https://laravel.com/), [vue](https://github.com/vuejs/vue) and use the UI Toolkit [element](https://github.com/ElemeFE/element).
-
-This Laravel-Vue admin is inspired by the awesome [vue-element-admin](http://panjiachen.github.io/vue-element-admin) (many thanks to [PanJiaChen](https://github.com/PanJiaChen) for the great works). Newest development stack of Laravel/Vue such as i18n, Envoy, vue-router,.. will be applied into this project.
-
+## Screenshot
 <p align="center">
   <img width="900" src="http://doc.laravue.cipherpols.com/assets/screenshot.png">
 </p>
 
-## Preparation
-** [Node](http://nodejs.org/)
-
-** [Git](https://git-scm.com/)
-
-** [Laravel](https://laravel.com/)
-
-The project is built on top of [Laravel](https://laravel.com), [vue](https://cn.vuejs.org/index.html), [vuex](https://vuex.vuejs.org/zh-cn/), [vue-router](https://router.vuejs.org/zh-cn/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element). Since this is positioned as an enterprise management solution, it is recommended to use it to start a project. 
-
-If you want to integrate Laravue to existing Laravel project, please refer to [Laravue Core](https://github.com/tuandm/laravue-core) for more detail
-
-## API
-API will be served by Laravel. In this project, you need to run migration and data feeder to generate sample data for authentication/authorization, other APIs will be faked.
-
 ## Getting started
-This project is built on top of fresh latest version Laravel (5.8). You should check the installation guide of Laravel [here](https://laravel.com/docs/5.8)
 
+### Prerequisites
+
+ * Laravue is positioned as an enterprise management solution, it is highly recommended to use it to start a project. 
+ * If you want to integrate Laravue to existing Laravel project, you may need to check [Laravue Core](https://github.com/tuandm/laravue-core) instead
+ * Your machine need to be ready for latest [Laravel](https://laravel.com/docs/5.8/installation) and [Node.js](https://nodejs.org)
+
+### Installing
 ```bash
 # Clone the project and run composer
 composer create-project tuandm/laravue
@@ -65,5 +54,40 @@ npm run dev # or npm run watch
 npm run production
 ```
 
+## Running the tests
+* Tests system is under development
+
 ## Deployment and/or CI/CD
 This project uses [Envoy](https://laravel.com/docs/5.8/envoy) for deployment, and [GitLab CI/CD](https://about.gitlab.com/product/continuous-integration/). Please check `Envoy.blade.php` and `.gitlab-ci.yml` for more detail.
+
+## Built with
+* [Laravel](https://laravel.com/) - The PHP Framework For Web Artisans
+* [VueJS](https://vuejs.org/) - The Progressive JavaScript Framework
+* [Element](https://element.eleme.io/) - A  Vue 2.0 based component library for developers, designers and product managers
+* [Vue Admin Template](https://github.com/PanJiaChen/vue-admin-template) - A minimal vue admin template with Element UI
+
+## Contributing
+
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/tuandm/laravue-core/tags). 
+
+## Authors
+
+* **Tuan Duong** - *Initial work* - [tuandm](https://github.com/tuandm)
+* **Tony Tin Nguyen** - *Frontend and Designer* - [nguyenquangtin](https://github.com/nguyenquangtin)
+
+See also the list of [contributors](https://github.com/tuandm/laravue/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
+
+## Acknowledgements
+
+* [Laravue-core](https://github.com/tuandm/laravue-core) - Laravel package which provides core functionalities of Laravue
+* [vue-element-admin](https://panjiachen.github.io/vue-element-admin/#/) A magical vue admin which insprited Laravue project
+* [tui.editor](https://github.com/nhnent/tui.editor) - Markdown WYSIWYG Editor
+* [Echarts](http://echarts.apache.org/) - A powerful, interactive charting and visualization library for browser
