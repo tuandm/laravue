@@ -24,7 +24,7 @@
 
 <script>
 import ImageCropper from '@core/components/ImageCropper';
-import PanThumb from '@core/components/PanThumb';
+import { PanThumb } from 'laravue-components';
 
 export default {
   name: 'AvatarUploadDemo',

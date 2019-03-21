@@ -131,7 +131,7 @@
 import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article';
 import waves from '@core/directive/waves'; // Waves directive
 import { parseTime } from '@/utils';
-import Pagination from '@core/components/Pagination'; // Secondary package based on el-pagination
+import { Pagination } from 'laravue-components';
 
 const calendarTypeOptions = [
   { key: 'CN', display_name: 'China' },

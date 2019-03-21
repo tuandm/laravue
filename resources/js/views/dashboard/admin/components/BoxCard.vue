@@ -28,7 +28,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import PanThumb from '@core/components/PanThumb';
+import { PanThumb } from 'laravue-components';
 
 export default {
   components: { PanThumb },

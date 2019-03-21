@@ -57,7 +57,7 @@
 
 <script>
 import { fetchList } from '@/api/article';
-import Pagination from '@core/components/Pagination'; // Secondary package based on el-pagination
+import { Pagination } from 'laravue-components';
 
 export default {
   name: 'ArticleList',

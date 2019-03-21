@@ -4,7 +4,7 @@
       <pan-thumb :image="avatar" style="float: left"> Your roles:
         <span v-for="item in roles" :key="item" class="pan-info-roles">{{ item }}</span>
       </pan-thumb>
-      <github-corner style="position: absolute; top: 0px; border: 0; right: 0;"/>
+      <github-corner style="position: absolute; top: 0px; border: 0; right: 0;" :url="githubUrl" />
       <div class="info-container">
         <span class="display_name">{{ name }}</span>
         <span style="font-size:20px;padding-top:20px;display:inline-block;">Editor's Dashboard</span>
@@ -18,8 +18,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import PanThumb from '@core/components/PanThumb';
-import GithubCorner from '@core/components/GithubCorner';
+import { PanThumb, GithubCorner } from 'laravue-components';
 
 export default {
   name: 'DashboardEditor',
@@ -27,6 +26,7 @@ export default {
   data() {
     return {
       emptyGif: 'https://media.giphy.com/media/Ai8iZqHx2i0fK/giphy.gif',
+      githubUrl: 'https://github.com/tuandm/laravue',
     };
   },
   computed: {

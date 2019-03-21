@@ -103,10 +103,8 @@
 </template>
 
 <script>
-import Tinymce from '@core/components/Tinymce';
 import Upload from '@core/components/Upload/SingleImage';
-import MDinput from '@core/components/MDinput';
-import Sticky from '@core/components/Sticky'; // Sticky header
+import { MDinput, Sticky, Tinymce } from 'laravue-components';
 import { validateURL } from '@/utils/validate';
 import { fetchArticle } from '@/api/article';
 import { userSearch } from '@/api/remoteSearch';

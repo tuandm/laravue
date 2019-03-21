@@ -30,9 +30,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import Breadcrumb from '@core/components/Breadcrumb';
-import Hamburger from '@core/components/Hamburger';
-import LangSelect from '@core/components/LangSelect';
+import { Breadcrumb, Hamburger, LangSelect } from 'laravue-components';
 
 export default {
   name: 'LNavbar',

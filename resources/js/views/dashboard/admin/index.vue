@@ -1,7 +1,7 @@
 <template>
   <div class="dashboard-editor-container">
 
-    <github-corner style="position: absolute; top: 0px; border: 0; right: 0;"/>
+    <github-corner style="position: absolute; top: 0px; border: 0; right: 0;" :url="githubUrl"/>
 
     <panel-group @handleSetLineChartData="handleSetLineChartData"/>
 
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import GithubCorner from '@core/components/GithubCorner';
+import { GithubCorner } from 'laravue-components';
 import PanelGroup from './components/PanelGroup';
 import LineChart from './components/LineChart';
 import RaddarChart from './components/RaddarChart';
@@ -88,6 +88,7 @@ export default {
   data() {
     return {
       lineChartData: lineChartData.newVisitis,
+      githubUrl: 'https://github.com/tuandm/laravue',
     };
   },
   methods: {
