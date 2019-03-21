@@ -17,7 +17,7 @@
 </p>
 
 # Laravue
-[Laravue](https://laravue.dev) is a beautiful dashboard for Laravel inspired by [vue-element-admin](http://panjiachen.github.io/vue-element-admin) but beyond that. With the powerful Laravel framework as backend, Laravue appears to be a full-stack solution for an enterprise administrative application.
+[Laravue](https://laravue.dev) (pronounced /ˈlarəvjuː/) is a beautiful dashboard combination of [Laravel](https://laravel.com/), [Vue.js](https://github.com/vuejs/vue) and the UI Toolkit [Element](https://github.com/ElemeFE/element). The works is inspired by  [vue-element-admin](http://panjiachen.github.io/vue-element-admin) with our love on top of that. With the powerful Laravel framework as the backend, Vue.js as the high performance on the frontend,  Laravue appears to be a full-stack solution for an enterprise application level.
 
 ## Screenshot
 <p align="center">
@@ -28,9 +28,9 @@
 
 ### Prerequisites
 
- * Laravue is positioned as an enterprise management solution, it is highly recommended to use it to start a project. 
- * If you want to integrate Laravue to existing Laravel project, you may need to check [Laravue Core](https://github.com/tuandm/laravue-core) instead
- * Your machine need to be ready for latest [Laravel](https://laravel.com/docs/5.8/installation) and [Node.js](https://nodejs.org)
+ * Laravue is positioned as an enterprise management solution, and it is highly recommended to use it to start a project from start.
+ * For existing Laravel project, you should check [Laravue Core](https://github.com/tuandm/laravue-core) for integration.
+ * Your machine needs to be ready for the latest [Laravel](https://laravel.com/docs/5.8/installation) and [Node.js](https://nodejs.org).
 
 ### Installing
 ```bash
@@ -72,22 +72,22 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduc
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/tuandm/laravue-core/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, please look at the [release tags](https://github.com/tuandm/laravue-core/tags) on this repository.
 
 ## Authors
 
-* **Tuan Duong** - *Initial work* - [tuandm](https://github.com/tuandm)
-* **Tony Tin Nguyen** - *Frontend and Designer* - [nguyenquangtin](https://github.com/nguyenquangtin)
+* **Tuan Duong** - *Initial work* - [tuandm](https://github.com/tuandm).
+* **Tony Tin Nguyen** - *Frontend and Designer* - [nguyenquangtin](https://github.com/nguyenquangtin).
 
 See also the list of [contributors](https://github.com/tuandm/laravue/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
 
 ## Acknowledgements
 
-* [Laravue-core](https://github.com/tuandm/laravue-core) - Laravel package which provides core functionalities of Laravue
-* [vue-element-admin](https://panjiachen.github.io/vue-element-admin/#/) A magical vue admin which insprited Laravue project
-* [tui.editor](https://github.com/nhnent/tui.editor) - Markdown WYSIWYG Editor
-* [Echarts](http://echarts.apache.org/) - A powerful, interactive charting and visualization library for browser
+* [Laravue-core](https://github.com/tuandm/laravue-core) - Laravel package which provides core functionalities of Laravue.
+* [vue-element-admin](https://panjiachen.github.io/vue-element-admin/#/) A magical vue admin which insprited Laravue project.
+* [tui.editor](https://github.com/nhnent/tui.editor) - Markdown WYSIWYG Editor.
+* [Echarts](http://echarts.apache.org/) - A powerful, interactive charting and visualization library for browser.
