@@ -28,9 +28,9 @@
 
 ### Prerequisites
 
- * Laravue is positioned as an enterprise management solution, it is highly recommended to use it to start a project.
- * If you want to integrate Laravue to existing Laravel project, you may need to check [Laravue Core](https://github.com/tuandm/laravue-core) instead
- * Your machine need to be ready for latest [Laravel](https://laravel.com/docs/5.8/installation) and [Node.js](https://nodejs.org)
+ * Laravue is positioned as an enterprise management solution, and it is highly recommended to use it to start a project from start.
+ * For existing Laravel project, you should check [Laravue Core](https://github.com/tuandm/laravue-core) for integration.
+ * Your machine needs to be ready for the latest [Laravel](https://laravel.com/docs/5.8/installation) and [Node.js](https://nodejs.org).
 
 
 ### Installing
