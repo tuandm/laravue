@@ -19,9 +19,9 @@
 # Laravue
 
 ## Introduction
-[Laravue](https://laravue.dev) is a beautiful dashboard based on [Laravel](https://laravel.com/), [vue](https://github.com/vuejs/vue) and use the UI Toolkit [element](https://github.com/ElemeFE/element).
+[Laravue](https://laravue.dev) is a beautiful dashboard based on [Laravel](https://laravel.com/), [Vue.js](https://github.com/vuejs/vue) and uses the UI Toolkit [Element](https://github.com/ElemeFE/element).
 
-This Laravel-Vue admin is inspired by the awesome [vue-element-admin](http://panjiachen.github.io/vue-element-admin) (many thanks to [PanJiaChen](https://github.com/PanJiaChen) for the great works). Newest development stack of Laravel/Vue such as i18n, Envoy, vue-router,.. will be applied into this project.
+This Laravel-Vue admin is inspired by the awesome [vue-element-admin](http://panjiachen.github.io/vue-element-admin) (many thanks to [PanJiaChen](https://github.com/PanJiaChen) for the great works) and the applying of latest development stack of Laravel/Vue such as i18n, Envoy, vue-router, et cetera.
 
 <p align="center">
   <img width="900" src="http://doc.laravue.cipherpols.com/assets/screenshot.png">
@@ -34,15 +34,17 @@ This Laravel-Vue admin is inspired by the awesome [vue-element-admin](http://pan
 
 ** [Laravel](https://laravel.com/)
 
-The project is built on top of [Laravel](https://laravel.com), [vue](https://cn.vuejs.org/index.html), [vuex](https://vuex.vuejs.org/zh-cn/), [vue-router](https://router.vuejs.org/zh-cn/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element). Since this is positioned as an enterprise management solution, it is recommended to use it to start a project. 
+The project is built on top of [Laravel](https://laravel.com), [vue](https://cn.vuejs.org/index.html), [vuex](https://vuex.vuejs.org/zh-cn/), [vue-router](https://router.vuejs.org/zh-cn/), [axios](https://github.com/axios/axios) and [element-ui](https://github.com/ElemeFE/element). Since this framework is positioned as an enterprise management solution, it is recommended to use it to start a project.
 
-If you want to integrate Laravue to existing Laravel project, please refer to [Laravue Core](https://github.com/tuandm/laravue-core) for more detail
+**Integration with existing Laravel code**
+For integration with existing Laravue project, please refer to [Laravue Core](https://github.com/tuandm/laravue-core) for more detail.
 
 ## API
-API will be served by Laravel. In this project, you need to run migration and data feeder to generate sample data for authentication/authorization, other APIs will be faked.
+Laravel should help us serve the API. In this project, you need to run database migration and data seeders to generate sample data for authentication/authorization. Other APIs are faked for testing purpose.
 
 ## Getting started
-This project is built on top of fresh latest version Laravel (5.8). You should check the installation guide of Laravel [here](https://laravel.com/docs/5.8)
+This project is built on top of fresh latest version Laravel (5.8). You should check the installation guide from official Laravel document [here](https://laravel.com/docs/5.8).
+
 
 ```bash
 # Clone the project and run composer
