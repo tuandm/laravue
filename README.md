@@ -32,7 +32,6 @@
  * For existing Laravel project, you should check [Laravue Core](https://github.com/tuandm/laravue-core) for integration.
  * Your machine needs to be ready for the latest [Laravel](https://laravel.com/docs/5.8/installation) and [Node.js](https://nodejs.org).
 
-
 ### Installing
 ```bash
 # Clone the project and run composer
