@@ -2,7 +2,7 @@
   <img width="320" src="http://doc.laravue.cipherpols.com/assets/laravue-logo-line.png">
 </p>
 <p align="center">
-  <a href="https://github.com/vuejs/vue">
+  <a href="https://laravel.com">
     <img src="https://img.shields.io/badge/laravel-5.8-red.svg" alt="vue">
   </a>
   <a href="https://github.com/vuejs/vue">
