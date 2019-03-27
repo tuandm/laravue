@@ -28,7 +28,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import PanThumb from '@core/components/PanThumb';
+import PanThumb from '@/components/PanThumb';
 
 export default {
   components: { PanThumb },
@@ -100,7 +100,7 @@ export default {
     background-color: #fff;
     margin: auto;
     box-shadow: none!important;
-    >>> .pan-info {
+    /deep/ .pan-info {
       box-shadow: none!important;
     }
   }

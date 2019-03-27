@@ -1,7 +1,7 @@
 /** When your routing table is too long, you can split it into small modules**/
-import Layout from '@/views/layout/Layout';
+import Layout from '@/layout';
 
-const excelRouter = {
+const excelRoutes = {
   path: '/excel',
   component: Layout,
   redirect: '/excel/export-excel',
@@ -24,6 +24,12 @@ const excelRouter = {
       meta: { title: 'selectExcel' },
     },
     {
+      path: 'export-merge-header',
+      component: () => import('@/views/excel/MergeHeader'),
+      name: 'MergeHeader',
+      meta: { title: 'mergeHeader' },
+    },
+    {
       path: 'upload-excel',
       component: () => import('@/views/excel/UploadExcel'),
       name: 'UploadExcel',
@@ -32,4 +38,4 @@ const excelRouter = {
   ],
 };
 
-export default excelRouter;
+export default excelRoutes;

@@ -21,12 +21,12 @@ export default {
   data() {
     return {
       tabMapOptions: [
-        { label: 'China', key: 'CN' },
         { label: 'USA', key: 'US' },
-        { label: 'Japan', key: 'JP' },
+        { label: 'Vietnam', key: 'VI' },
+        { label: 'China', key: 'CN' },
         { label: 'Eurozone', key: 'EU' },
       ],
-      activeName: 'CN',
+      activeName: 'VI',
       createdTimes: 0,
     };
   },
@@ -39,7 +39,7 @@ export default {
 </script>
 
 <style scoped>
-  .tab-container{
+  .tab-container {
     margin: 30px;
   }
 </style>

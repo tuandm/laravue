@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import GithubCorner from '@core/components/GithubCorner';
+import GithubCorner from '@/components/GithubCorner';
 import PanelGroup from './components/PanelGroup';
 import LineChart from './components/LineChart';
 import RaddarChart from './components/RaddarChart';

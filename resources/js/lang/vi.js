@@ -4,7 +4,7 @@ export default {
     return: 'Trở về',
   },
   route: {
-    dashboard: 'Dashboard',
+    dashboard: 'Giao diện chính',
     introduction: 'Giới thiệu',
     documentation: 'Tài liệu',
     guide: 'Hướng dẫn',
@@ -67,6 +67,7 @@ export default {
     clipboardDemo: 'Clipboard',
     i18n: 'I18n',
     externalLink: 'Liên kết ngoài',
+    elementUi: 'Thành phần giao diện',
   },
   navbar: {
     logOut: 'Đăng xuất',

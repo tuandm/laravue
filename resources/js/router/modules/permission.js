@@ -1,7 +1,6 @@
-/** When your routing table is too long, you can split it into small modules**/
-import Layout from '@/views/layout/Layout';
+import Layout from '@/layout';
 
-const permissionRouter = {
+const permissionRoutes = {
   path: '/permission',
   component: Layout,
   redirect: '/permission/index',
@@ -33,4 +32,4 @@ const permissionRouter = {
   ],
 };
 
-export default permissionRouter;
+export default permissionRoutes;

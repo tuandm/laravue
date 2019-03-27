@@ -1,4 +1,9 @@
 //to reset element-ui default css
+.el-breadcrumb__inner,
+.el-breadcrumb__inner a {
+  font-weight: 400 !important;
+}
+
 .el-upload {
   input[type="file"] {
     display: none !important;
@@ -9,12 +14,52 @@
   display: none;
 }
 
-// Temporarily resolve the dialog issue: https://github.com/ElemeFE/element/issues/2461
+.cell {
+  .el-tag {
+    margin-right: 0px;
+  }
+}
+
+.small-padding {
+  .cell {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+}
+
+.fixed-width {
+  .el-button--mini {
+    padding: 7px 10px;
+    width: 60px;
+  }
+}
+
+.status-col {
+  .cell {
+    padding: 0 10px;
+    text-align: center;
+
+    .el-tag {
+      margin-right: 0px;
+    }
+  }
+}
+
 .el-dialog {
   transform: none;
   left: 0;
   position: relative;
   margin: 0 auto;
+}
+
+.article-textarea {
+  textarea {
+    padding-right: 40px;
+    resize: none;
+    border: none;
+    border-radius: 0px;
+    border-bottom: 1px solid #bfcbd9;
+  }
 }
 
 //element ui upload
@@ -26,5 +71,12 @@
       width: 100%;
       height: 200px;
     }
+  }
+}
+
+//dropdown
+.el-dropdown-menu {
+  a {
+    display: block
   }
 }

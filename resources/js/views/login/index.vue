@@ -38,15 +38,15 @@
 </template>
 
 <script>
-import LangSelect from '@core/components/LangSelect';
-import { isEmailValid } from '@/utils/validate';
+import LangSelect from '@/components/LangSelect';
+import { validEmail } from '@/utils/validate';
 
 export default {
   name: 'Login',
   components: { LangSelect },
   data() {
     const validateEmail = (rule, value, callback) => {
-      if (!isEmailValid(value)) {
+      if (!validEmail(value)) {
         callback(new Error('Please enter the correct email'));
       } else {
         callback();
@@ -93,12 +93,14 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true;
-          this.$store.dispatch('Login', this.loginForm).then(() => {
-            this.loading = false;
-            this.$router.push({ path: this.redirect || '/' });
-          }).catch(() => {
-            this.loading = false;
-          });
+          this.$store.dispatch('user/login', this.loginForm)
+            .then(() => {
+              this.$router.push({ path: this.redirect || '/' });
+              this.loading = false;
+            })
+            .catch(() => {
+              this.loading = false;
+            });
         } else {
           console.log('error submit!!');
           return false;

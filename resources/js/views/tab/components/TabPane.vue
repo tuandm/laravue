@@ -1,6 +1,5 @@
 <template>
   <el-table :data="list" border fit highlight-current-row style="width: 100%">
-
     <el-table-column
       v-loading="loading"
       align="center"
@@ -45,7 +44,9 @@
 
     <el-table-column class-name="status-col" label="Status" width="110">
       <template slot-scope="scope">
-        <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+        <el-tag :type="scope.row.status | statusFilter">
+          {{ scope.row.status }}
+        </el-tag>
       </template>
     </el-table-column>
 
@@ -69,7 +70,7 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'CN',
+      default: 'VI',
     },
   },
   data() {
@@ -88,13 +89,12 @@ export default {
     this.getList();
   },
   methods: {
-    getList() {
+    async getList() {
       this.loading = true;
       this.$emit('create'); // for test
-      fetchList(this.listQuery).then(response => {
-        this.list = response.data.items;
-        this.loading = false;
-      });
+      const { data } = await fetchList(this.listQuery);
+      this.list = data.items;
+      this.loading = false;
     },
   },
 };

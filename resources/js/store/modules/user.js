@@ -1,122 +1,136 @@
-import { login, logout, getInfo } from '@/api/login';
+import { login, logout, getInfo } from '@/api/user';
 import { getToken, setToken, removeToken } from '@/utils/auth';
+import router, { resetRouter } from '@/router';
 
-const user = {
-  state: {
-    token: getToken(),
-    name: '',
-    avatar: '',
-    roles: [],
+const state = {
+  token: getToken(),
+  name: '',
+  avatar: '',
+  introduction: '',
+  roles: [],
+};
+
+const mutations = {
+  SET_TOKEN: (state, token) => {
+    state.token = token;
   },
-
-  mutations: {
-    SET_TOKEN: (state, token) => {
-      state.token = token;
-    },
-    SET_NAME: (state, name) => {
-      state.name = name;
-    },
-    SET_AVATAR: (state, avatar) => {
-      state.avatar = avatar;
-    },
-    SET_ROLES: (state, roles) => {
-      state.roles = roles;
-    },
+  SET_INTRODUCTION: (state, introduction) => {
+    state.introduction = introduction;
   },
-
-  actions: {
-    /**
-     * Login action
-     * @param {callbak} param0
-     * @param {email, password} userInfo
-     */
-    Login({ commit }, userInfo) {
-      const email = userInfo.email.trim();
-      return new Promise((resolve, reject) => {
-        login(email, userInfo.password)
-          .then(response => {
-            const token = response.token;
-            setToken(token);
-            commit('SET_TOKEN', token);
-            resolve();
-          })
-          .catch(error => {
-            reject(error);
-          });
-      });
-    },
-
-    /**
-     * Get user information
-     * @param {*} param0
-     */
-    GetInfo({ commit, state }) {
-      return new Promise((resolve, reject) => {
-        getInfo(state.token)
-          .then(response => {
-            const data = response.data;
-            if (data.role) {
-              commit('SET_ROLES', [data.role]);
-            } else {
-              reject('getInfo: role must be set');
-            }
-            commit('SET_NAME', data.name);
-            // commit('SET_AVATAR', data.avatar)
-            commit('SET_AVATAR', 'http://i.pravatar.cc/32');
-            resolve(response);
-          })
-          .catch(error => {
-            reject(error);
-          });
-      });
-    },
-
-    /**
-     * Logout action
-     * @param {*} param0
-     */
-    LogOut({ commit, state }) {
-      return new Promise((resolve, reject) => {
-        logout(state.token)
-          .then(() => {
-            commit('SET_TOKEN', '');
-            commit('SET_ROLES', []);
-            removeToken();
-            resolve();
-          })
-          .catch(error => {
-            reject(error);
-          });
-      });
-    },
-
-    /**
-     * Logout processing
-     * @param {*} param0
-     */
-    FedLogOut({ commit }) {
-      return new Promise(resolve => {
-        commit('SET_TOKEN', '');
-        removeToken();
-        resolve();
-      });
-    },
-
-    /**
-     * Change role of user
-     * This method is to demo the directive v-permission.
-     *
-     * @param {*} param0
-     * @param {*} role
-     */
-    ChangeRoles({ commit, dispatch }, role) {
-      return new Promise(resolve => {
-        commit('SET_ROLES', [role]);
-        dispatch('GenerateRoutes', { roles: [role] }); // Re-render sidebar menu with new permission
-        resolve();
-      });
-    },
+  SET_NAME: (state, name) => {
+    state.name = name;
+  },
+  SET_AVATAR: (state, avatar) => {
+    state.avatar = avatar;
+  },
+  SET_ROLES: (state, roles) => {
+    state.roles = roles;
   },
 };
 
-export default user;
+const actions = {
+  // user login
+  login({ commit }, userInfo) {
+    const { email, password } = userInfo;
+    return new Promise((resolve, reject) => {
+      login({ email: email.trim(), password: password })
+        .then(response => {
+          commit('SET_TOKEN', response.token);
+          setToken(response.token);
+          resolve();
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  },
+
+  // get user info
+  getInfo({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      getInfo(state.token)
+        .then(response => {
+          const { data } = response;
+
+          if (!data) {
+            reject('Verification failed, please Login again.');
+          }
+
+          const { roles, name, avatar, introduction } = data;
+          // roles must be a non-empty array
+          if (!roles || roles.length <= 0) {
+            reject('getInfo: roles must be a non-null array!');
+          }
+
+          commit('SET_ROLES', roles);
+          commit('SET_NAME', name);
+          commit('SET_AVATAR', avatar);
+          commit('SET_INTRODUCTION', introduction);
+          resolve(data);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  },
+
+  // user logout
+  logout({ commit, state }) {
+    return new Promise((resolve, reject) => {
+      logout(state.token)
+        .then(() => {
+          commit('SET_TOKEN', '');
+          commit('SET_ROLES', []);
+          removeToken();
+          resetRouter();
+          resolve();
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  },
+
+  // remove token
+  resetToken({ commit }) {
+    return new Promise(resolve => {
+      commit('SET_TOKEN', '');
+      commit('SET_ROLES', []);
+      removeToken();
+      resolve();
+    });
+  },
+
+  // Dynamically modify permissions
+  changeRoles({ commit, dispatch }, role) {
+    return new Promise(async resolve => {
+      // const token = role + '-token';
+
+      // commit('SET_TOKEN', token);
+      // setToken(token);
+
+      // const { roles } = await dispatch('getInfo');
+
+      const roles = [role];
+      commit('SET_ROLES', roles);
+      resetRouter();
+
+      // generate accessible routes map based on roles
+      const accessRoutes = await dispatch('permission/generateRoutes', roles, {
+        root: true,
+      });
+
+      // dynamically add accessible routes
+      router.addRoutes(accessRoutes);
+
+      resolve();
+    });
+  },
+};
+
+export default {
+  namespaced: true,
+  state,
+  mutations,
+  actions,
+};

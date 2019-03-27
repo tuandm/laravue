@@ -1,6 +1,5 @@
 <template>
   <div class="app-container">
-
     <el-table v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
       <el-table-column align="center" label="ID" width="80">
         <template slot-scope="scope">
@@ -22,21 +21,22 @@
 
       <el-table-column width="100px" label="Importance">
         <template slot-scope="scope">
-          <svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" class="meta-item__icon"/>
+          <svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" class="meta-item__icon" />
         </template>
       </el-table-column>
 
       <el-table-column class-name="status-col" label="Status" width="110">
-        <template slot-scope="scope">
-          <el-tag :type="scope.row.status | statusFilter">{{ scope.row.status }}</el-tag>
+        <template slot-scope="{row}">
+          <el-tag :type="row.status | statusFilter">
+            {{ row.status }}
+          </el-tag>
         </template>
       </el-table-column>
 
       <el-table-column min-width="300px" label="Title">
-        <template slot-scope="scope">
-
-          <router-link :to="'/example/edit/'+scope.row.id" class="link-type">
-            <span>{{ scope.row.title }}</span>
+        <template slot-scope="{row}">
+          <router-link :to="'/example/edit/'+row.id" class="link-type">
+            <span>{{ row.title }}</span>
           </router-link>
         </template>
       </el-table-column>
@@ -44,20 +44,21 @@
       <el-table-column align="center" label="Actions" width="120">
         <template slot-scope="scope">
           <router-link :to="'/example/edit/'+scope.row.id">
-            <el-button type="primary" size="small" icon="el-icon-edit">Edit</el-button>
+            <el-button type="primary" size="small" icon="el-icon-edit">
+              Edit
+            </el-button>
           </router-link>
         </template>
       </el-table-column>
     </el-table>
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
-
   </div>
 </template>
 
 <script>
 import { fetchList } from '@/api/article';
-import Pagination from '@core/components/Pagination'; // Secondary package based on el-pagination
+import Pagination from '@/components/Pagination'; // Secondary package based on el-pagination
 
 export default {
   name: 'ArticleList',
@@ -87,21 +88,12 @@ export default {
     this.getList();
   },
   methods: {
-    getList() {
+    async getList() {
       this.listLoading = true;
-      fetchList(this.listQuery).then(response => {
-        this.list = response.data.items;
-        this.total = response.data.total;
-        this.listLoading = false;
-      });
-    },
-    handleSizeChange(val) {
-      this.listQuery.limit = val;
-      this.getList();
-    },
-    handleCurrentChange(val) {
-      this.listQuery.page = val;
-      this.getList();
+      const { data } = await fetchList(this.listQuery);
+      this.list = data.items;
+      this.total = data.total;
+      this.listLoading = false;
     },
   },
 };

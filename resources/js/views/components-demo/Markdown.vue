@@ -3,7 +3,7 @@
 
     <code>Markdown is based on
       <a href="https://github.com/nhnent/tui.editor" target="_blank">tui.editor</a> ，Simply encapsulated in Vue.
-      <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/feature/component/markdown-editor.html">
+      <a target="_blank" href="https://doc.laravue.dev/feature/component/markdown-editor.html">
         Documentation </a>
     </code>
 
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import MarkdownEditor from '@core/components/MarkdownEditor';
+import MarkdownEditor from '@/components/MarkdownEditor';
 
 const content = `
 ### Markdown Editor

@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/transaction';
+import { fetchList } from '@/api/order';
 
 export default {
   filters: {
@@ -48,14 +48,10 @@ export default {
     this.fetchData();
   },
   methods: {
-    fetchData() {
-      fetchList()
-        .then(response => {
-          this.list = response.data.items.slice(0, 8);
-        })
-        .then(() => {
-          this.loading = false;
-        });
+    async fetchData() {
+      const { data } = await fetchList();
+      this.list = data.items.slice(0, 8);
+      this.loading = false;
     },
   },
 };

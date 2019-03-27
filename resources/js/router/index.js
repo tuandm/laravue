@@ -1,23 +1,32 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-// in development-env not use lazy-loading, because lazy-loading too many pages will cause webpack hot update too slow. so only in production use lazy-loading;
-// detail: https://panjiachen.github.io/vue-element-admin-site/#/lazy-loading
+/**
+ * Layzloading will create many files and slow on compiling, so best not to use lazyloading on devlopment.
+ * The syntax is lazyloading, but we convert to proper require() with babel-plugin-syntax-dynamic-import
+ * @see https://doc.laravue.dev/guide/advanced/lazy-loading.html
+ */
 
 Vue.use(Router);
 
 /* Layout */
-import Layout from '../views/layout/Layout';
+import Layout from '@/layout';
 
 /* Router for modules */
-import componentsRouter from './modules/components';
-import chartsRouter from './modules/charts';
-import tableRouter from './modules/table';
-import exampleRouter from './modules/example';
-import nestedRouter from './modules/nested';
-import errorRouter from './modules/error';
-import excelRouter from './modules/excel';
-import permissionRouter from './modules/permission';
+import elementUiRoutes from './modules/element-ui';
+import componentRoutes from './modules/components';
+import chartsRoutes from './modules/charts';
+import tableRoutes from './modules/table';
+import exampleRoutes from './modules/example';
+import nestedRoutes from './modules/nested';
+import errorRoutes from './modules/error';
+import excelRoutes from './modules/excel';
+import permissionRoutes from './modules/permission';
+
+/**
+ * Sub-menu only appear when children.length>=1
+ * @see https://doc.laravue.dev/guide/essentials/router-and-nav.html
+ **/
 
 /**
 * hidden: true                   if `hidden:true` will not show in the sidebar(default is false)
@@ -27,12 +36,16 @@ import permissionRouter from './modules/permission';
 * redirect: noredirect           if `redirect:noredirect` will no redirect in the breadcrumb
 * name:'router-name'             the name is used by <keep-alive> (must set!!!)
 * meta : {
-    title: 'title'               the name show in submenu and breadcrumb (recommend set)
+    roles: ['admin', 'editor']   will control the page roles (you can set multiple roles)
+    title: 'title'               the name show in sub-menu and breadcrumb (recommend set)
     icon: 'svg-name'             the icon show in the sidebar
-    breadcrumb: false            if false, the item will hidden in breadcrumb(default is true)
+    noCache: true                if true, the page will no be cached(default is false)
+    breadcrumb: false            if false, the item will hidden in breadcrumb (default is true)
+    affix: true                  if true, the tag will affix in the tags-view
   }
 **/
-export const constantRouterMap = [
+
+export const constantRoutes = [
   {
     path: '/redirect',
     component: Layout,
@@ -74,7 +87,7 @@ export const constantRouterMap = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', noCache: true },
+        meta: { title: 'dashboard', icon: 'dashboard', noCache: false },
       },
     ],
   },
@@ -104,59 +117,44 @@ export const constantRouterMap = [
       },
     ],
   },
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' },
-      },
-    ],
-  },
+  elementUiRoutes,
 ];
 
-export default new Router({
-  // mode: 'history', // Require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap,
-});
-
-export const asyncRouterMap = [
-  permissionRouter,
+export const asyncRoutes = [
+  permissionRoutes,
+  componentRoutes,
+  chartsRoutes,
+  nestedRoutes,
+  tableRoutes,
+  exampleRoutes,
   {
-    path: '/icon',
+    path: '/theme',
     component: Layout,
+    redirect: 'noredirect',
     children: [
       {
         path: 'index',
-        component: () => import('@/views/icons/index'),
-        name: 'Icons',
-        meta: { title: 'icons', icon: 'icon', noCache: true },
+        component: () => import('@/views/theme/index'),
+        name: 'Theme',
+        meta: { title: 'theme', icon: 'theme' },
       },
     ],
   },
-  componentsRouter,
-  chartsRouter,
-  nestedRouter,
-  tableRouter,
-  exampleRouter,
   {
-    path: '/tab',
+    path: '/clipboard',
     component: Layout,
+    redirect: 'noredirect',
     children: [
       {
         path: 'index',
-        component: () => import('@/views/tab'),
-        name: 'Tab',
-        meta: { title: 'tab', icon: 'tab' },
+        component: () => import('@/views/clipboard/index'),
+        name: 'ClipboardDemo',
+        meta: { title: 'clipboardDemo', icon: 'clipboard' },
       },
     ],
   },
-  errorRouter,
-  excelRouter,
+  errorRoutes,
+  excelRoutes,
   {
     path: '/zip',
     component: Layout,
@@ -176,13 +174,13 @@ export const asyncRouterMap = [
     path: '/pdf',
     component: Layout,
     redirect: '/pdf/index',
-    meta: { title: 'PDF', icon: 'pdf' },
+    meta: { title: 'pdf', icon: 'pdf' },
     children: [
       {
         path: 'index',
         component: () => import('@/views/pdf'),
-        name: 'PDF',
-        meta: { title: 'PDF' },
+        name: 'Pdf',
+        meta: { title: 'pdf' },
       },
     ],
   },
@@ -215,3 +213,19 @@ export const asyncRouterMap = [
   },
   { path: '*', redirect: '/404', hidden: true },
 ];
+
+const createRouter = () => new Router({
+  // mode: 'history', // require service support
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRoutes,
+});
+
+const router = createRouter();
+
+// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
+export function resetRouter() {
+  const newRouter = createRouter();
+  router.matcher = newRouter.matcher; // reset router
+}
+
+export default router;

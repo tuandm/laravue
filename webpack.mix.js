@@ -1,3 +1,4 @@
+const config = require('./webpack.config');
 const mix = require('laravel-mix');
 require('laravel-mix-eslint');
 
@@ -19,28 +20,7 @@ Mix.listen('configReady', webpackConfig => {
   imageLoaderConfig.exclude = resolve('icons');
 });
 
-mix.webpackConfig({
-  resolve: {
-    extensions: ['.js', '.vue', '.json'],
-    alias: {
-      vue$: 'vue/dist/vue.esm.js',
-      '@': path.join(__dirname, '/resources/js'),
-      '@core': path.join(__dirname, '/vendor/tuandm/laravue-core/src/resources/js'),
-    },
-  },
-  module: {
-    rules: [
-      {
-        test: /\.svg$/,
-        loader: 'svg-sprite-loader',
-        include: [resolve('icons')],
-        options: {
-          symbolId: 'icon-[name]',
-        },
-      },
-    ],
-  },
-});
+mix.webpackConfig(config);
 
 /*
  |--------------------------------------------------------------------------
@@ -55,18 +35,30 @@ mix.webpackConfig({
 
 mix
   .js('resources/js/app.js', 'public/js')
-  // .extract(['vue', 'axios', 'vuex', 'vue-router', 'vue-i18n', 'element-ui']) // Issue of webpack:  https://github.com/JeffreyWay/laravel-mix/issues/1870
+  .extract([
+    'vue',
+    'axios',
+    'vuex',
+    'vue-router',
+    'vue-i18n',
+    'element-ui',
+    'echarts',
+  ])
   .options({
     processCssUrls: false,
   })
-  .sass('resources/js/styles/index.scss', 'public/css/app.css')
+  .sass('resources/js/styles/index.scss', 'public/css/app.css', {
+    implementation: require('node-sass'),
+  })
   .eslint();
 
 if (mix.inProduction()) {
   mix.version();
 } else {
   // Development settings
-  mix.sourceMaps().webpackConfig({
-    devtool: 'cheap-eval-source-map', // Fastest for development
-  });
+  mix;
+  // .sourceMaps()
+  // .webpackConfig({
+  //   devtool: 'cheap-eval-source-map', // Fastest for development
+  // });
 }

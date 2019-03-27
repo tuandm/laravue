@@ -103,13 +103,13 @@
 </template>
 
 <script>
-import Tinymce from '@core/components/Tinymce';
-import Upload from '@core/components/Upload/SingleImage';
-import MDinput from '@core/components/MDinput';
-import Sticky from '@core/components/Sticky'; // Sticky header
-import { validateURL } from '@/utils/validate';
+import Tinymce from '@/components/Tinymce';
+import Upload from '@/components/Upload/SingleImage';
+import MDinput from '@/components/MDinput';
+import Sticky from '@/components/Sticky'; // Sticky header
+import { validURL } from '@/utils/validate';
 import { fetchArticle } from '@/api/article';
-import { userSearch } from '@/api/remoteSearch';
+import { userSearch } from '@/api/search';
 import {
   CommentDropdown,
   PlatformDropdown,
@@ -161,7 +161,7 @@ export default {
     };
     const validateSourceUri = (rule, value, callback) => {
       if (value) {
-        if (validateURL(value)) {
+        if (validURL(value)) {
           callback();
         } else {
           this.$message({
