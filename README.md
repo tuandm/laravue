@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="320" src="http://doc.laravue.dev/laravue-logo-line.png">
+  <img width="320" src="https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/laravue-logo-line.png">
 </p>
 <p align="center">
   <a href="https://laravel.com">
