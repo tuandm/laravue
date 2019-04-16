@@ -21,7 +21,7 @@
 
 ## Screenshot
 <p align="center">
-  <img width="900" src="https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/laravue-layout.jpg">
+  <img width="900" src="https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/laravue-screenshot.jpg">
 </p>
 
 ## Getting started
