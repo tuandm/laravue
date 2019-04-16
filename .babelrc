@@ -10,6 +10,7 @@
   "plugins": [
     "babel-plugin-syntax-dynamic-import",
     "@babel/plugin-transform-runtime",
-    "babel-plugin-transform-vue-jsx"
+    "babel-plugin-transform-vue-jsx",
+    "dynamic-import-node"
   ]
 }

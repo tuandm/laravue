@@ -33,15 +33,68 @@
       </el-button>
     </sticky>
 
-    <div class="components-container">
+    <div class="placeholder-container">
       <code>Sticky header, {{ $t('components.stickyTips') }}</code>
-      <div v-for="n in 60">Placeholder {{ n }} </div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <sticky :sticky-top="200">
+        <el-button type="primary"> placeholder</el-button>
+      </sticky>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
+      <div>placeholder</div>
     </div>
   </div>
 </template>
 
 <script>
-import Sticky from '@core/components/Sticky';
+import Sticky from '@/components/Sticky';
 
 export default {
   name: 'StickyDemo',
@@ -66,9 +119,11 @@ export default {
 };
 </script>
 
-<style scoped>
-.components-container div {
-  margin: 10px;
+<style scoped lang="scss">
+.placeholder-container {
+  div {
+    margin: 10px;
+  }
 }
 
 .time-container {

@@ -1,7 +1,7 @@
 /** When your routing table is too long, you can split it into small modules**/
-import Layout from '@/views/layout/Layout';
+import Layout from '@/layout';
 
-const nestedRouter = {
+const nestedRoutes = {
   path: '/nested',
   component: Layout,
   redirect: '/nested/menu1',
@@ -59,4 +59,4 @@ const nestedRouter = {
   ],
 };
 
-export default nestedRouter;
+export default nestedRoutes;

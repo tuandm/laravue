@@ -23,7 +23,7 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "tuandm/laravue-core": "^0.3.3",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
@@ -38,11 +38,6 @@
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true
-    },
-    "extra": {
-        "laravel": {
-            "dont-discover": []
-        }
     },
     "autoload": {
         "psr-4": {

@@ -79,7 +79,7 @@ export default {
 
 <style rel="stylesheet/scss" lang="scss" scoped>
 .app-container {
-  >>> .permission-alert {
+  /deep/ .permission-alert {
     width: 320px;
     margin-top: 15px;
     background-color: #f0f9eb;
@@ -88,10 +88,10 @@ export default {
     border-radius: 4px;
     display: inline-block;
   }
-  >>> .permission-sourceCode {
+  /deep/ .permission-sourceCode {
     margin-left: 15px;
   }
-  >>> .permission-tag {
+  /deep/ .permission-tag {
     background-color: #ecf5ff;
   }
 }

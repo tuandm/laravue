@@ -1,11 +1,6 @@
 <template>
   <div class="app-container">
     <switch-roles @change="handleRolesChange" />
-    <div>
-      <code>
-        {{ $t('permission.pageDescription') }}
-      </code>
-    </div>
   </div>
 </template>
 
@@ -22,10 +17,3 @@ export default {
   },
 };
 </script>
-<style lang="scss" scoped>
-.app-container {
-  code {
-    margin-top: 20px;
-  }
-}
-</style>

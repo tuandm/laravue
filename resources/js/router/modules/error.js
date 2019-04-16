@@ -1,7 +1,7 @@
 /** When your routing table is too long, you can split it into small modules**/
-import Layout from '@/views/layout/Layout';
+import Layout from '@/layout';
 
-const errorRouter = {
+const errorRoutes = {
   path: '/error',
   component: Layout,
   redirect: 'noredirect',
@@ -26,4 +26,4 @@ const errorRouter = {
   ],
 };
 
-export default errorRouter;
+export default errorRoutes;

@@ -1,7 +1,7 @@
 /** When your routing table is too long, you can split it into small modules**/
-import Layout from '@/views/layout/Layout';
+import Layout from '@/layout';
 
-const exampleRouter = {
+const exampleRoutes = {
   path: '/example',
   component: Layout,
   redirect: '/example/list',
@@ -33,4 +33,4 @@ const exampleRouter = {
   ],
 };
 
-export default exampleRouter;
+export default exampleRoutes;
