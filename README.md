@@ -21,7 +21,7 @@
 
 ## Screenshot
 <p align="center">
-  <img width="900" src="http://doc.laravue.cipherpols.com/assets/screenshot.png">
+  <img width="900" src="https://cp5.sgp1.cdn.digitaloceanspaces.com/zoro/laravue-cdn/laravue-layout.jpg">
 </p>
 
 ## Getting started
