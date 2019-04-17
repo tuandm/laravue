@@ -19,7 +19,7 @@
         <el-progress :percentage="12"/>
       </div>
       <div class="progress-item">
-        <span>HTML & CSS</span>
+        <span>HTML &amp; CSS</span>
         <el-progress :percentage="100" status="success"/>
       </div>
     </div>
