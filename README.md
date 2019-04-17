@@ -86,9 +86,12 @@ See also the list of [contributors](https://github.com/tuandm/laravue/contributo
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
 
-## Acknowledgements
+## Related projects
 
 * [Laravue-core](https://github.com/tuandm/laravue-core) - Laravel package which provides core functionalities of Laravue.
+
+## Acknowledgements
+
 * [vue-element-admin](https://panjiachen.github.io/vue-element-admin/#/) A magical vue admin which insprited Laravue project.
 * [tui.editor](https://github.com/nhnent/tui.editor) - Markdown WYSIWYG Editor.
 * [Echarts](http://echarts.apache.org/) - A powerful, interactive charting and visualization library for browser.
