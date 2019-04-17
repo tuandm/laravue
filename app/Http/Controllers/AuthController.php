@@ -48,7 +48,7 @@ class AuthController extends Controller
     {
         $user = User::find(Auth::user()->id);
         $user->roles = [$user->role];
-        $user->avatar = 'http://i.pravatar.cc/32';
+        $user->avatar = 'http://i.pravatar.cc';
         return response()->json([
             'status' => 'success',
             'data' => $user
