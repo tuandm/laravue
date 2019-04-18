@@ -65,7 +65,7 @@ export default {
         style.innerText = this.updateStyle(innerText, originalCluster, themeCluster);
       });
       this.$message({
-        message: '换肤成功',
+        message: 'Theme has been changed!',
         type: 'success',
       });
     },
@@ -148,10 +148,14 @@ export default {
 </script>
 
 <style>
+.theme-message,
+.theme-picker-dropdown {
+  z-index: 99999 !important;
+}
+
 .theme-picker .el-color-picker__trigger {
-  margin-top: 12px;
-  height: 26px!important;
-  width: 26px!important;
+  height: 26px !important;
+  width: 26px !important;
   padding: 2px;
 }
 

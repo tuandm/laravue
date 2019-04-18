@@ -49,7 +49,7 @@ export default {
     form: 'Form',
     createArticle: 'Create Article',
     editArticle: 'Edit Article',
-    articleList: 'Article List',
+    articleList: 'Articles',
     errorPages: 'Error Pages',
     page401: '401',
     page404: '404',
@@ -67,6 +67,9 @@ export default {
     i18n: 'I18n',
     externalLink: 'External Link',
     elementUi: 'Element UI',
+    administrator: 'Administrator',
+    users: 'Users',
+    editUser: 'Edit User',
   },
   navbar: {
     logOut: 'Log Out',

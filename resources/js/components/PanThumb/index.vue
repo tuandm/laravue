@@ -1,5 +1,5 @@
 <template>
-  <div :style="{zIndex:zIndex,height:height,width:width}" class="pan-item">
+  <div :style="{zIndex:zIndex,height:height,width:width}" :class="{'pan-item': 1, 'pan-item-hover': hoverable}">
     <div class="pan-info">
       <div class="pan-info-roles-container">
         <slot />
@@ -28,6 +28,10 @@ export default {
     height: {
       type: String,
       default: '150px',
+    },
+    hoverable: {
+      type: Boolean,
+      default: true,
     },
   },
 };
@@ -129,11 +133,11 @@ export default {
   background: rgba(255, 255, 255, 0.5);
 }
 
-.pan-item:hover .pan-thumb {
+.pan-item-hover:hover .pan-thumb {
   transform: rotate(-110deg);
 }
 
-.pan-item:hover .pan-info p a {
+.pan-item-hover:hover .pan-info p a {
   opacity: 1;
   transform: translateX(0px) rotate(0deg);
 }

@@ -26,6 +26,7 @@ Route::group(['middleware' => 'api'], function () {
         Route::post('auth/logout', 'AuthController@logout');
     });
 
+    Route::apiResource('users', 'UserController');
     // Fake APIs
     Route::get('/table/list', function () {
         $rowsNumber = mt_rand(20, 30);

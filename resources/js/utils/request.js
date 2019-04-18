@@ -8,7 +8,7 @@ const service = axios.create({
   timeout: 10000, // Request timeout
 });
 
-// request拦截器
+// Request intercepter
 service.interceptors.request.use(
   config => {
     const token = getToken();
@@ -36,14 +36,20 @@ service.interceptors.response.use(
     return response.data;
   },
   error => {
-    console.log('err' + error); // for debug
+    let message = error.message;
+    if (error.response.data && error.response.data.errors) {
+      message = error.response.data.errors;
+    } else if (error.response.data && error.response.data.error) {
+      message = error.response.data.error;
+    }
+
     Message({
-      message: error.message,
+      message: message,
       type: 'error',
       duration: 5 * 1000,
     });
     return Promise.reject(error);
-  }
+  },
 );
 
 export default service;

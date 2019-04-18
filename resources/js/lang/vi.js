@@ -68,6 +68,9 @@ export default {
     i18n: 'I18n',
     externalLink: 'Liên kết ngoài',
     elementUi: 'Thành phần giao diện',
+    administrator: 'Quản trị',
+    users: 'Tài khoản',
+    editUser: 'Chỉnh sửa tài khoản',
   },
   navbar: {
     logOut: 'Đăng xuất',
