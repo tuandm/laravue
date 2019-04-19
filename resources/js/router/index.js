@@ -17,7 +17,7 @@ import elementUiRoutes from './modules/element-ui';
 import componentRoutes from './modules/components';
 import chartsRoutes from './modules/charts';
 import tableRoutes from './modules/table';
-import exampleRoutes from './modules/example';
+import adminRoutes from './modules/admin';
 import nestedRoutes from './modules/nested';
 import errorRoutes from './modules/error';
 import excelRoutes from './modules/excel';
@@ -126,7 +126,7 @@ export const asyncRoutes = [
   chartsRoutes,
   nestedRoutes,
   tableRoutes,
-  exampleRoutes,
+  adminRoutes,
   {
     path: '/theme',
     component: Layout,

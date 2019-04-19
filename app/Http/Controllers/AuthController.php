@@ -3,7 +3,7 @@
  * File AuthController.php
  *
  * @author Tuan Duong <bacduong@gmail.com>
- * @package Laravue\Core
+ * @package Laravue
  * @version 1.0
  */
 namespace App\Http\Controllers;
@@ -13,9 +13,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Validator;
-use App\Http\Controllers\Controller;
-
+use App\Http\Resources\User as UserResource;
 
 /**
  * Class AuthController
@@ -32,7 +30,7 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
         if ($token = $this->guard()->attempt($credentials)) {
-            return response()->json(new JsonResponse(Auth::user()), Response::HTTP_OK)->header('Authorization', $token);
+            return response()->json(new UserResource(Auth::user()), Response::HTTP_OK)->header('Authorization', $token);
         }
 
         return response()->json(new JsonResponse([], 'login_error'), Response::HTTP_UNAUTHORIZED);
@@ -44,15 +42,9 @@ class AuthController extends Controller
         return response()->json((new JsonResponse())->success([]), Response::HTTP_OK);
     }
 
-    public function user(Request $request)
+    public function user()
     {
-        $user = User::find(Auth::user()->id);
-        $user->roles = [$user->role];
-        $user->avatar = 'http://i.pravatar.cc';
-        return response()->json([
-            'status' => 'success',
-            'data' => $user
-        ]);
+        return new UserResource(Auth::user());
     }
 
     /**

@@ -1,6 +1,10 @@
 import variables from '@/styles/element-variables.scss';
 
 export default {
+  /**
+   * @type {String}
+   */
+  title: 'Laravel Vue Admin',
   theme: variables.theme,
 
   /**
