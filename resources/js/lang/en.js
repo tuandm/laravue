@@ -141,6 +141,8 @@ export default {
     delete: 'Delete',
     cancel: 'Cancel',
     confirm: 'Confirm',
+    keyword: 'Keyword',
+    role: 'Role',
   },
   errorLog: {
     tips: 'Please click the bug icon in the upper right corner',
@@ -176,5 +178,12 @@ export default {
     tagsView: 'Open Tags-View',
     fixedHeader: 'Fixed Header',
     sidebarLogo: 'Sidebar Logo',
+  },
+  user: {
+    'role': 'Role',
+    'password': 'Password',
+    'confirmPassword': 'Confirm password',
+    'name': 'Name',
+    'email': 'Email',
   },
 };

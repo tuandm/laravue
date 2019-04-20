@@ -138,6 +138,8 @@ export default {
     delete: 'Delete',
     cancel: 'Cancel',
     confirm: 'Confirm',
+    keyword: 'Từ khóa',
+    role: 'Nhóm',
   },
   errorLog: {
     tips: 'Please click the bug icon in the upper right corner',
@@ -166,5 +168,12 @@ export default {
     close: 'Close',
     closeOthers: 'Close Others',
     closeAll: 'Close All',
+  },
+  user: {
+    'role': 'Nhóm',
+    'password': 'Mật khẩu',
+    'confirmPassword': 'Nhập lại mật khẩu',
+    'name': 'Tên',
+    'email': 'Địa chỉ email',
   },
 };

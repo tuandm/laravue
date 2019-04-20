@@ -192,7 +192,6 @@
 <script>
 import Resource from '@/api/resource';
 import PanThumb from '@/components/PanThumb';
-import { Message } from 'element-ui';
 
 const userResource = new Resource('users');
 export default {
@@ -246,7 +245,7 @@ export default {
         .update(this.user.id, this.user)
         .then(response => {
           this.updating = false;
-          Message({
+          this.$message({
             message: 'User information has been updated successfully',
             type: 'success',
             duration: 5 * 1000,

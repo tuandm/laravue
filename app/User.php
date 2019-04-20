@@ -6,6 +6,16 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
+/**
+ * Class User
+ *
+ * @property string $name
+ * @property string $email
+ * @property string $role
+ * @property string $password
+ *
+ * @package App
+ */
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -16,7 +26,7 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role'
     ];
 
     /**

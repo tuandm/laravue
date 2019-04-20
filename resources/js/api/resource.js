@@ -24,11 +24,10 @@ class Resource {
     return request({
       url: '/' + this.uri,
       method: 'post',
-      params: resource,
+      data: resource,
     });
   }
   update(id, resource) {
-    // return request.put('/' + this.uri + '/' + id, resource);
     return request({
       url: '/' + this.uri + '/' + id,
       method: 'put',
