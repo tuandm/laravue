@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Laravue\Acl;
+use App\Laravue\Models\Role;
 
 class UsersTableSeeder extends Seeder
 {
@@ -63,14 +65,23 @@ class UsersTableSeeder extends Seeder
             "Wilhelm Conrad Roentgen",
             "Wolfgang Ernst Pauli",
         ];
+
         foreach ($userList as $fullName) {
             $name = str_replace(' ', '.', $fullName);
-            \App\User::create([
+            $roleName = \App\Laravue\Faker::randomInArray([
+                Acl::ROLE_MANAGER,
+                Acl::ROLE_EDITOR,
+                Acl::ROLE_USER,
+                Acl::ROLE_VISITOR,
+            ]);
+            $user = \App\Laravue\Models\User::create([
                 'name' => $fullName,
                 'email' => strtolower($name) . '@laravue.dev',
-                'password' => \Illuminate\Support\Facades\Hash::make(strtolower($name)),
-                'role' => \App\Laravue\Faker::randomInArray(['editor', 'user']),
+                'password' => \Illuminate\Support\Facades\Hash::make('laravue'),
             ]);
+
+            $role = Role::findByName($roleName);
+            $user->syncRoles($role);
         }
     }
 }

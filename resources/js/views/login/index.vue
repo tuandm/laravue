@@ -30,8 +30,8 @@
         </el-button>
       </el-form-item>
       <div class="tips">
-        <span style="margin-right:20px;">email: admin@test.com</span>
-        <span> password: admin</span>
+        <span style="margin-right:20px;">Email: admin@laravue.dev</span>
+        <span>Password: laravue</span>
       </div>
     </el-form>
   </div>
@@ -61,8 +61,8 @@ export default {
     };
     return {
       loginForm: {
-        email: 'admin@test.com',
-        password: 'admin',
+        email: 'admin@laravue.dev',
+        password: 'laravue',
       },
       loginRules: {
         email: [{ required: true, trigger: 'blur', validator: validateEmail }],

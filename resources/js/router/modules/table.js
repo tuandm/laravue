@@ -6,8 +6,9 @@ const tableRoutes = {
   redirect: '/table/complex-table',
   name: 'Complex Table',
   meta: {
-    title: 'Table',
+    title: 'table',
     icon: 'table',
+    permissions: ['view menu table'],
   },
   children: [
     {

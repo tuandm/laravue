@@ -7,16 +7,16 @@ import store from '@/store';
  */
 export default function checkPermission(value) {
   if (value && value instanceof Array && value.length > 0) {
-    const roles = store.getters && store.getters.roles;
-    const permissionRoles = value;
+    const permissions = store.getters && store.getters.permissions;
+    const requiredPermissions = value;
 
-    const hasPermission = roles.some(role => {
-      return permissionRoles.includes(role);
+    const hasPermission = permissions.some(permission => {
+      return requiredPermissions.includes(permission);
     });
 
     return hasPermission;
   } else {
-    console.error(`need roles! Like v-permission="['admin','editor']"`);
+    console.error(`Need permissions! Like v-permission="['manage permission','edit article']"`);
     return false;
   }
 }

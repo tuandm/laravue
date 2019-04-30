@@ -1,6 +1,7 @@
-import { login, logout, getInfo } from '@/api/user';
+import { login, logout, getInfo } from '@/api/auth';
 import { getToken, setToken, removeToken } from '@/utils/auth';
 import router, { resetRouter } from '@/router';
+import store from '@/store';
 
 const state = {
   token: getToken(),
@@ -8,6 +9,7 @@ const state = {
   avatar: '',
   introduction: '',
   roles: [],
+  permissions: [],
 };
 
 const mutations = {
@@ -25,6 +27,9 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles;
+  },
+  SET_PERMISSIONS: (state, permissions) => {
+    state.permissions = permissions;
   },
 };
 
@@ -56,13 +61,14 @@ const actions = {
             reject('Verification failed, please Login again.');
           }
 
-          const { roles, name, avatar, introduction } = data;
+          const { roles, name, avatar, introduction, permissions } = data;
           // roles must be a non-empty array
           if (!roles || roles.length <= 0) {
             reject('getInfo: roles must be a non-null array!');
           }
 
           commit('SET_ROLES', roles);
+          commit('SET_PERMISSIONS', permissions);
           commit('SET_NAME', name);
           commit('SET_AVATAR', avatar);
           commit('SET_INTRODUCTION', introduction);
@@ -111,14 +117,14 @@ const actions = {
 
       // const { roles } = await dispatch('getInfo');
 
-      const roles = [role];
+      const roles = [role.name];
+      const permissions = role.permissions.map(permission => permission.name);
       commit('SET_ROLES', roles);
+      commit('SET_PERMISSIONS', permissions);
       resetRouter();
 
       // generate accessible routes map based on roles
-      const accessRoutes = await dispatch('permission/generateRoutes', roles, {
-        root: true,
-      });
+      const accessRoutes = await store.dispatch('permission/generateRoutes', { roles, permissions });
 
       // dynamically add accessible routes
       router.addRoutes(accessRoutes);

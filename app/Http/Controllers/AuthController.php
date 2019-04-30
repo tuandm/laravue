@@ -9,11 +9,10 @@
 namespace App\Http\Controllers;
 
 use App\Laravue\JsonResponse;
-use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\User as UserResource;
+use App\Http\Resources\UserResource as UserResource;
 
 /**
  * Class AuthController

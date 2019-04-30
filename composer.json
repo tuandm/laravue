@@ -1,6 +1,6 @@
 {
     "name": "tuandm/laravue",
-    "description": "The beautiful dashboard for Laravel buiit by VueJS.",
+    "description": "The beautiful dashboard for Laravel built by VueJS.",
     "keywords": [
         "laravel",
         "laravue",
@@ -24,6 +24,7 @@
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
+        "spatie/laravel-permission": "^2.37",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {

@@ -8,7 +8,7 @@ const permissionRoutes = {
   meta: {
     title: 'permission',
     icon: 'lock',
-    roles: ['admin', 'editor'], // you can set roles in root nav
+    permissions: ['view menu permission'],
   },
   children: [
     {
@@ -17,7 +17,7 @@ const permissionRoutes = {
       name: 'PagePermission',
       meta: {
         title: 'pagePermission',
-        roles: ['admin'], // or you can only set roles in sub nav
+        permissions: ['manage permission'],
       },
     },
     {
@@ -26,7 +26,7 @@ const permissionRoutes = {
       name: 'DirectivePermission',
       meta: {
         title: 'directivePermission',
-        // if do not set roles, means: this page does not require permission
+        // if do not set roles neither permissions, means: this page does not require permission
       },
     },
   ],
