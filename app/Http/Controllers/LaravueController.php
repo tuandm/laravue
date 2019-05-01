@@ -11,6 +11,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+/**
+ * Class LaravueController
+ *
+ * @package App\Http\Controllers
+ */
 class LaravueController extends Controller
 {
     /**

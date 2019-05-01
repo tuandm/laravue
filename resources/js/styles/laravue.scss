@@ -8,3 +8,11 @@
 .pull-right {
     float: right !important;
 }
+
+.permissions-container {
+  .block {
+    .el-form-item__label {
+      padding-left: 24px;
+    }
+  }
+}

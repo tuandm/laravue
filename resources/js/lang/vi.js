@@ -52,7 +52,7 @@ export default {
     form: 'Form',
     createArticle: 'Viết bài',
     editArticle: 'Chỉnh sửa',
-    articleList: 'Danh sách',
+    articleList: 'Tin tức',
     errorPages: 'Trang lỗi',
     page401: '401',
     page404: '404',
@@ -70,7 +70,8 @@ export default {
     elementUi: 'Thành phần giao diện',
     administrator: 'Quản trị',
     users: 'Tài khoản',
-    editUser: 'Chỉnh sửa tài khoản',
+    userProfile: 'Tài khoản người dùng',
+    rolePermission: 'Quản lý quyền truy cập',
   },
   navbar: {
     logOut: 'Đăng xuất',
@@ -114,10 +115,12 @@ export default {
     imageUploadTips: 'Since I was using only the vue@1 version, and it is not compatible with mockjs at the moment, I modified it myself, and if you are going to use it, it is better to use official version.',
   },
   table: {
+    description: 'Mô tả',
     dynamicTips1: 'Fixed header, sorted by header order',
     dynamicTips2: 'Not fixed header, sorted by click order',
     dragTips1: 'The default order',
     dragTips2: 'The after dragging order',
+    name: 'Tên',
     title: 'Tiêu đề',
     importance: 'IMP',
     type: 'Thể loại',
@@ -175,5 +178,14 @@ export default {
     'confirmPassword': 'Nhập lại mật khẩu',
     'name': 'Tên',
     'email': 'Địa chỉ email',
+  },
+  roles: {
+    description: {
+      admin: 'Super Administrator. Have access and full permission to all pages.',
+      manager: 'Manager. Have access and permission to most of pages except permission page.',
+      editor: 'Editor. Have access to most of pages, full permission with articles and related resources.',
+      user: 'Normal user. Have access to some pages',
+      visitor: 'Visitor. Have access to static pages, should not have any writable permission',
+    },
   },
 };

@@ -1,23 +1,25 @@
 import request from '@/utils/request';
+import Resource from '@/api/resource';
 
-export function login(data) {
-  return request({
-    url: '/auth/login',
-    method: 'post',
-    data: data,
-  });
+class UserResource extends Resource {
+  constructor() {
+    super('users');
+  }
+
+  permissions(id) {
+    return request({
+      url: '/' + this.uri + '/' + id + '/permissions',
+      method: 'get',
+    });
+  }
+
+  updatePermission(id, permissions) {
+    return request({
+      url: '/' + this.uri + '/' + id + '/permissions',
+      method: 'put',
+      data: permissions,
+    });
+  }
 }
 
-export function getInfo(token) {
-  return request({
-    url: '/auth/user',
-    method: 'get',
-  });
-}
-
-export function logout() {
-  return request({
-    url: '/auth/logout',
-    method: 'post',
-  });
-}
+export { UserResource as default };

@@ -144,12 +144,13 @@ export const asyncRoutes = [
     path: '/clipboard',
     component: Layout,
     redirect: 'noredirect',
+    meta: { permissions: ['view menu clipboard'] },
     children: [
       {
         path: 'index',
         component: () => import('@/views/clipboard/index'),
         name: 'ClipboardDemo',
-        meta: { title: 'clipboardDemo', icon: 'clipboard' },
+        meta: { title: 'clipboardDemo', icon: 'clipboard', roles: ['admin', 'manager', 'editor', 'user'] },
       },
     ],
   },
@@ -160,7 +161,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/zip/download',
     alwaysShow: true,
-    meta: { title: 'zip', icon: 'zip' },
+    meta: { title: 'zip', icon: 'zip', permissions: ['view menu zip'] },
     children: [
       {
         path: 'download',
@@ -174,7 +175,7 @@ export const asyncRoutes = [
     path: '/pdf',
     component: Layout,
     redirect: '/pdf/index',
-    meta: { title: 'pdf', icon: 'pdf' },
+    meta: { title: 'pdf', icon: 'pdf', permissions: ['view menu pdf'] },
     children: [
       {
         path: 'index',
@@ -192,6 +193,7 @@ export const asyncRoutes = [
   {
     path: '/i18n',
     component: Layout,
+    meta: { permissions: ['view menu i18n'] },
     children: [
       {
         path: 'index',
