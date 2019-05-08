@@ -77,6 +77,7 @@ export default {
     github: 'Github',
     theme: 'Theme',
     size: 'Global Size',
+    profile: 'Profile',
   },
   login: {
     title: 'Login Form',

@@ -80,6 +80,7 @@ export default {
     screenfull: 'Toàn màn hình',
     theme: 'Theme',
     size: 'Global Size',
+    profile: 'Trang cá nhân',
   },
   login: {
     title: 'Đăng nhập',

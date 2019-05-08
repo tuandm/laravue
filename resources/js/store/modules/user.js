@@ -4,6 +4,7 @@ import router, { resetRouter } from '@/router';
 import store from '@/store';
 
 const state = {
+  id: null,
   token: getToken(),
   name: '',
   avatar: '',
@@ -13,6 +14,9 @@ const state = {
 };
 
 const mutations = {
+  SET_ID: (state, id) => {
+    state.id = id;
+  },
   SET_TOKEN: (state, token) => {
     state.token = token;
   },
@@ -61,7 +65,7 @@ const actions = {
             reject('Verification failed, please Login again.');
           }
 
-          const { roles, name, avatar, introduction, permissions } = data;
+          const { roles, name, avatar, introduction, permissions, id } = data;
           // roles must be a non-empty array
           if (!roles || roles.length <= 0) {
             reject('getInfo: roles must be a non-null array!');
@@ -72,6 +76,7 @@ const actions = {
           commit('SET_NAME', name);
           commit('SET_AVATAR', avatar);
           commit('SET_INTRODUCTION', introduction);
+          commit('SET_ID', id);
           resolve(data);
         })
         .catch(error => {
