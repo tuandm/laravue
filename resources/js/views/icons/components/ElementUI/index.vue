@@ -6,9 +6,11 @@
       @click="handleClipboard(generateIconCode(item),$event)"
     >
       <el-tooltip placement="top">
-        <div slot="content">{{ generateIconCode(item) }}</div>
+        <div slot="content">
+          {{ generateIconCode(item) }}
+        </div>
         <div class="icon-item">
-          <i :class="item"></i>
+          <i :class="item" />
           <span>{{ item }}</span>
         </div>
       </el-tooltip>

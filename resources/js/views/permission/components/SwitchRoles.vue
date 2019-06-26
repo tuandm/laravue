@@ -3,7 +3,9 @@
     <div style="margin-bottom:15px;">
       {{ $t('permission.roles') }}: {{ roles }}
     </div>
-    <div style="margin-bottom:15px;">{{ $t('permission.switchRoles') }}: </div>
+    <div style="margin-bottom:15px;">
+      {{ $t('permission.switchRoles') }}:
+    </div>
     <div>
       <el-radio-group v-model="switchRoles" v-loading="loading">
         <el-radio-button label="admin" />
@@ -27,9 +29,6 @@ export default {
       list: [],
     };
   },
-  created() {
-    this.getRoles();
-  },
   computed: {
     roles() {
       return this.$store.getters.roles;
@@ -45,6 +44,9 @@ export default {
         });
       },
     },
+  },
+  created() {
+    this.getRoles();
   },
   methods: {
     async getRoles() {

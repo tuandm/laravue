@@ -43,15 +43,15 @@
 
       <el-table-column align="center" label="Actions" width="350">
         <template slot-scope="scope">
-          <router-link :to="'/administrator/users/edit/'+scope.row.id" v-if="!scope.row.roles.includes('admin')">
-            <el-button type="primary" size="small" icon="el-icon-edit" v-permission="['manage user']">
+          <router-link v-if="!scope.row.roles.includes('admin')" :to="'/administrator/users/edit/'+scope.row.id">
+            <el-button v-permission="['manage user']" type="primary" size="small" icon="el-icon-edit">
               Edit
             </el-button>
           </router-link>
-          <el-button type="warning" size="small" icon="el-icon-edit" v-if="!scope.row.roles.includes('admin')" v-permission="['manage permission']" @click="handleEditPermissions(scope.row.id);">
+          <el-button v-if="!scope.row.roles.includes('admin')" v-permission="['manage permission']" type="warning" size="small" icon="el-icon-edit" @click="handleEditPermissions(scope.row.id);">
             Permissions
           </el-button>
-          <el-button type="danger" size="small" icon="el-icon-delete" v-permission="['manage user']" v-if="scope.row.roles.includes('visitor')" @click="handleDelete(scope.row.id, scope.row.name);">
+          <el-button v-if="scope.row.roles.includes('visitor')" v-permission="['manage user']" type="danger" size="small" icon="el-icon-delete" @click="handleDelete(scope.row.id, scope.row.name);">
             Delete
           </el-button>
         </template>
@@ -61,7 +61,7 @@
     <pagination v-show="total>0" :total="total" :page.sync="query.page" :limit.sync="query.limit" @pagination="getList" />
 
     <el-dialog :visible.sync="dialogPermissionVisible" :title="'Edit Permissions - ' + currentUser.name">
-      <div class="form-container" v-loading="dialogPermissionLoading" v-if="currentUser.name">
+      <div v-if="currentUser.name" v-loading="dialogPermissionLoading" class="form-container">
         <div class="permissions-container">
           <div class="block">
             <el-form :model="currentUser" label-width="80px" label-position="top">
@@ -71,13 +71,13 @@
             </el-form>
           </div>
           <div class="block">
-          <el-form :model="currentUser" label-width="80px" label-position="top">
+            <el-form :model="currentUser" label-width="80px" label-position="top">
               <el-form-item label="Permissions">
                 <el-tree ref="otherPermissions" :data="normalizedOtherPermissions" :default-checked-keys="permissionKeys(userOtherPermissions)" :props="permissionProps" show-checkbox node-key="id" class="permission-tree" />
               </el-form-item>
             </el-form>
           </div>
-          <div class="clear-left"></div>
+          <div class="clear-left" />
         </div>
         <div style="text-align:right;">
           <el-button type="danger" @click="dialogPermissionVisible=false">
@@ -91,7 +91,7 @@
     </el-dialog>
 
     <el-dialog :title="'Create new user'" :visible.sync="dialogFormVisible">
-      <div class="form-container" v-loading="userCreating">
+      <div v-loading="userCreating" class="form-container">
         <el-form ref="userForm" :rules="rules" :model="newUser" label-position="left" label-width="150px" style="max-width: 500px;">
           <el-form-item :label="$t('user.role')" prop="role">
             <el-select v-model="newUser.role" class="filter-item" placeholder="Please select role">
@@ -202,7 +202,7 @@ export default {
         });
       });
       const rolePermissions = {
-        id: -1, // Faked ID
+        id: -1, // Just a faked ID
         name: 'Inherited from role',
         disabled: true,
         children: this.classifyPermissions(tmp).menu,

@@ -1,5 +1,5 @@
 
-import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event'
+import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/resize-event';
 
 /**
  * How to use
@@ -9,34 +9,36 @@ import { addResizeListener, removeResizeListener } from 'element-ui/src/utils/re
  */
 
 const doResize = (el, binding, vnode) => {
-  const { componentInstance: $table } = vnode
+  const { componentInstance: $table } = vnode;
 
-  const { value } = binding
+  const { value } = binding;
 
   if (!$table.height) {
-    throw new Error(`el-$table must set the height. Such as height='100px'`)
+    throw new Error(`el-$table must set the height. Such as height='100px'`);
   }
-  const bottomOffset = (value && value.bottomOffset) || 30
+  const bottomOffset = (value && value.bottomOffset) || 30;
 
-  if (!$table) return
+  if (!$table) {
+    return;
+  }
 
-  const height = window.innerHeight - el.getBoundingClientRect().top - bottomOffset
-  $table.layout.setHeight(height)
-  $table.doLayout()
-}
+  const height = window.innerHeight - el.getBoundingClientRect().top - bottomOffset;
+  $table.layout.setHeight(height);
+  $table.doLayout();
+};
 
 export default {
   bind(el, binding, vnode) {
     el.resizeListener = () => {
-      doResize(el, binding, vnode)
-    }
+      doResize(el, binding, vnode);
+    };
 
-    addResizeListener(el, el.resizeListener)
+    addResizeListener(el, el.resizeListener);
   },
   inserted(el, binding, vnode) {
-    doResize(el, binding, vnode)
+    doResize(el, binding, vnode);
   },
   unbind(el) {
-    removeResizeListener(el, el.resizeListener)
-  }
-}
+    removeResizeListener(el, el.resizeListener);
+  },
+};

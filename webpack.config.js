@@ -1,5 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 function resolve(dir) {
   return path.join(
@@ -9,6 +10,15 @@ function resolve(dir) {
   );
 }
 
+const rawArgv = process.argv.slice(2);
+const args = rawArgv.join(' ');
+const report = rawArgv.includes('--report');
+let plugins = [];
+if (report) {
+  plugins.push(new BundleAnalyzerPlugin({
+    openAnalyzer: true,
+  }));
+}
 module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json'],
@@ -29,4 +39,5 @@ module.exports = {
       },
     ],
   },
+  plugins: plugins,
 };

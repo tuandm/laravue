@@ -15,7 +15,7 @@ const excelRoutes = {
     {
       path: 'export-excel',
       component: () => import('@/views/excel/ExportExcel'),
-      name: 'ExportExcel',
+      name: 'exportExcel',
       meta: { title: 'exportExcel' },
     },
     {

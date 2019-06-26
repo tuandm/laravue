@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="app-container">
-
       <el-button type="primary" size="small" style="margin:0 0 20px 0;">
         <a href="https://github.com/tuandm/laravue/tree/master/src/components/TreeTable" target="_blank">Documentation</a>
       </el-button>
@@ -15,7 +14,6 @@
         default-children="children"
         @selection-change="selectChange"
       >
-
         <template slot="selection">
           <el-table-column type="selection" align="center" width="55" />
         </template>
@@ -31,7 +29,6 @@
         </template>
 
         <template slot="timeline" slot-scope="{scope}">
-
           <el-tooltip :content="scope.row.timeLine+'ms'" effect="dark" placement="left">
             <div class="processContainer">
               <div
@@ -44,7 +41,6 @@
               </div>
             </div>
           </el-tooltip>
-
         </template>
 
         <template slot="append" slot-scope="{scope}">
@@ -52,18 +48,24 @@
             size="mini"
             type="primary"
             @click="addMenuItem(scope.row,'brother')"
-          >Append Brother
+          >
+            Append Brother
           </el-button>
           <el-button
             size="mini"
             type="primary"
             @click="addMenuItem(scope.row,'children')"
-          >Append Child
+          >
+            Append Child
           </el-button>
         </template>
         <template slot="operation" slot-scope="{scope}">
-          <el-button size="mini" type="success" @click="editItem(scope.row)">Edit</el-button>
-          <el-button size="mini" type="danger" @click="deleteItem(scope.row)">Delete</el-button>
+          <el-button size="mini" type="success" @click="editItem(scope.row)">
+            Edit
+          </el-button>
+          <el-button size="mini" type="danger" @click="deleteItem(scope.row)">
+            Delete
+          </el-button>
         </template>
       </tree-table>
     </div>
@@ -79,7 +81,6 @@
         <el-button type="primary" @click="updateItem">Confirm</el-button>
       </span>
     </el-dialog>
-
   </div>
 </template>
 

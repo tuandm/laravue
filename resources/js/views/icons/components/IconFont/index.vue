@@ -6,9 +6,11 @@
       @click="handleClipboard(generateIconCode(item),$event)"
     >
       <el-tooltip placement="top">
-        <div slot="content">{{ generateIconCode(item) }}</div>
+        <div slot="content">
+          {{ generateIconCode(item) }}
+        </div>
         <div class="icon-item">
-          <svg-icon :icon-class="item" class-name="disabled"/>
+          <svg-icon :icon-class="item" class-name="disabled" />
           <span>{{ item }}</span>
         </div>
       </el-tooltip>
@@ -21,7 +23,7 @@ import icons from './require-icons';
 import clipboard from '@/utils/clipboard';
 
 export default {
-  name: 'iconFont',
+  name: 'IconFont',
   data() {
     return {
       iconsMap: icons,

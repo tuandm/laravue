@@ -4,23 +4,25 @@
       <img src="https://lonelyplanetimages.imgix.net/mastheads/GettyImages-538096543_medium.jpg?sharp=10&vib=20&w=1200">
     </div>
     <div style="position:relative;">
-      <pan-thumb :image="avatar" class="panThumb"/>
-      <div class="mallki-text">Laravue</div>
+      <pan-thumb :image="avatar" class="panThumb" />
+      <div class="mallki-text">
+        Laravue
+      </div>
       <div style="padding-top:35px;" class="progress-item">
         <span>Laravel</span>
-        <el-progress :percentage="70"/>
+        <el-progress :percentage="70" />
       </div>
       <div class="progress-item">
         <span>Vue</span>
-        <el-progress :percentage="18"/>
+        <el-progress :percentage="18" />
       </div>
       <div class="progress-item">
         <span>JavaScript</span>
-        <el-progress :percentage="12"/>
+        <el-progress :percentage="12" />
       </div>
       <div class="progress-item">
         <span>HTML &amp; CSS</span>
-        <el-progress :percentage="100" status="success"/>
+        <el-progress :percentage="100" status="success" />
       </div>
     </div>
   </el-card>

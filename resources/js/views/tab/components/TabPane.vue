@@ -5,7 +5,8 @@
       align="center"
       label="ID"
       width="65"
-      element-loading-text="Pleas be patient！">
+      element-loading-text="Pleas be patient！"
+    >
       <template slot-scope="scope">
         <span>{{ scope.row.id }}</span>
       </template>
@@ -32,7 +33,7 @@
 
     <el-table-column width="120px" label="Importance">
       <template slot-scope="scope">
-        <svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star"/>
+        <svg-icon v-for="n in +scope.row.importance" :key="n" icon-class="star" />
       </template>
     </el-table-column>
 
@@ -49,7 +50,6 @@
         </el-tag>
       </template>
     </el-table-column>
-
   </el-table>
 </template>
 

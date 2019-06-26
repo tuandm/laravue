@@ -13,7 +13,7 @@
               <span class="username text-muted">
                 <a href="#">Iron Man</a>
                 <a href="#" class="pull-right btn-box-tool">
-                  <i class="fa fa-times"></i>
+                  <i class="fa fa-times" />
                 </a>
               </span>
               <span class="description">Shared publicly - 7:30 PM today</span>
@@ -28,22 +28,22 @@
             <ul class="list-inline">
               <li>
                 <a href="#" class="link-black text-sm">
-                  <i class="el-icon-share"/> Share
+                  <i class="el-icon-share" /> Share
                 </a>
               </li>
               <li>
                 <a href="#" class="link-black text-sm">
-                  <svg-icon icon-class="like"/>Like
+                  <svg-icon icon-class="like" />Like
                 </a>
               </li>
               <li class="pull-right">
                 <a href="#" class="link-black text-sm">
-                  <svg-icon icon-class="comment"/>Comments
+                  <svg-icon icon-class="comment" />Comments
                   (5)
                 </a>
               </li>
             </ul>
-            <el-input placeholder="Type a comment"></el-input>
+            <el-input placeholder="Type a comment" />
           </div>
           <div class="post">
             <div class="user-block">
@@ -55,7 +55,7 @@
               <span class="username text-muted">
                 <a href="#">Captain American</a>
                 <a href="#" class="pull-right btn-box-tool">
-                  <i class="fa fa-times"></i>
+                  <i class="fa fa-times" />
                 </a>
               </span>
               <span class="description">Sent you a message - yesterday</span>
@@ -68,7 +68,9 @@
               to Charlie Sheen fans.
             </p>
             <el-input placeholder="Response">
-              <el-button slot="append">Send</el-button>
+              <el-button slot="append">
+                Send
+              </el-button>
             </el-input>
           </div>
           <div class="post">
@@ -81,7 +83,7 @@
               <span class="username">
                 <a href="#">Daredevil</a>
                 <a href="#" class="pull-right btn-box-tool">
-                  <i class="fa fa-times"></i>
+                  <i class="fa fa-times" />
                 </a>
               </span>
               <span class="description">Posted 4 photos - 2 days ago</span>
@@ -96,22 +98,22 @@
             <ul class="list-inline">
               <li>
                 <a href="#" class="link-black text-sm">
-                  <i class="el-icon-share"/> Share
+                  <i class="el-icon-share" /> Share
                 </a>
               </li>
               <li>
                 <a href="#" class="link-black text-sm">
-                  <svg-icon icon-class="like"/>Like
+                  <svg-icon icon-class="like" />Like
                 </a>
               </li>
               <li class="pull-right">
                 <a href="#" class="link-black text-sm">
-                  <svg-icon icon-class="comment"/>Comments
+                  <svg-icon icon-class="comment" />Comments
                   (5)
                 </a>
               </li>
             </ul>
-            <el-input placeholder="Type a comment"></el-input>
+            <el-input placeholder="Type a comment" />
           </div>
         </div>
       </el-tab-pane>
@@ -146,15 +148,17 @@
           </el-timeline>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="Account" name="third" v-loading="updating">
+      <el-tab-pane v-loading="updating" label="Account" name="third">
         <el-form-item label="Name">
-          <el-input v-model="user.name" :disabled="user.role === 'admin'"></el-input>
+          <el-input v-model="user.name" :disabled="user.role === 'admin'" />
         </el-form-item>
         <el-form-item label="Email">
-          <el-input v-model="user.email" :disabled="user.role === 'admin'"></el-input>
+          <el-input v-model="user.email" :disabled="user.role === 'admin'" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit" :disabled="user.role === 'admin'">Update</el-button>
+          <el-button type="primary" :disabled="user.role === 'admin'" @click="onSubmit">
+            Update
+          </el-button>
         </el-form-item>
       </el-tab-pane>
     </el-tabs>

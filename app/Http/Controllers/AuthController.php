@@ -12,7 +12,7 @@ use App\Laravue\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\UserResource as UserResource;
+use App\Http\Resources\UserResource;
 
 /**
  * Class AuthController

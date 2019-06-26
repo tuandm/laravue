@@ -3,7 +3,7 @@
     <a class="document-btn" target="_blank" href="https://laravel.com/docs/5.8">{{ $t('documentation.laravel') }}</a>
     <a class="document-btn" target="_blank" href="https://vuejs.org/">VueJS</a>
     <a class="document-btn" target="_blank" href="https://github.com/tuandm/laravue/">{{ $t('documentation.github') }}</a>
-    <dropdown-menu :items="articleList" style="float:left;margin-left:50px;" title="Components"/>
+    <dropdown-menu :items="articleList" style="float:left;margin-left:50px;" title="Components" />
   </div>
 </template>
 <script>
