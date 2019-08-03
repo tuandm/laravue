@@ -8,12 +8,19 @@
         <img class="pic-404__child right" src="@/assets/404_images/404_cloud.png" alt="404">
       </div>
       <div class="bullshit">
-        <div class="bullshit__oops">OOPS!</div>
-        <div class="bullshit__info">Copyright by
+        <div class="bullshit__oops">
+          OOPS!
+        </div>
+        <div class="bullshit__info">
+          Copyright by
           <a class="link-type" href="https://github.com/tuandm/laravue" target="_blank">Laravue</a>
         </div>
-        <div class="bullshit__headline">{{ message }}</div>
-        <div class="bullshit__info">Please check that the URL you entered is correct. Please click the button below to return to the homepage or send an error report.</div>
+        <div class="bullshit__headline">
+          {{ message }}
+        </div>
+        <div class="bullshit__info">
+          Please check that the URL you entered is correct. Please click the button below to return to the homepage or send an error report.
+        </div>
         <a href="/" class="bullshit__return-home">Back to home</a>
       </div>
     </div>

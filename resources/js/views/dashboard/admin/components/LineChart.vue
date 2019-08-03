@@ -1,5 +1,5 @@
 <template>
-  <div :class="className" :style="{height:height,width:width}"/>
+  <div :class="className" :style="{height:height,width:width}" />
 </template>
 
 <script>
@@ -109,42 +109,45 @@ export default {
         legend: {
           data: ['expected', 'actual'],
         },
-        series: [{
-          name: 'expected', itemStyle: {
-            normal: {
-              color: '#FF005A',
-              lineStyle: {
+        series: [
+          {
+            name: 'expected',
+            itemStyle: {
+              normal: {
                 color: '#FF005A',
-                width: 2,
+                lineStyle: {
+                  color: '#FF005A',
+                  width: 2,
+                },
               },
             },
+            smooth: true,
+            type: 'line',
+            data: expectedData,
+            animationDuration: 2800,
+            animationEasing: 'cubicInOut',
           },
-          smooth: true,
-          type: 'line',
-          data: expectedData,
-          animationDuration: 2800,
-          animationEasing: 'cubicInOut',
-        },
-        {
-          name: 'actual',
-          smooth: true,
-          type: 'line',
-          itemStyle: {
-            normal: {
-              color: '#3888fa',
-              lineStyle: {
+          {
+            name: 'actual',
+            smooth: true,
+            type: 'line',
+            itemStyle: {
+              normal: {
                 color: '#3888fa',
-                width: 2,
-              },
-              areaStyle: {
-                color: '#f3f8ff',
+                lineStyle: {
+                  color: '#3888fa',
+                  width: 2,
+                },
+                areaStyle: {
+                  color: '#f3f8ff',
+                },
               },
             },
+            data: actualData,
+            animationDuration: 2800,
+            animationEasing: 'quadraticOut',
           },
-          data: actualData,
-          animationDuration: 2800,
-          animationEasing: 'quadraticOut',
-        }],
+        ],
       });
     },
     initChart() {

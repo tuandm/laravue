@@ -4,7 +4,9 @@
     <code>{{ $t('components.backToTopTips2') }}</code>
     <div class="placeholder-container">
       <ul>
-        <li v-for="n in 150" :key=n>Placeholder</li>
+        <li v-for="n in 150" :key="n">
+          Placeholder
+        </li>
       </ul>
     </div>
     <!--<el-tooltip> to show the helptext -->

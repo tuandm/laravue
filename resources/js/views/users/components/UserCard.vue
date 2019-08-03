@@ -2,22 +2,30 @@
   <el-card v-if="user.name">
     <div class="user-profile">
       <div class="user-avatar box-center">
-        <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false"/>
+        <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false" />
       </div>
       <div class="box-center">
-        <div class="user-name text-center">{{ user.name }}</div>
-        <div class="user-role text-center text-muted">{{ getRole() }}</div>
+        <div class="user-name text-center">
+          {{ user.name }}
+        </div>
+        <div class="user-role text-center text-muted">
+          {{ getRole() }}
+        </div>
       </div>
       <div class="box-social">
         <el-table :data="social" :show-header="false">
-          <el-table-column prop="name" label="Name"></el-table-column>
+          <el-table-column prop="name" label="Name" />
           <el-table-column label="Count" align="left" width="100">
-            <template slot-scope="scope">{{ scope.row.count | toThousandFilter }}</template>
+            <template slot-scope="scope">
+              {{ scope.row.count | toThousandFilter }}
+            </template>
           </el-table-column>
         </el-table>
       </div>
       <div class="user-follow">
-        <el-button type="primary" style="width: 100%;">Follow</el-button>
+        <el-button type="primary" style="width: 100%;">
+          Follow
+        </el-button>
       </div>
     </div>
   </el-card>

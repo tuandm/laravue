@@ -1,6 +1,7 @@
 <template>
   <div class="components-container">
-    <aside>This is based on
+    <aside>
+      This is based on
       <a class="link-type" href="//github.com/dai-siki/vue-image-crop-upload"> vue-image-crop-upload</a>.
       {{ $t('components.imageUploadTips') }}
     </aside>

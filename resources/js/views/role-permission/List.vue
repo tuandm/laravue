@@ -19,9 +19,9 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="Actions" width="200" v-if="checkPermission(['manage permission'])">
+      <el-table-column v-if="checkPermission(['manage permission'])" align="center" label="Actions" width="200">
         <template slot-scope="scope">
-          <el-button type="primary" size="small" icon="el-icon-edit" @click="handleEditPermissions(scope.row.id);" v-permission="['manage permission']" v-if="scope.row.name !== 'admin'">
+          <el-button v-if="scope.row.name !== 'admin'" v-permission="['manage permission']" type="primary" size="small" icon="el-icon-edit" @click="handleEditPermissions(scope.row.id);">
             {{ $t('permission.editPermission') }}
           </el-button>
         </template>
@@ -29,7 +29,7 @@
     </el-table>
 
     <el-dialog :visible.sync="dialogVisible" :title="'Edit Permissions - ' + currentRole.name">
-      <div class="form-container" v-loading="dialogLoading">
+      <div v-loading="dialogLoading" class="form-container">
         <div class="permissions-container">
           <div class="block">
             <el-form :model="currentRole" label-width="80px" label-position="top">
@@ -45,7 +45,7 @@
               </el-form-item>
             </el-form>
           </div>
-          <div class="clear-left"></div>
+          <div class="clear-left" />
         </div>
         <div style="text-align:right;">
           <el-button type="danger" @click="dialogVisible=false">
