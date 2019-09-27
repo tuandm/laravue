@@ -24,7 +24,7 @@
         "laravel/framework": "^6.0",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "^1.0",
-        "spatie/laravel-permission": "^2.37",
+        "spatie/laravel-permission": "^3.0",
         "tymon/jwt-auth": "^1.0"
     },
     "require-dev": {
