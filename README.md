@@ -32,7 +32,7 @@ Documentation: [https://doc.laravue.dev](https://doc.laravue.dev)
 
  * Laravue is positioned as an enterprise management solution, and it is highly recommended to use it to start from scratch.
  * For existing Laravel project, you should check [Laravue Core](https://github.com/tuandm/laravue-core) for integration.
- * Your machine needs to be ready for the latest [Laravel](https://laravel.com/docs/5.8/installation) and [Node.js](https://nodejs.org).
+ * Your machine needs to be ready for the latest [Laravel](https://laravel.com/docs/6.x#installation) and [Node.js](https://nodejs.org).
 
 
 ### Installing
