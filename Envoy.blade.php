@@ -45,11 +45,11 @@
     php artisan storage:link
     php artisan migrate --force
 
-    echo "Running npm..."
-    npm install
+    echo "Running yarn..."
+    yarn install
     echo "Temporarily fix for terser minifying"
-    npm i terser@3.14
-    npm run production
+    yarn i terser@3.14
+    yarn run production
 @endtask
 
 @task('update_symlinks')
