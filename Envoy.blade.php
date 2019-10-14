@@ -3,7 +3,7 @@
 @setup
     $now = new DateTime();
     $branch = isset($branch) ? $branch : 'master';
-    $repository = 'git@gitlab.com:bacduong/laravue.git';
+    $repository = 'git@github.com:tuandm/laravue.git';
     $releases_dir = '/var/www/html/deploy/laravue/release';
     $app_dir = '/var/www/html/deploy/laravue/';
     $release = date('YmdHis');
