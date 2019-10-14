@@ -6,7 +6,7 @@
     $repository = 'git@github.com:tuandm/laravue.git';
     $releases_dir = '/var/www/html/deploy/laravue/release';
     $app_dir = '/var/www/html/deploy/laravue/';
-    $release = date('YmdHis');
+    $release = $branch . '-' . date('YmdHis');
     $new_release_dir = $releases_dir .'/'. $release;
 @endsetup
 
@@ -47,8 +47,6 @@
 
     echo "Running yarn..."
     yarn install
-    echo "Temporarily fix for terser minifying"
-    yarn i terser@3.14
     yarn run production
 @endtask
 
