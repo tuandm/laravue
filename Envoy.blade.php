@@ -15,15 +15,16 @@
     run_composer
     run_deploy_scripts
     update_symlinks
+    delete_git_metadata
     clean_old_releases
 @endstory
 
 @task('clone_repository')
     echo 'Cloning repository'
     [ -d {{ $releases_dir }} ] || mkdir {{ $releases_dir }}
-    git clone --depth 1 {{ $repository }} {{ $new_release_dir }}
+    git clone {{ $repository }} {{ $new_release_dir }}
     cd {{ $new_release_dir }}
-    git reset --hard {{ $commit }}
+    git checkout {{ $branch }}
 @endtask
 
 @task('run_composer')
@@ -48,6 +49,11 @@
     echo "Running yarn..."
     yarn install
     yarn run production
+@endtask
+
+@task('delete_git_metadata')
+    cd {{ $new_release_dir }}
+    rm -rf .git
 @endtask
 
 @task('update_symlinks')
