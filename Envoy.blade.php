@@ -2,7 +2,7 @@
 
 @setup
     $now = new DateTime();
-    $branch = isset($branch) ? $branch : 'master';
+    $branch = isset($branch) ? $branch : 'staging';
     $repository = 'git@github.com:tuandm/laravue.git';
     $releases_dir = '/var/www/html/deploy/laravue/release';
     $app_dir = '/var/www/html/deploy/laravue/';
