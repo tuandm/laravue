@@ -139,4 +139,5 @@ Route::group(['middleware' => 'api'], function () {
         return response()->json(new JsonResponse(['pvData' => $data]));
     });
 
+    Route::apiResource('categories', 'CategoryController');
 });
