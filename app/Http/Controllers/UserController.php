@@ -11,7 +11,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\PermissionResource;
 use App\Http\Resources\UserResource;
-use App\Laravue\Acl;
 use App\Laravue\JsonResponse;
 use App\Laravue\Models\Permission;
 use App\Laravue\Models\Role;
@@ -19,9 +18,7 @@ use App\Laravue\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
 use Validator;
 
 /**
@@ -67,7 +64,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        sleep(1);
         $validator = Validator::make(
             $request->all(),
             array_merge(
