@@ -10,6 +10,9 @@
       <el-dropdown-item :disabled="language==='en'" command="en">
         English
       </el-dropdown-item>
+      <el-dropdown-item :disabled="language==='ru'" command="ru">
+        Русский
+      </el-dropdown-item>
       <el-dropdown-item :disabled="language==='zh'" command="zh">
         中文
       </el-dropdown-item>
