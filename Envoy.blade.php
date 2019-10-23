@@ -68,7 +68,7 @@
 
 @task('clean_old_releases')
     # This will list our releases by modification time and delete all but the 2 most recent.
-    purging=$(ls -dt {{ $releases_dir }}/* | tail -n +2);
+    purging=$(ls -dt {{ $releases_dir }}/* | tail -n +3);
 
     if [ "$purging" != "" ]; then
         echo Purging old releases: $purging;
