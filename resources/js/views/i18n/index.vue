@@ -13,6 +13,9 @@
           <el-radio label="en" border>
             English
           </el-radio>
+          <el-radio label="ru" border>
+            Русский
+          </el-radio>
           <el-radio label="zh" border>
             简体中文
           </el-radio>
@@ -124,6 +127,7 @@ export default {
   created() {
     if (!this.$i18n.getLocaleMessage('en')[viewName]) {
       this.$i18n.mergeLocaleMessage('en', local.en);
+      this.$i18n.mergeLocaleMessage('ru', local.ru);
       this.$i18n.mergeLocaleMessage('zh', local.zh);
       this.$i18n.mergeLocaleMessage('vi', local.vi);
     }
