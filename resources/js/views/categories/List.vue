@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-button class="filter-item" type="primary" icon="el-icon-plus" @click="handleCreateForm">
+      <el-button v-permission="['manage category']" class="filter-item" type="primary" icon="el-icon-plus" @click="handleCreateForm">
         {{ $t('table.add') }}
       </el-button>
     </div>
@@ -32,10 +32,10 @@
 
       <el-table-column align="center" label="Actions" width="350">
         <template slot-scope="scope">
-          <el-button type="primary" size="small" icon="el-icon-edit" @click="handleEditForm(scope.row.id);">
+          <el-button v-permission="['manage category']" type="primary" size="small" icon="el-icon-edit" @click="handleEditForm(scope.row.id);">
             Edit
           </el-button>
-          <el-button type="danger" size="small" icon="el-icon-delete" @click="handleDelete(scope.row.id, scope.row.name);">
+          <el-button v-permission="['manage category']" type="danger" size="small" icon="el-icon-delete" @click="handleDelete(scope.row.id, scope.row.name);">
             Delete
           </el-button>
         </template>
@@ -67,9 +67,11 @@
 <script>
 import Resource from '@/api/resource';
 const categoryResource = new Resource('categories');
+import permission from '@/directive/permission';
 
 export default {
   name: 'CategoryList',
+  directives: { permission },
   data() {
     return {
       list: [],

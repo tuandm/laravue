@@ -139,5 +139,6 @@ Route::group(['middleware' => 'api'], function () {
         return response()->json(new JsonResponse(['pvData' => $data]));
     });
 
-    Route::apiResource('categories', 'CategoryController');
+    Route::apiResource('categories', 'CategoryController')->middleware('permission:manage category');
+    Route::get('categories', 'CategoryController@index')->name('categories.index')->middleware('permission:view category|manage category');
 });
