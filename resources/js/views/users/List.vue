@@ -129,7 +129,7 @@ import Pagination from '@/components/Pagination'; // Secondary package based on 
 import UserResource from '@/api/user';
 import Resource from '@/api/resource';
 import waves from '@/directive/waves'; // Waves directive
-import permission from '@/directive/permission'; // Waves directive
+import permission from '@/directive/permission'; // Permission directive
 import checkPermission from '@/utils/permission'; // Permission checking
 
 const userResource = new UserResource();
