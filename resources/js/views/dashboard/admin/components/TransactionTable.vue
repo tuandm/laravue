@@ -16,7 +16,9 @@
     </el-table-column>
     <el-table-column label="Status" width="100" align="center">
       <template slot-scope="scope">
-        <el-tag :type="scope.row && scope.row.status | statusFilter"> {{ scope.row && scope.row.status }}</el-tag>
+        <el-tag :type="scope.row && scope.row.status | statusFilter">
+          {{ scope.row && scope.row.status }}
+        </el-tag>
       </template>
     </el-table-column>
   </el-table>

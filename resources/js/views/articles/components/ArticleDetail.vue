@@ -2,23 +2,29 @@
   <div class="createPost-container">
     <el-form ref="postForm" :model="postForm" :rules="rules" class="form-container">
       <sticky :class-name="'sub-navbar '+postForm.status">
-        <CommentDropdown v-model="postForm.comment_disabled"/>
-        <PlatformDropdown v-model="postForm.platforms"/>
-        <SourceUrlDropdown v-model="postForm.source_uri"/>
+        <CommentDropdown v-model="postForm.comment_disabled" />
+        <PlatformDropdown v-model="postForm.platforms" />
+        <SourceUrlDropdown v-model="postForm.source_uri" />
         <el-button
           v-loading="loading"
           style="margin-left: 10px;"
           type="success"
           @click="submitForm"
-        >Submit</el-button>
-        <el-button v-loading="loading" type="warning" @click="draftForm">Draft</el-button>
+        >
+          Submit
+        </el-button>
+        <el-button v-loading="loading" type="warning" @click="draftForm">
+          Draft
+        </el-button>
       </sticky>
 
       <div class="createPost-main-container">
         <el-row>
           <el-col :span="24">
             <el-form-item style="margin-bottom: 40px;" prop="title">
-              <MDinput v-model="postForm.title" :maxlength="100" name="name" required>Title</MDinput>
+              <MDinput v-model="postForm.title" :maxlength="100" name="name" required>
+                Title
+              </MDinput>
             </el-form-item>
 
             <div class="postInfo-container">
@@ -80,8 +86,8 @@
 
         <el-form-item style="margin-bottom: 40px;" label-width="80px" label="Summary:">
           <el-input
-            :rows="1"
             v-model="postForm.content_short"
+            :rows="1"
             type="textarea"
             class="article-textarea"
             autosize
@@ -91,11 +97,11 @@
         </el-form-item>
 
         <el-form-item prop="content" style="margin-bottom: 30px;">
-          <Tinymce ref="editor" :height="400" v-model="postForm.content"/>
+          <Tinymce ref="editor" v-model="postForm.content" :height="400" />
         </el-form-item>
 
         <el-form-item prop="image_uri" style="margin-bottom: 30px;">
-          <Upload v-model="postForm.image_uri"/>
+          <Upload v-model="postForm.image_uri" />
         </el-form-item>
       </div>
     </el-form>

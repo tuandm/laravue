@@ -23,7 +23,7 @@ const permissionRoutes = {
     {
       path: 'directive',
       component: () => import('@/views/permission/Directive'),
-      name: 'DirectivePermission',
+      name: 'directivePermission',
       meta: {
         title: 'directivePermission',
         // if do not set roles neither permissions, means: this page does not require permission

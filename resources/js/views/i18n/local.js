@@ -20,6 +20,26 @@ export default {
       three: 'Three',
     },
   },
+  ru: {
+    i18nView: {
+      title: 'Сменить язык',
+      note: 'Многоязычность проекта реализована при помощи vue-i18n',
+      datePlaceholder: 'Выберите дату',
+      selectPlaceholder: 'Список',
+      tableDate: 'Дата',
+      tableName: 'Имя',
+      tableAddress: 'Адрес',
+      default: 'default:',
+      primary: 'primary',
+      success: 'success',
+      info: 'info',
+      warning: 'warning',
+      danger: 'danger',
+      one: 'Один',
+      two: 'Два',
+      three: 'Три',
+    },
+  },
   vi: {
     i18nView: {
       title: 'Switch Language',

@@ -7,7 +7,7 @@ import Vue from 'vue';
 export default function treeToArray(data, expandAll, parent, level, item) {
   const marLTemp = [];
   let tmp = [];
-  Array.from(data).forEach(function (record) {
+  Array.from(data).forEach(function(record) {
     if (record._expanded === undefined) {
       Vue.set(record, '_expanded', expandAll);
     }

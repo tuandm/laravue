@@ -3,13 +3,13 @@
 </p>
 <p align="center">
   <a href="https://laravel.com">
-    <img src="https://img.shields.io/badge/laravel-5.8-red.svg" alt="vue">
+    <img src="https://img.shields.io/badge/laravel-6.2-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/vue-2.6.10-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/ElemeFE/element">
-    <img src="https://img.shields.io/badge/element--ui-2.7.2-brightgreen.svg" alt="element-ui">
+    <img src="https://img.shields.io/badge/element--ui-2.12.0-brightgreen.svg" alt="element-ui">
   </a>
   <a href="https://github.com/tuandm/laravue/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="license">
@@ -18,6 +18,8 @@
 
 # Laravue
 [Laravue](https://laravue.dev) (pronounced /ˈlarəvjuː/) is a beautiful dashboard combination of [Laravel](https://laravel.com/), [Vue.js](https://github.com/vuejs/vue) and the UI Toolkit [Element](https://github.com/ElemeFE/element). The work is inspired by  [vue-element-admin](http://panjiachen.github.io/vue-element-admin) with our love on top of that. With the powerful Laravel framework as the backend, Vue.js as the high performance on the frontend,  Laravue appears to be a full-stack solution for an enterprise application level.
+
+Documentation: [https://doc.laravue.dev](https://doc.laravue.dev)
 
 ## Screenshot
 <p align="center">
@@ -30,7 +32,7 @@
 
  * Laravue is positioned as an enterprise management solution, and it is highly recommended to use it to start from scratch.
  * For existing Laravel project, you should check [Laravue Core](https://github.com/tuandm/laravue-core) for integration.
- * Your machine needs to be ready for the latest [Laravel](https://laravel.com/docs/5.8/installation) and [Node.js](https://nodejs.org).
+ * Your machine needs to be ready for the latest [Laravel](https://laravel.com/docs/6.x#installation) and [Node.js](https://nodejs.org).
 
 
 ### Installing
@@ -45,14 +47,14 @@ php artisan migrate --seed
 # Generate JWT secret key
 php artisan jwt:secret
 
-# install dependency
-npm install
+# Install dependency - we recommend using Yarn instead of NPM since we get errors while using NPM
+yarn install
 
 # develop
-npm run dev # or npm run watch
+yarn run dev # or yarn run watch
 
 # Build on production
-npm run production
+yarn run production
 ```
 
 ## Running the tests
@@ -95,3 +97,6 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) f
 * [vue-element-admin](https://panjiachen.github.io/vue-element-admin/#/) A magical vue admin which insprited Laravue project.
 * [tui.editor](https://github.com/nhnent/tui.editor) - Markdown WYSIWYG Editor.
 * [Echarts](http://echarts.apache.org/) - A powerful, interactive charting and visualization library for browser.
+
+## Donate
+If you find this project useful, you can [buy me a coffee](https://www.buymeacoffee.com/tuandm)

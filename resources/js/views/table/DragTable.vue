@@ -80,7 +80,7 @@ export default {
   },
   data() {
     return {
-      list: null,
+      list: [],
       total: null,
       listLoading: true,
       listQuery: {
