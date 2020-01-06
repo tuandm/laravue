@@ -17,7 +17,7 @@ services:
       - redis
 
   redis:
-    image: redis:rc-alpine
+    image: redis:alpine
 
   mysql:
     image: mysql:5.7
