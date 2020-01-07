@@ -36,6 +36,8 @@ Documentation: [https://doc.laravue.dev](https://doc.laravue.dev)
 
 
 ### Installing
+#### Manual
+
 ```bash
 # Clone the project and run composer
 composer create-project tuandm/laravue
@@ -55,6 +57,18 @@ yarn run dev # or yarn run watch
 
 # Build on production
 yarn run production
+```
+
+#### Docker
+```sh
+docker-compose up -d
+```
+Run database migration and seed within Docker container
+```sh
+# Get laravel docker container ID from containers list
+docker ps
+
+docker exec -it <container ID> php artisan migrate --seed
 ```
 
 ## Running the tests
