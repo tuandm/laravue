@@ -3,13 +3,13 @@
 </p>
 <p align="center">
   <a href="https://laravel.com">
-    <img src="https://img.shields.io/badge/laravel-6.2-brightgreen.svg" alt="vue">
+    <img src="https://img.shields.io/badge/laravel-6.9-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/vue-2.6.10-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/ElemeFE/element">
-    <img src="https://img.shields.io/badge/element--ui-2.12.0-brightgreen.svg" alt="element-ui">
+    <img src="https://img.shields.io/badge/element--ui-2.13.0-brightgreen.svg" alt="element-ui">
   </a>
   <a href="https://github.com/tuandm/laravue/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="license">
@@ -68,7 +68,15 @@ Run database migration and seed within Docker container
 # Get laravel docker container ID from containers list
 docker ps
 
-docker exec -it <container ID> php artisan migrate --seed
+docker exec -it <container ID> php artisan migrate --seed 
+# Where <container ID> is the "laravel" container name, ex: docker_laravel_1
+```
+
+`yarn` commands are also supported:
+```sh
+docker exec -it <container ID> yarn run watch 
+# Where <container ID> is the "laravel" container name, ex: docker_laravel_1
+...
 ```
 
 ## Running the tests
