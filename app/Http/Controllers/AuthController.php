@@ -45,4 +45,9 @@ class AuthController extends Controller
         $request->user()->token()->revoke();
         return response()->json((new JsonResponse())->success([]), Response::HTTP_OK);
     }
+
+    public function user()
+    {
+        return new UserResource(Auth::user());
+    }
 }
