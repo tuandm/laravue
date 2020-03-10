@@ -24,9 +24,9 @@ RUN npm install -g yarn
 COPY . .
 COPY .env.example .env
 
-RUN yarn install && yarn run production
+RUN npm install && npm run production
 RUN composer install
-RUN php artisan jwt:secret
+RUN php artisan passport:install
 
 ENTRYPOINT ["php", "artisan", "serve", "--host", "0.0.0.0"]
 
