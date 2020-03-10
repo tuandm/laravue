@@ -46,9 +46,9 @@
     php artisan storage:link
     php artisan migrate --force
 
-    echo 'Running yarn...'
-    yarn install
-    yarn run production
+    echo 'Running npm...'
+    npm install
+    npm run production
 @endtask
 
 @task('delete_git_metadata')
