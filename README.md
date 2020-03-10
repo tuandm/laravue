@@ -3,7 +3,7 @@
 </p>
 <p align="center">
   <a href="https://laravel.com">
-    <img src="https://img.shields.io/badge/laravel-6.9-brightgreen.svg" alt="vue">
+    <img src="https://img.shields.io/badge/laravel-6.18-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/vue-2.6.10-brightgreen.svg" alt="vue">
@@ -46,17 +46,17 @@ cd laravue
 # Migration and DB seeder (after changing your DB settings in .env)
 php artisan migrate --seed
 
-# Generate JWT secret key
-php artisan jwt:secret
+# Install passport
+php artisan passport:install
 
-# Install dependency - we recommend using Yarn instead of NPM since we get errors while using NPM
-yarn install
+# Install dependency with NPM
+npm install
 
 # develop
-yarn run dev # or yarn run watch
+npm run dev # or npm run watch
 
 # Build on production
-yarn run production
+npm  run production
 ```
 
 #### Docker
@@ -72,9 +72,9 @@ docker exec -it <container ID> php artisan migrate --seed
 # Where <container ID> is the "laravel" container name, ex: docker_laravel_1
 ```
 
-`yarn` commands are also supported:
+`npm` commands are also supported:
 ```sh
-docker exec -it <container ID> yarn run watch 
+docker exec -it <container ID> npm run watch 
 # Where <container ID> is the "laravel" container name, ex: docker_laravel_1
 ...
 ```
