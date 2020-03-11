@@ -17,8 +17,9 @@ class SetupRolePermissions extends Migration
     public function up()
     {
         foreach (Acl::roles() as $role) {
-            Role::findOrCreate($role, 'api');
+            Role::findOrCreate($role);
         }
+
         $adminRole = Role::findByName(Acl::ROLE_ADMIN);
         $managerRole = Role::findByName(Acl::ROLE_MANAGER);
         $editorRole = Role::findByName(Acl::ROLE_EDITOR);
