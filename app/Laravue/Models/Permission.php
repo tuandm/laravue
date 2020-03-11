@@ -18,6 +18,8 @@ use Illuminate\Database\Query\Builder;
  */
 class Permission extends \Spatie\Permission\Models\Permission
 {
+    public $guard_name = 'api';
+
     /**
      * To exclude permission management from the list
      *
