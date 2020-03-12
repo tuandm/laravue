@@ -3,7 +3,7 @@
 </p>
 <p align="center">
   <a href="https://laravel.com">
-    <img src="https://img.shields.io/badge/laravel-6.18-brightgreen.svg" alt="vue">
+    <img src="https://img.shields.io/badge/laravel-7.1-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/vue-2.6.10-brightgreen.svg" alt="vue">
