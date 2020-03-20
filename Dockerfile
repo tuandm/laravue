@@ -21,5 +21,5 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 COPY . .
 COPY .env.example .env
 
-CMD ["./laravue-entrypoint.sh"]
+CMD ["bash", "./laravue-entrypoint.sh"]
 
