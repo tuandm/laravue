@@ -3,7 +3,7 @@
 use App\Laravue\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
+use App\Laravue\Models\Role;
 
 class DatabaseSeeder extends Seeder
 {

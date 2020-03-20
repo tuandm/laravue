@@ -28,29 +28,26 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
-        if ($token = $this->guard()->attempt($credentials)) {
-            return response()->json(new UserResource(Auth::user()), Response::HTTP_OK)->header('Authorization', $token);
+        if (!Auth::attempt($credentials)) {
+            return response()->json(new JsonResponse([], 'login_error'), Response::HTTP_UNAUTHORIZED);
         }
 
-        return response()->json(new JsonResponse([], 'login_error'), Response::HTTP_UNAUTHORIZED);
+        $user = $request->user();
+        $tokenResult = $user->createToken('Personal Access Token');
+        $token = $tokenResult->token;
+        $token->save();
+
+        return response()->json(new UserResource($user), Response::HTTP_OK)->header('Authorization', $tokenResult->accessToken);
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        $this->guard()->logout();
+        $request->user()->token()->revoke();
         return response()->json((new JsonResponse())->success([]), Response::HTTP_OK);
     }
 
     public function user()
     {
         return new UserResource(Auth::user());
-    }
-
-    /**
-     * @return mixed
-     */
-    private function guard()
-    {
-        return Auth::guard();
     }
 }
