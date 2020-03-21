@@ -8,7 +8,6 @@ services:
     volumes:
       - ./:/var/www
       - ./docker/docker.env:/var/www/.env
-    entrypoint: bash laravue-entrypoint.sh
     ports:
       - "8000:8000"
 
