@@ -68,16 +68,10 @@ Run database migration and seed within Docker container
 # Get laravel docker container ID from containers list
 docker ps
 
-docker exec -it <container ID> php artisan migrate --seed 
+docker exec -it <container ID> npm run dev # or npm run watch
 # Where <container ID> is the "laravel" container name, ex: docker_laravel_1
 ```
-
-`npm` commands are also supported:
-```sh
-docker exec -it <container ID> npm run watch 
-# Where <container ID> is the "laravel" container name, ex: docker_laravel_1
-...
-```
+Open http://localhost:8000 (laravel container port) to access Laravue
 
 ## Running the tests
 * Tests system is under development
