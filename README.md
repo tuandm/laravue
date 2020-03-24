@@ -56,14 +56,14 @@ npm install
 npm run dev # or npm run watch
 
 # Build on production
-npm  run production
+npm run production
 ```
 
 #### Docker
 ```sh
 docker-compose up -d
 ```
-Run database migration and seed within Docker container
+Build static files within Laravel container with npm
 ```sh
 # Get laravel docker container ID from containers list
 docker ps
@@ -71,7 +71,7 @@ docker ps
 docker exec -it <container ID> npm run dev # or npm run watch
 # Where <container ID> is the "laravel" container name, ex: docker_laravel_1
 ```
-Open http://localhost:8000 (laravel container port) to access Laravue
+Open http://localhost:8000 (laravel container port declared in `docker-compose.yml`) to access Laravue
 
 ## Running the tests
 * Tests system is under development
