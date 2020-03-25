@@ -69,7 +69,7 @@ Build static files within Laravel container with npm
 docker ps
 
 docker exec -it <container ID> npm run dev # or npm run watch
-# Where <container ID> is the "laravel" container name, ex: docker_laravel_1
+# Where <container ID> is the "laravel" container name, ex: src_laravel_1
 ```
 Open http://localhost:8000 (laravel container port declared in `docker-compose.yml`) to access Laravue
 
