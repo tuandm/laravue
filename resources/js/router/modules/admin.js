@@ -16,7 +16,7 @@ const adminRoutes = {
     /** User managements */
     {
       path: 'users/edit/:id(\\d+)',
-      component: () => import('@/views/users/Profile'),
+      component: () => import('@/views/users/UserProfile'),
       name: 'UserProfile',
       meta: { title: 'userProfile', noCache: true, permissions: ['manage user'] },
       hidden: true,

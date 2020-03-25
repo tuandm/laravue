@@ -4,8 +4,8 @@ namespace App\Laravue\Models;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * Class User
@@ -72,11 +72,26 @@ class User extends Authenticatable
     }
 
     /**
+     * Check if user has a permission
+     * @param String
+     * @return bool
+     */
+    public function hasPermission($permission): bool
+    {
+        foreach ($this->roles as $role) {
+            if (in_array($permission, $role->permissions->toArray())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * @return bool
      */
     public function isAdmin(): bool
     {
-        foreach ($this->roles  as $role) {
+        foreach ($this->roles as $role) {
             if ($role->isAdmin()) {
                 return true;
             }

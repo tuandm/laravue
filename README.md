@@ -3,7 +3,7 @@
 </p>
 <p align="center">
   <a href="https://laravel.com">
-    <img src="https://img.shields.io/badge/laravel-7.1-brightgreen.svg" alt="vue">
+    <img src="https://img.shields.io/badge/laravel-7.3-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/vue-2.6.10-brightgreen.svg" alt="vue">
@@ -46,9 +46,6 @@ cd laravue
 # Migration and DB seeder (after changing your DB settings in .env)
 php artisan migrate --seed
 
-# Install passport
-php artisan passport:install
-
 # Install dependency with NPM
 npm install
 
@@ -56,28 +53,22 @@ npm install
 npm run dev # or npm run watch
 
 # Build on production
-npm  run production
+npm run production
 ```
 
 #### Docker
 ```sh
 docker-compose up -d
 ```
-Run database migration and seed within Docker container
+Build static files within Laravel container with npm
 ```sh
 # Get laravel docker container ID from containers list
 docker ps
 
-docker exec -it <container ID> php artisan migrate --seed 
-# Where <container ID> is the "laravel" container name, ex: docker_laravel_1
+docker exec -it <container ID> npm run dev # or npm run watch
+# Where <container ID> is the "laravel" container name, ex: src_laravel_1
 ```
-
-`npm` commands are also supported:
-```sh
-docker exec -it <container ID> npm run watch 
-# Where <container ID> is the "laravel" container name, ex: docker_laravel_1
-...
-```
+Open http://localhost:8000 (laravel container port declared in `docker-compose.yml`) to access Laravue
 
 ## Running the tests
 * Tests system is under development
@@ -87,6 +78,8 @@ This project uses [Envoy](https://laravel.com/docs/5.8/envoy) for deployment, an
 
 ## Built with
 * [Laravel](https://laravel.com/) - The PHP Framework For Web Artisans
+* [Laravel Sanctum](https://github.com/laravel/sanctum/) - Laravel Sanctum provides a featherweight authentication system for SPAs and simple APIs.
+* [spatie/laravel-permission](https://github.com/spatie/laravel-permission) - Associate users with permissions and roles.
 * [VueJS](https://vuejs.org/) - The Progressive JavaScript Framework
 * [Element](https://element.eleme.io/) - A  Vue 2.0 based component library for developers, designers and product managers
 * [Vue Admin Template](https://github.com/PanJiaChen/vue-admin-template) - A minimal vue admin template with Element UI

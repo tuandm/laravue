@@ -18,6 +18,7 @@ use App\Laravue\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 
@@ -116,6 +117,14 @@ class UserController extends Controller
         }
         if ($user->isAdmin()) {
             return response()->json(['error' => 'Admin can not be modified'], 403);
+        }
+
+        $currentUser = Auth::user();
+        if (!$currentUser->isAdmin()
+            && $currentUser->id !== $user->id
+            && !$currentUser->hasPermission(\App\Laravue\Acl::PERMISSION_USER_MANAGE)
+        ) {
+            return response()->json(['error' => 'Permission denied'], 403);
         }
 
         $validator = Validator::make($request->all(), $this->getValidationRules(false));
