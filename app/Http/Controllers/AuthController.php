@@ -33,16 +33,14 @@ class AuthController extends Controller
         }
 
         $user = $request->user();
-        $tokenResult = $user->createToken('Personal Access Token');
-        $token = $tokenResult->token;
-        $token->save();
+        $token = $user->createToken('laravue');
 
-        return response()->json(new UserResource($user), Response::HTTP_OK)->header('Authorization', $tokenResult->accessToken);
+        return response()->json(new UserResource($user), Response::HTTP_OK)->header('Authorization', $token->plainTextToken);
     }
 
     public function logout(Request $request)
     {
-        $request->user()->token()->revoke();
+        $request->user()->tokens()->delete();
         return response()->json((new JsonResponse())->success([]), Response::HTTP_OK);
     }
 
