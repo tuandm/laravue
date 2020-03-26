@@ -20,7 +20,6 @@ then
   php artisan migrate --seed
 fi
 
-php artisan passport:install
 npm install && npm run production
 
 php artisan serve --host 0.0.0.0
