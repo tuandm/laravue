@@ -243,7 +243,6 @@ export default {
     },
     submitForm() {
       this.postForm.display_time = parseInt(this.display_time / 1000);
-      console.log(this.postForm);
       this.$refs.postForm.validate(valid => {
         if (valid) {
           this.loading = true;
