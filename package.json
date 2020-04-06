@@ -46,9 +46,9 @@
     "resolve-url-loader": "^2.3.1",
     "sass-loader": "^7.1.0",
     "script-loader": "^0.7.2",
-    "svg-sprite-loader": "^4.2.1",
+    "svg-sprite-loader": "^4.2.2",
     "vue-template-compiler": "2.6.10",
-    "webpack": "^4.42.0",
+    "webpack": "^4.42.1",
     "webpack-bundle-analyzer": "^3.6.1",
     "webpack-cli": "^3.3.11"
   },
@@ -61,14 +61,14 @@
     "css-loader": "^3.4.2",
     "driver.js": "^0.9.7",
     "dropzone": "^5.7.0",
-    "echarts": "^4.6.0",
+    "echarts": "^4.7.0",
     "element-ui": "^2.12.0",
     "file-loader": "^6.0.0",
     "file-saver": "^2.0.2",
     "fuse.js": "^3.6.1",
     "js-cookie": "^2.2.1",
     "jsonlint": "^1.6.3",
-    "jszip": "^3.2.2",
+    "jszip": "^3.3.0",
     "node-sass": "^4.13.1",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
@@ -78,12 +78,12 @@
     "tui-editor": "^1.4.6",
     "vue": "2.6.10",
     "vue-count-to": "^1.0.13",
-    "vue-i18n": "^8.15.5",
+    "vue-i18n": "^8.16.0",
     "vue-loader": "^15.9.1",
     "vue-router": "^3.1.6",
     "vue-splitpane": "^1.0.4",
     "vuedraggable": "^2.23.0",
     "vuex": "3.1.1",
-    "xlsx": "^0.15.5"
+    "xlsx": "^0.15.6"
   }
 }
