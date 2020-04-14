@@ -1,11 +1,12 @@
 import { login, logout, getInfo } from '@/api/auth';
-import { getToken, setToken, removeToken } from '@/utils/auth';
+import { isLogged, setLogged, removeToken } from '@/utils/auth';
 import router, { resetRouter } from '@/router';
 import store from '@/store';
 
 const state = {
   id: null,
-  token: getToken(),
+  user: null,
+  token: isLogged(),
   name: '',
   avatar: '',
   introduction: '',
@@ -44,11 +45,11 @@ const actions = {
     return new Promise((resolve, reject) => {
       login({ email: email.trim(), password: password })
         .then(response => {
-          commit('SET_TOKEN', response.token);
-          setToken(response.token);
-          resolve();
+          setLogged('1');
+          resolve(response.data);
         })
         .catch(error => {
+          console.log(error);
           reject(error);
         });
     });
@@ -114,11 +115,11 @@ const actions = {
 
   // Dynamically modify permissions
   changeRoles({ commit, dispatch }, role) {
-    return new Promise(async resolve => {
+    return new Promise(resolve => {
       // const token = role + '-token';
 
       // commit('SET_TOKEN', token);
-      // setToken(token);
+      // setLogged(token);
 
       // const { roles } = await dispatch('getInfo');
 
@@ -129,7 +130,7 @@ const actions = {
       resetRouter();
 
       // generate accessible routes map based on roles
-      const accessRoutes = await store.dispatch('permission/generateRoutes', { roles, permissions });
+      const accessRoutes = store.dispatch('permission/generateRoutes', { roles, permissions });
 
       // dynamically add accessible routes
       router.addRoutes(accessRoutes);

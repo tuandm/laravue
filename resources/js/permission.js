@@ -3,7 +3,7 @@ import store from './store';
 import { Message } from 'element-ui';
 import NProgress from 'nprogress'; // progress bar
 import 'nprogress/nprogress.css'; // progress bar style
-import { getToken } from '@/utils/auth'; // get token from cookie
+import { isLogged } from '@/utils/auth';
 import getPageTitle from '@/utils/get-page-title';
 
 NProgress.configure({ showSpinner: false }); // NProgress Configuration
@@ -17,9 +17,9 @@ router.beforeEach(async(to, from, next) => {
   document.title = getPageTitle(to.meta.title);
 
   // determine whether the user has logged in
-  const hasToken = getToken();
+  const isUserLogged = isLogged();
 
-  if (hasToken) {
+  if (isUserLogged) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
       next({ path: '/' });
@@ -43,6 +43,7 @@ router.beforeEach(async(to, from, next) => {
 
             // hack method to ensure that addRoutes is complete
             // set the replace: true, so the navigation will not leave a history record
+            console.log(to);
             next({ ...to, replace: true });
           });
         } catch (error) {

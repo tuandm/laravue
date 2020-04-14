@@ -7,7 +7,7 @@
  * @version 1.0
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\PermissionResource;
 use App\Http\Resources\UserResource;
@@ -25,9 +25,9 @@ use Validator;
 /**
  * Class UserController
  *
- * @package App\Http\Controllers
+ * @package App\Http\Controllers\Api
  */
-class UserController extends Controller
+class UserController extends BaseController
 {
     const ITEM_PER_PAGE = 15;
 
