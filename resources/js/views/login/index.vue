@@ -43,6 +43,7 @@
 <script>
 import LangSelect from '@/components/LangSelect';
 import { validEmail } from '@/utils/validate';
+import { csrf } from '@/api/auth';
 
 export default {
   name: 'Login',
@@ -96,14 +97,16 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true;
-          this.$store.dispatch('user/login', this.loginForm)
-            .then(() => {
-              this.$router.push({ path: this.redirect || '/' });
-              this.loading = false;
-            })
-            .catch(() => {
-              this.loading = false;
-            });
+          csrf().then(() => {
+            this.$store.dispatch('user/login', this.loginForm)
+              .then(() => {
+                this.$router.push({ path: this.redirect || '/' });
+                this.loading = false;
+              })
+              .catch(() => {
+                this.loading = false;
+              });
+          });
         } else {
           console.log('error submit!!');
           return false;

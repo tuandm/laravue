@@ -43,4 +43,15 @@ return [
         'verify_csrf_token' => App\Http\Middleware\VerifyCsrfToken::class,
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Sanctum Prefix
+    |--------------------------------------------------------------------------
+    |
+    | Move CSRF protection to /api prefix for easier in cors configuration
+    |
+    */
+
+    'prefix' => 'api/sanctum'
+
 ];

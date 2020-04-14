@@ -6,20 +6,20 @@
  * @package Laravue
  * @version 1.0
  */
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\UserResource;
 use App\Laravue\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Resources\UserResource;
 
 /**
  * Class AuthController
  *
- * @package App\Http\Controllers
+ * @package App\Http\Controllers\Api
  */
-class AuthController extends Controller
+class AuthController extends BaseController
 {
     /**
      * @param Request $request
@@ -33,19 +33,18 @@ class AuthController extends Controller
         }
 
         $user = $request->user();
-        $token = $user->createToken('laravue');
 
-        return response()->json(new UserResource($user), Response::HTTP_OK)->header('Authorization', $token->plainTextToken);
+        return response()->json(new JsonResponse(new UserResource($user)), Response::HTTP_OK);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
+        Auth::guard('web')->logout();
         return response()->json((new JsonResponse())->success([]), Response::HTTP_OK);
     }
 
-    public function user()
-    {
-        return new UserResource(Auth::user());
-    }
 }
