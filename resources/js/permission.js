@@ -36,20 +36,13 @@ router.beforeEach(async(to, from, next) => {
           const { roles, permissions } = await store.dispatch('user/getInfo');
 
           // generate accessible routes map based on roles
-          // const accessRoutes = await store.dispatch('permission/generateRoutes', roles, permissions);
-          store.dispatch('permission/generateRoutes', { roles, permissions }).then(response => {
-            // dynamically add accessible routes
-            router.addRoutes(response);
-
-            // hack method to ensure that addRoutes is complete
-            // set the replace: true, so the navigation will not leave a history record
-            console.log(to);
-            next({ ...to, replace: true });
-          });
+          const accessRoutes = await store.dispatch('permission/generateRoutes', roles, permissions);
+          router.addRoutes(accessRoutes);
+          next({ ...to, replace: true });
         } catch (error) {
           // remove token and go to login page to re-login
           await store.dispatch('user/resetToken');
-          Message.error(error || 'Has Error');
+          Message.error(error.message || 'Has Error');
           next(`/login?redirect=${to.path}`);
           NProgress.done();
         }
