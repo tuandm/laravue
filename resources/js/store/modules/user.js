@@ -1,7 +1,6 @@
 import { login, logout, getInfo } from '@/api/auth';
 import { isLogged, setLogged, removeToken } from '@/utils/auth';
 import router, { resetRouter } from '@/router';
-import store from '@/store';
 
 const state = {
   id: null,
@@ -46,7 +45,7 @@ const actions = {
       login({ email: email.trim(), password: password })
         .then(response => {
           setLogged('1');
-          resolve(response.data);
+          resolve();
         })
         .catch(error => {
           console.log(error);
@@ -58,7 +57,7 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token)
+      getInfo()
         .then(response => {
           const { data } = response;
 
@@ -87,9 +86,9 @@ const actions = {
   },
 
   // user logout
-  logout({ commit, state }) {
+  logout({ commit }) {
     return new Promise((resolve, reject) => {
-      logout(state.token)
+      logout()
         .then(() => {
           commit('SET_TOKEN', '');
           commit('SET_ROLES', []);
@@ -130,7 +129,7 @@ const actions = {
       resetRouter();
 
       // generate accessible routes map based on roles
-      const accessRoutes = store.dispatch('permission/generateRoutes', { roles, permissions });
+      const accessRoutes = dispatch('permission/generateRoutes', { roles, permissions });
 
       // dynamically add accessible routes
       router.addRoutes(accessRoutes);
