@@ -16,7 +16,9 @@ export default {
     const { icon, title } = context.props;
     const vnodes = [];
 
-    if (icon) {
+    if (icon && icon.startsWith('el-')) {
+      vnodes.push(<i class={icon} />);
+    } else {
       vnodes.push(<svg-icon icon-class={icon}/>);
     }
 
@@ -27,3 +29,9 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+  .el-submenu [class^="el-icon-"] {
+    text-align: left;
+  }
+</style>
