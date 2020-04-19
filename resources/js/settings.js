@@ -32,6 +32,12 @@ export default {
   sidebarLogo: false,
 
   /**
+   * @type {boolean} true | false
+   * @description Whether show the language is RTL
+   */
+  rtlLanguage: false,
+
+  /**
    * @type {string | array} 'production' | ['production','development']
    * @description Need show err logs component.
    * The default is only used in the production env

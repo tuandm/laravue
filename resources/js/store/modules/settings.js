@@ -1,5 +1,5 @@
 import defaultSettings from '@/settings';
-const { showSettings, tagsView, fixedHeader, sidebarLogo, theme } = defaultSettings;
+const { showSettings, tagsView, fixedHeader, sidebarLogo, rtlLanguage, theme } = defaultSettings;
 
 const state = {
   theme: theme,
@@ -7,6 +7,7 @@ const state = {
   tagsView: tagsView,
   fixedHeader: fixedHeader,
   sidebarLogo: sidebarLogo,
+  rtlLanguage: rtlLanguage,
 };
 
 const mutations = {

@@ -24,6 +24,11 @@
         <span>{{ $t('settings.sidebarLogo') }}</span>
         <el-switch v-model="sidebarLogo" class="drawer-switch" />
       </div>
+
+      <div class="drawer-item">
+        <span>RTL Language</span>
+        <el-switch v-model="rtlLanguage" class="drawer-switch" />
+      </div>
     </div>
   </div>
 </template>
@@ -66,6 +71,17 @@ export default {
       set(val) {
         this.$store.dispatch('settings/changeSetting', {
           key: 'sidebarLogo',
+          value: val,
+        });
+      },
+    },
+    rtlLanguage: {
+      get() {
+        return this.$store.state.settings.rtlLanguage;
+      },
+      set(val) {
+        this.$store.dispatch('settings/changeSetting', {
+          key: 'rtlLanguage',
           value: val,
         });
       },
