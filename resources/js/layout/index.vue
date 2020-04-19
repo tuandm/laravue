@@ -39,6 +39,7 @@ export default {
       showSettings: state => state.settings.showSettings,
       needTagsView: state => state.settings.tagsView,
       fixedHeader: state => state.settings.fixedHeader,
+      rtlLanguage: state => state.settings.rtlLanguage,
     }),
     classObj() {
       return {
@@ -46,6 +47,7 @@ export default {
         openSidebar: this.sidebar.opened,
         withoutAnimation: this.sidebar.withoutAnimation,
         mobile: this.device === 'mobile',
+        rtl: this.rtlLanguage,
       };
     },
   },

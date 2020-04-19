@@ -16,6 +16,9 @@
       <el-dropdown-item :disabled="language==='ru'" command="ru">
         Русский
       </el-dropdown-item>
+      <el-dropdown-item :disabled="language==='ltr'" command="rtl">
+        RTL Language
+      </el-dropdown-item>
     </el-dropdown-menu>
   </el-dropdown>
 </template>
