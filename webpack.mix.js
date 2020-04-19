@@ -1,6 +1,7 @@
 const config = require('./webpack.config');
 const mix = require('laravel-mix');
 require('laravel-mix-eslint');
+const WebpackRTLPlugin = require('webpack-rtl-plugin');
 
 function resolve(dir) {
   return path.join(
@@ -55,6 +56,56 @@ mix
   })
   .sass('resources/js/styles/index.scss', 'public/css/app.css', {
     implementation: require('node-sass'),
+  })
+  .webpackConfig({
+    plugins: [
+      new WebpackRTLPlugin({
+        filename: 'public/css/app.rtl.css',
+        options: {
+          'autoRename': false,
+          'autoRenameStrict': false,
+          'blacklist': {},
+          'clean': true,
+          'greedy': false,
+          'processUrls': false,
+          'stringMap': [
+            {
+              'name': 'left-right',
+              'priority': 100,
+              'search': ['left', 'Left', 'LEFT'],
+              'replace': ['right', 'Right', 'RIGHT'],
+              'options': {
+                'scope': '*',
+                'ignoreCase': false,
+              },
+            },
+            {
+              'name': 'right-left',
+              'priority': 100,
+              'search': ['right', 'Right', 'RIGHT'],
+              'replace': ['left', 'Left', 'LEFT'],
+              'options': {
+                'scope': '*',
+                'ignoreCase': false,
+              },
+            },
+            {
+              'name': 'ltr-rtl',
+              'priority': 100,
+              'search': ['ltr', 'Ltr', 'LTR'],
+              'replace': ['rtl', 'Rtl', 'RTL'],
+              'options': {
+                'scope': '*',
+                'ignoreCase': false,
+              },
+            },
+          ],
+          'useCalc': false,
+        },
+        diffOnly: true,
+        minify: false,
+      }),
+    ],
   });
 
 if (mix.inProduction()) {

@@ -9,6 +9,7 @@
 @import 'laravue';
 
 body {
+  direction: ltr;
   height: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -21,6 +22,7 @@ label {
 }
 
 html {
+  direction: ltr;
   height: 100%;
   box-sizing: border-box;
 }

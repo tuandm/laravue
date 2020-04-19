@@ -24,6 +24,7 @@
     <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
     <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet" />
+    <link href="{{ mix('css/app.rtl.css') }}" type="text/css" rel="stylesheet" />
 </head>
 <body>
     <div id="app">
