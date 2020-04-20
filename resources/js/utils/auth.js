@@ -1,13 +1,13 @@
 import Cookies from 'js-cookie';
 
-const TokenKey = 'Admin-Token';
+const TokenKey = 'isLogged';
 
-export function getToken() {
-  return Cookies.get(TokenKey);
+export function isLogged() {
+  return Cookies.get(TokenKey) === '1';
 }
 
-export function setToken(token) {
-  return Cookies.set(TokenKey, token);
+export function setLogged(isLogged) {
+  return Cookies.set(TokenKey, isLogged);
 }
 
 export function removeToken() {

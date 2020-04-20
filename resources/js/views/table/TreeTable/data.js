@@ -14,7 +14,6 @@ const data = [
         id: 2,
         event: 'Event-2',
         timeLine: 10,
-
       },
       {
         id: 3,
@@ -25,19 +24,16 @@ const data = [
             id: 4,
             event: 'Event-4',
             timeLine: 5,
-
           },
           {
             id: 5,
             event: 'Event-5',
             timeLine: 10,
-
           },
           {
             id: 6,
             event: 'Event-6',
             timeLine: 75,
-
             children: [
               {
                 id: 7,
@@ -49,13 +45,11 @@ const data = [
                     id: 71,
                     event: 'Event-7-1',
                     timeLine: 25,
-
                   },
                   {
                     id: 72,
                     event: 'Event-7-2',
                     timeLine: 5,
-
                   },
                   {
                     id: 73,

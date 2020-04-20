@@ -6,7 +6,7 @@
  * @package Laravue
  * @version 1.0
  */
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\PermissionResource;
 use App\Laravue\Models\Permission;
@@ -17,9 +17,9 @@ use App\Http\Resources\RoleResource;
 /**
  * Class RoleController
  *
- * @package App\Http\Controllers
+ * @package App\Http\Controllers\Api
  */
-class RoleController extends Controller
+class RoleController extends BaseController
 {
     /**
      * Display a listing of the resource.

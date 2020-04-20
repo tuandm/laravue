@@ -10,9 +10,13 @@ const mutations = {
     }
 
     state.visitedViews.push(
-      Object.assign({}, view, {
-        title: view.meta.title || 'no-name',
-      })
+      Object.assign(
+        {},
+        view,
+        {
+          title: view.meta.title || 'no-name',
+        }
+      )
     );
   },
   ADD_CACHED_VIEW: (state, view) => {

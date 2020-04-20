@@ -21,7 +21,7 @@ const elementUiRoutes = {
       path: 'icons',
       component: () => import('@/views/icons/index'),
       name: 'Icons',
-      meta: { title: 'icons', icon: 'icon', noCache: true },
+      meta: { title: 'icons', icon: 'el-icon-info', noCache: true },
     },
     {
       path: 'tab',
