@@ -185,13 +185,13 @@ class UserController extends BaseController
     public function destroy(User $user)
     {
         if ($user->isAdmin()) {
-            response()->json(['error' => 'Ehhh! Can not delete admin user'], 403);
+            return response()->json(['error' => 'Ehhh! Can not delete admin user'], 403);
         }
 
         try {
             $user->delete();
         } catch (\Exception $ex) {
-            response()->json(['error' => $ex->getMessage()], 403);
+            return response()->json(['error' => $ex->getMessage()], 403);
         }
 
         return response()->json(null, 204);
