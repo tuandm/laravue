@@ -1,6 +1,7 @@
 import { login, logout, getInfo } from '@/api/auth';
 import { isLogged, setLogged, removeToken } from '@/utils/auth';
 import router, { resetRouter } from '@/router';
+import store from '@/store';
 
 const state = {
   id: null,
@@ -114,7 +115,7 @@ const actions = {
 
   // Dynamically modify permissions
   changeRoles({ commit, dispatch }, role) {
-    return new Promise(resolve => {
+    return new Promise(async resolve => {
       // const token = role + '-token';
 
       // commit('SET_TOKEN', token);
@@ -129,7 +130,7 @@ const actions = {
       resetRouter();
 
       // generate accessible routes map based on roles
-      const accessRoutes = dispatch('permission/generateRoutes', { roles, permissions });
+      const accessRoutes = await store.dispatch('permission/generateRoutes', { roles, permissions });
 
       // dynamically add accessible routes
       router.addRoutes(accessRoutes);
