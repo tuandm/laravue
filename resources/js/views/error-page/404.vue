@@ -2,10 +2,10 @@
   <div class="wscn-http404-container">
     <div class="wscn-http404">
       <div class="pic-404">
-        <img class="pic-404__parent" src="@/assets/404_images/404.png" alt="404">
-        <img class="pic-404__child left" src="@/assets/404_images/404_cloud.png" alt="404">
-        <img class="pic-404__child mid" src="@/assets/404_images/404_cloud.png" alt="404">
-        <img class="pic-404__child right" src="@/assets/404_images/404_cloud.png" alt="404">
+        <img class="pic-404__parent" :src="icon404" alt="404">
+        <img class="pic-404__child left" :src="icon404Cloud" alt="404">
+        <img class="pic-404__child mid" :src="icon404Cloud" alt="404">
+        <img class="pic-404__child right" :src="icon404Cloud" alt="404">
       </div>
       <div class="bullshit">
         <div class="bullshit__oops">
@@ -28,9 +28,16 @@
 </template>
 
 <script>
-
+const icon404 = require('@/assets/404_images/404.png').default;
+const icon404Cloud = require('@/assets/404_images/404_cloud.png').default;
 export default {
   name: 'Page404',
+  data() {
+    return {
+      icon404: icon404,
+      icon404Cloud: icon404Cloud,
+    };
+  },
   computed: {
     message() {
       return 'The bodyguard said that you can\'t enter this page...';
