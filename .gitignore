@@ -22,4 +22,3 @@ yarn-error.log
 /public/*.js.map
 .idea
 .DS_Store
-composer.json
