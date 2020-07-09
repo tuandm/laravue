@@ -79,7 +79,7 @@ class User extends Authenticatable
     public function hasPermission($permission): bool
     {
         foreach ($this->roles as $role) {
-            if (in_array($permission, $role->permissions->toArray())) {
+            if (in_array($permission, $role->permissions->pluck('name')->toArray())) {
                 return true;
             }
         }
