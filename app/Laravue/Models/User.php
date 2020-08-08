@@ -5,7 +5,7 @@ namespace App\Laravue\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
-use Tymon\JWTAuth\Contracts\JWTSubject;
+use Laravel\Sanctum\HasApiTokens;
 
 /**
  * Class User
@@ -18,9 +18,9 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
  * @method static User create(array $user)
  * @package App
  */
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable
 {
-    use Notifiable, HasRoles;
+    use Notifiable, HasRoles, HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -72,11 +72,26 @@ class User extends Authenticatable implements JWTSubject
     }
 
     /**
+     * Check if user has a permission
+     * @param String
+     * @return bool
+     */
+    public function hasPermission($permission): bool
+    {
+        foreach ($this->roles as $role) {
+            if (in_array($permission, $role->permissions->pluck('name')->toArray())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * @return bool
      */
     public function isAdmin(): bool
     {
-        foreach ($this->roles  as $role) {
+        foreach ($this->roles as $role) {
             if ($role->isAdmin()) {
                 return true;
             }

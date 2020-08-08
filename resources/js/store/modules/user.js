@@ -1,11 +1,12 @@
 import { login, logout, getInfo } from '@/api/auth';
-import { getToken, setToken, removeToken } from '@/utils/auth';
+import { isLogged, setLogged, removeToken } from '@/utils/auth';
 import router, { resetRouter } from '@/router';
 import store from '@/store';
 
 const state = {
   id: null,
-  token: getToken(),
+  user: null,
+  token: isLogged(),
   name: '',
   avatar: '',
   introduction: '',
@@ -44,11 +45,11 @@ const actions = {
     return new Promise((resolve, reject) => {
       login({ email: email.trim(), password: password })
         .then(response => {
-          commit('SET_TOKEN', response.token);
-          setToken(response.token);
+          setLogged('1');
           resolve();
         })
         .catch(error => {
+          console.log(error);
           reject(error);
         });
     });
@@ -57,7 +58,7 @@ const actions = {
   // get user info
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
-      getInfo(state.token)
+      getInfo()
         .then(response => {
           const { data } = response;
 
@@ -86,9 +87,9 @@ const actions = {
   },
 
   // user logout
-  logout({ commit, state }) {
+  logout({ commit }) {
     return new Promise((resolve, reject) => {
-      logout(state.token)
+      logout()
         .then(() => {
           commit('SET_TOKEN', '');
           commit('SET_ROLES', []);
@@ -118,7 +119,7 @@ const actions = {
       // const token = role + '-token';
 
       // commit('SET_TOKEN', token);
-      // setToken(token);
+      // setLogged(token);
 
       // const { roles } = await dispatch('getInfo');
 

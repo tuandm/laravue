@@ -43,6 +43,7 @@
 <script>
 import LangSelect from '@/components/LangSelect';
 import { validEmail } from '@/utils/validate';
+import { csrf } from '@/api/auth';
 
 export default {
   name: 'Login',
@@ -74,12 +75,17 @@ export default {
       loading: false,
       pwdType: 'password',
       redirect: undefined,
+      otherQuery: {},
     };
   },
   watch: {
     $route: {
       handler: function(route) {
-        this.redirect = route.query && route.query.redirect;
+        const query = route.query;
+        if (query) {
+          this.redirect = query.redirect;
+          this.otherQuery = this.getOtherQuery(query);
+        }
       },
       immediate: true,
     },
@@ -96,19 +102,29 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true;
-          this.$store.dispatch('user/login', this.loginForm)
-            .then(() => {
-              this.$router.push({ path: this.redirect || '/' });
-              this.loading = false;
-            })
-            .catch(() => {
-              this.loading = false;
-            });
+          csrf().then(() => {
+            this.$store.dispatch('user/login', this.loginForm)
+              .then(() => {
+                this.$router.push({ path: this.redirect || '/', query: this.otherQuery }, onAbort => {});
+                this.loading = false;
+              })
+              .catch(() => {
+                this.loading = false;
+              });
+          });
         } else {
           console.log('error submit!!');
           return false;
         }
       });
+    },
+    getOtherQuery(query) {
+      return Object.keys(query).reduce((acc, cur) => {
+        if (cur !== 'redirect') {
+          acc[cur] = query[cur];
+        }
+        return acc;
+      }, {});
     },
   },
 };
@@ -185,7 +201,6 @@ $light_gray:#eee;
   }
   .title {
     font-size: 26px;
-    font-weight: 400;
     color: $light_gray;
     margin: 0px auto 40px auto;
     text-align: center;
@@ -205,6 +220,18 @@ $light_gray:#eee;
     position: absolute;
     top: 40px;
     right: 35px;
+  }
+}
+@media screen and (orientation:landscape) and (max-width:1024px) {
+  .login-container {
+    position: relative;
+    overflow-y: auto;
+    .login-form {
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+      margin: auto;
+    }
   }
 }
 </style>

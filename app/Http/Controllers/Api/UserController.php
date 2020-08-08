@@ -7,7 +7,7 @@
  * @version 1.0
  */
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\PermissionResource;
 use App\Http\Resources\UserResource;
@@ -18,15 +18,16 @@ use App\Laravue\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Validator;
 
 /**
  * Class UserController
  *
- * @package App\Http\Controllers
+ * @package App\Http\Controllers\Api
  */
-class UserController extends Controller
+class UserController extends BaseController
 {
     const ITEM_PER_PAGE = 15;
 
@@ -118,6 +119,14 @@ class UserController extends Controller
             return response()->json(['error' => 'Admin can not be modified'], 403);
         }
 
+        $currentUser = Auth::user();
+        if (!$currentUser->isAdmin()
+            && $currentUser->id !== $user->id
+            && !$currentUser->hasPermission(\App\Laravue\Acl::PERMISSION_USER_MANAGE)
+        ) {
+            return response()->json(['error' => 'Permission denied'], 403);
+        }
+
         $validator = Validator::make($request->all(), $this->getValidationRules(false));
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 403);
@@ -176,13 +185,13 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         if ($user->isAdmin()) {
-            response()->json(['error' => 'Ehhh! Can not delete admin user'], 403);
+            return response()->json(['error' => 'Ehhh! Can not delete admin user'], 403);
         }
 
         try {
             $user->delete();
         } catch (\Exception $ex) {
-            response()->json(['error' => $ex->getMessage()], 403);
+            return response()->json(['error' => $ex->getMessage()], 403);
         }
 
         return response()->json(null, 204);

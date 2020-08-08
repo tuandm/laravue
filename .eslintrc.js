@@ -23,12 +23,17 @@ module.exports = {
     'camelcase': [0, {
       'properties': 'always'
     }],
-    'comma-dangle': ['error', 'always-multiline'],
+    'comma-dangle': ['error', {
+      'functions': 'never',
+      'objects': 'always-multiline',
+      'arrays': 'always-multiline',
+      'imports': 'always-multiline',
+    }],
     'comma-spacing': [2, {
       'before': false,
       'after': true
     }],
-    'comma-style': [2, 'last'],
+    'comma-style': ['error', 'last'],
     'curly': [2, 'all'],
     'dot-location': [2, 'property'],
     'eol-last': 2,

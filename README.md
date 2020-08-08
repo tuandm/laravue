@@ -3,13 +3,13 @@
 </p>
 <p align="center">
   <a href="https://laravel.com">
-    <img src="https://img.shields.io/badge/laravel-6.2-brightgreen.svg" alt="vue">
+    <img src="https://img.shields.io/badge/laravel-7.3-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/vuejs/vue">
     <img src="https://img.shields.io/badge/vue-2.6.10-brightgreen.svg" alt="vue">
   </a>
   <a href="https://github.com/ElemeFE/element">
-    <img src="https://img.shields.io/badge/element--ui-2.12.0-brightgreen.svg" alt="element-ui">
+    <img src="https://img.shields.io/badge/element--ui-2.13.0-brightgreen.svg" alt="element-ui">
   </a>
   <a href="https://github.com/tuandm/laravue/blob/master/LICENSE">
     <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg" alt="license">
@@ -36,6 +36,8 @@ Documentation: [https://doc.laravue.dev](https://doc.laravue.dev)
 
 
 ### Installing
+#### Manual
+
 ```bash
 # Clone the project and run composer
 composer create-project tuandm/laravue
@@ -44,18 +46,29 @@ cd laravue
 # Migration and DB seeder (after changing your DB settings in .env)
 php artisan migrate --seed
 
-# Generate JWT secret key
-php artisan jwt:secret
-
-# Install dependency - we recommend using Yarn instead of NPM since we get errors while using NPM
-yarn install
+# Install dependency with NPM
+npm install
 
 # develop
-yarn run dev # or yarn run watch
+npm run dev # or npm run watch
 
 # Build on production
-yarn run production
+npm run production
 ```
+
+#### Docker
+```sh
+docker-compose up -d
+```
+Build static files within Laravel container with npm
+```sh
+# Get laravel docker container ID from containers list
+docker ps
+
+docker exec -it <container ID> npm run dev # or npm run watch
+# Where <container ID> is the "laravel" container name, ex: src_laravel_1
+```
+Open http://localhost:8000 (laravel container port declared in `docker-compose.yml`) to access Laravue
 
 ## Running the tests
 * Tests system is under development
@@ -65,6 +78,8 @@ This project uses [Envoy](https://laravel.com/docs/5.8/envoy) for deployment, an
 
 ## Built with
 * [Laravel](https://laravel.com/) - The PHP Framework For Web Artisans
+* [Laravel Sanctum](https://github.com/laravel/sanctum/) - Laravel Sanctum provides a featherweight authentication system for SPAs and simple APIs.
+* [spatie/laravel-permission](https://github.com/spatie/laravel-permission) - Associate users with permissions and roles.
 * [VueJS](https://vuejs.org/) - The Progressive JavaScript Framework
 * [Element](https://element.eleme.io/) - A  Vue 2.0 based component library for developers, designers and product managers
 * [Vue Admin Template](https://github.com/PanJiaChen/vue-admin-template) - A minimal vue admin template with Element UI
