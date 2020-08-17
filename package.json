@@ -50,6 +50,7 @@
     "vue-template-compiler": "2.6.10",
     "webpack": "^4.44.1",
     "webpack-bundle-analyzer": "^3.8.0",
+    "webpack-chunk-rename-plugin": "^1.0.3",
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {
