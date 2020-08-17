@@ -1,3 +1,4 @@
+import '@/styles/index.scss';
 import 'core-js';
 import Vue from 'vue';
 import Cookies from 'js-cookie';
