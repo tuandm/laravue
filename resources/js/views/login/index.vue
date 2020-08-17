@@ -169,19 +169,18 @@ $bg:#2d3a4b;
 $dark_gray:#889aa4;
 $light_gray:#eee;
 .login-container {
-  position: relative;
+  position: fixed;
   height: 100%;
   width: 100%;
   background-color: $bg;
-  overflow-y: auto;
   .login-form {
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: 0;
+    right: 0;
     width: 520px;
     max-width: 100%;
     padding: 35px 35px 15px 35px;
-    transform: translate(-50%, -50%);
+    margin: 120px auto;
   }
   .tips {
     font-size: 14px;
@@ -202,7 +201,6 @@ $light_gray:#eee;
   }
   .title {
     font-size: 26px;
-    font-weight: 400;
     color: $light_gray;
     margin: 0px auto 40px auto;
     text-align: center;
@@ -222,6 +220,18 @@ $light_gray:#eee;
     position: absolute;
     top: 40px;
     right: 35px;
+  }
+}
+@media screen and (orientation:landscape) and (max-width:1024px) {
+  .login-container {
+    position: relative;
+    overflow-y: auto;
+    .login-form {
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+      margin: auto;
+    }
   }
 }
 </style>
