@@ -52,9 +52,9 @@ mix
   ])
   .options({
     processCssUrls: false,
-  })
-  .sass('resources/js/styles/index.scss', 'public/css/app.css', {
-    implementation: require('node-sass'),
+    postCss: [
+      require('autoprefixer'),
+    ],
   });
 
 if (mix.inProduction()) {
