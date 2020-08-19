@@ -3,7 +3,7 @@
     <el-form v-if="user" :model="user">
       <el-row :gutter="20">
         <el-col :span="6">
-          <user-card :user="user" />
+          <user-card :user="user" :can-change-avatar="true" />
           <user-bio />
         </el-col>
         <el-col :span="18">

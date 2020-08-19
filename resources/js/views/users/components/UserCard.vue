@@ -1,7 +1,7 @@
 <template>
   <el-card v-if="user.name">
     <div class="user-profile">
-      <div class="user-avatar box-center">
+      <div :class="['user-avatar box-center', {'changeable': canChangeAvatar}]" @click="changeAvatar">
         <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false" />
       </div>
       <div class="box-center">
@@ -28,15 +28,30 @@
         </el-button>
       </div>
     </div>
+    <image-cropper
+      v-show="showImageCropper"
+      :key="imageCropperKey"
+      :width="300"
+      :height="300"
+      url="https://httpbin.org/post"
+      lang-type="en"
+      @close="closeImageCropper"
+      @crop-upload-success="cropSuccess"
+    />
   </el-card>
 </template>
 
 <script>
 import PanThumb from '@/components/PanThumb';
+import ImageCropper from '@/components/ImageCropper';
 
 export default {
-  components: { PanThumb },
+  components: { PanThumb, ImageCropper },
   props: {
+    canChangeAvatar: {
+      type: Boolean,
+      default: () => false,
+    },
     user: {
       type: Object,
       default: () => {
@@ -65,12 +80,23 @@ export default {
           'count': 7242,
         },
       ],
+      showImageCropper: false,
+      imageCropperKey: 0,
     };
   },
   methods: {
     getRole() {
       const roles = this.user.roles.map(value => this.$options.filters.uppercaseFirst(value));
       return roles.join(' | ');
+    },
+    changeAvatar() {
+      this.showImageCropper = true;
+    },
+    closeImageCropper() {
+      this.showImageCropper = false;
+    },
+    cropSuccess() {
+      return false;
     },
   },
 };
@@ -83,6 +109,9 @@ export default {
   }
   .box-center {
     padding-top: 10px;
+    &.changeable {
+      cursor: pointer;
+    }
   }
   .user-role {
     padding-top: 10px;
