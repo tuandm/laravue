@@ -49,6 +49,12 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    
+    public static $rules = array(
+        'email'=>'required',
+        'name'=>'required',
+    );
+    
     /**
      * Set permissions guard to API by default
      * @var string

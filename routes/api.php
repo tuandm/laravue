@@ -20,11 +20,11 @@ use \App\Laravue\Acl;
 
 Route::namespace('Api')->group(function() {
     Route::post('auth/login', 'AuthController@login');
+    Route::post('auth/signup', 'AuthController@signup');
     Route::group(['middleware' => 'auth:sanctum'], function () {
         // Auth routes
         Route::get('auth/user', 'AuthController@user');
         Route::post('auth/logout', 'AuthController@logout');
-
         Route::get('/user', function (Request $request) {
             return new UserResource($request->user());
         });

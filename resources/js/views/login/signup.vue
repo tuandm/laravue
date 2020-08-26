@@ -1,22 +1,34 @@
 <template>
   <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+    <el-form ref="signUpForm" :model="signUpForm" :rules="signUpRules" class="login-form" auto-complete="on" label-position="left">
       <h3 class="title">
-        {{ $t('login.title') }}
+        {{ $t('Sign Up') }}
       </h3>
       <lang-select class="set-language" />
+      <el-form-item prop="fName">
+        <span class="svg-container">
+          <svg-icon icon-class="user" />
+        </span>
+        <el-input v-model="signUpForm.fname" name="fName" type="text" auto-complete="on" :placeholder="$t('First Name')" />
+      </el-form-item>
+      <el-form-item prop="lname">
+        <span class="svg-container">
+          <svg-icon icon-class="user" />
+        </span>
+        <el-input v-model="signUpForm.lname" name="lname" type="text" auto-complete="on" :placeholder="$t('Last Name')" />
+      </el-form-item>
       <el-form-item prop="email">
         <span class="svg-container">
           <svg-icon icon-class="user" />
         </span>
-        <el-input v-model="loginForm.email" name="email" type="text" auto-complete="on" :placeholder="$t('login.email')" />
+        <el-input v-model="signUpForm.email" name="email" type="text" auto-complete="on" :placeholder="$t('login.email')" />
       </el-form-item>
       <el-form-item prop="password">
         <span class="svg-container">
           <svg-icon icon-class="password" />
         </span>
         <el-input
-          v-model="loginForm.password"
+          v-model="signUpForm.password"
           :type="pwdType"
           name="password"
           auto-complete="on"
@@ -28,19 +40,10 @@
         </span>
       </el-form-item>
       <el-form-item>
-        <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
-          Sign in
+        <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleSignUp">
+          Sign up
         </el-button>
       </el-form-item>
-      <el-form-item>
-        <el-button type="primary" style="width:100%;" @click.native.prevent="handleSignUp">
-          Create Account
-        </el-button>
-      </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">Email: admin@laravue.dev</span>
-        <span>Password: laravue</span>
-      </div>
     </el-form>
   </div>
 </template>
@@ -48,10 +51,10 @@
 <script>
 import LangSelect from '@/components/LangSelect';
 import { validEmail } from '@/utils/validate';
-import { csrf } from '@/api/auth';
+import { signup } from '@/api/auth';
 
 export default {
-  name: 'Login',
+  name: 'SignUp',
   components: { LangSelect },
   data() {
     const validateEmail = (rule, value, callback) => {
@@ -69,28 +72,28 @@ export default {
       }
     };
     return {
-      loginForm: {
-        email: 'admin@laravue.dev',
-        password: 'laravue',
+      signUpForm: {
+        fname: '',
+        lname: '',
+        name: '',
+        email: '',
+        password: '',
       },
-      loginRules: {
+      signUpRules: {
+        fname: [{ required: true, trigger: 'blur' }],
+        lname: [{ required: true, trigger: 'blur' }],
         email: [{ required: true, trigger: 'blur', validator: validateEmail }],
         password: [{ required: true, trigger: 'blur', validator: validatePass }],
       },
       loading: false,
       pwdType: 'password',
       redirect: undefined,
-      otherQuery: {},
     };
   },
   watch: {
     $route: {
       handler: function(route) {
-        const query = route.query;
-        if (query) {
-          this.redirect = query.redirect;
-          this.otherQuery = this.getOtherQuery(query);
-        }
+        this.redirect = route.query && route.query.redirect;
       },
       immediate: true,
     },
@@ -104,35 +107,16 @@ export default {
       }
     },
     handleSignUp() {
-      this.$router.push('signup');
-    },
-    handleLogin() {
-      this.$refs.loginForm.validate(valid => {
+      this.$refs.signUpForm.validate(valid => {
         if (valid) {
+          this.signUpForm.name = this.signUpForm.fname + '  ' + this.signUpForm.lname;
           this.loading = true;
-          csrf().then(() => {
-            this.$store.dispatch('user/login', this.loginForm)
-              .then(() => {
-                this.$router.push({ path: this.redirect || '/', query: this.otherQuery }, onAbort => {});
-                this.loading = false;
-              })
-              .catch(() => {
-                this.loading = false;
-              });
-          });
+          const { data } = signup(this.signUpForm);
+          console.log(data);
         } else {
-          console.log('error submit!!');
           return false;
         }
       });
-    },
-    getOtherQuery(query) {
-      return Object.keys(query).reduce((acc, cur) => {
-        if (cur !== 'redirect') {
-          acc[cur] = query[cur];
-        }
-        return acc;
-      }, {});
     },
   },
 };
@@ -177,8 +161,7 @@ $bg:#2d3a4b;
 $dark_gray:#889aa4;
 $light_gray:#eee;
 .login-container {
-  position: fixed;
-  height: 100%;
+  height: 120%;
   width: 100%;
   background-color: $bg;
   .login-form {
@@ -188,7 +171,7 @@ $light_gray:#eee;
     width: 520px;
     max-width: 100%;
     padding: 35px 35px 15px 35px;
-    margin: 120px auto;
+    margin: auto auto;
   }
   .tips {
     font-size: 14px;
@@ -209,6 +192,7 @@ $light_gray:#eee;
   }
   .title {
     font-size: 26px;
+    font-weight: 400;
     color: $light_gray;
     margin: 0px auto 40px auto;
     text-align: center;
@@ -228,18 +212,6 @@ $light_gray:#eee;
     position: absolute;
     top: 40px;
     right: 35px;
-  }
-}
-@media screen and (orientation:landscape) and (max-width:1024px) {
-  .login-container {
-    position: relative;
-    overflow-y: auto;
-    .login-form {
-      transform: translate(-50%, -50%);
-      left: 50%;
-      top: 50%;
-      margin: auto;
-    }
   }
 }
 </style>

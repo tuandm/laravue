@@ -8,6 +8,14 @@ export function login(data) {
   });
 }
 
+export function signup(data) {
+  return request({
+    url: '/auth/signup',
+    method: 'post',
+    data: data,
+  });
+}
+
 export function getInfo(token) {
   return request({
     url: '/user',
