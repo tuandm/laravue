@@ -51,7 +51,7 @@ class UserController extends BaseController
 
         if (!empty($keyword)) {
             $userQuery->where('name', 'LIKE', '%' . $keyword . '%');
-            $userQuery->where('email', 'LIKE', '%' . $keyword . '%');
+            $userQuery->orWhere('email', 'LIKE', '%' . $keyword . '%');
         }
 
         return UserResource::collection($userQuery->paginate($limit));
