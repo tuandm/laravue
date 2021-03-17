@@ -1,42 +1,59 @@
 <template>
-  <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
-      <h3 class="title">
-        {{ $t('login.title') }}
-      </h3>
-      <lang-select class="set-language" />
-      <el-form-item prop="email">
-        <span class="svg-container">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input v-model="loginForm.email" name="email" type="text" auto-complete="on" :placeholder="$t('login.email')" />
-      </el-form-item>
-      <el-form-item prop="password">
-        <span class="svg-container">
-          <svg-icon icon-class="password" />
-        </span>
-        <el-input
-          v-model="loginForm.password"
-          :type="pwdType"
-          name="password"
-          auto-complete="on"
-          placeholder="password"
-          @keyup.enter.native="handleLogin"
-        />
-        <span class="show-pwd" @click="showPwd">
-          <svg-icon icon-class="eye" />
-        </span>
-      </el-form-item>
-      <el-form-item>
-        <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
-          Sign in
-        </el-button>
-      </el-form-item>
-      <div class="tips">
-        <span style="margin-right:20px;">Email: admin@laravue.dev</span>
-        <span>Password: laravue</span>
+  <div class="login">
+    <div class="login-container">
+      <div class="login-image">
+        <div class="photo-credit">
+          <h4>Danang - Vietnam</h4>
+          <span>Photo by Kiril Dobrev on Unsplash</span>
+        </div>
       </div>
-    </el-form>
+      <div class="login-content">
+        <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on" label-position="left">
+          <div class="title-wrap">
+            <img
+              class="logo"
+              alt="Laravue"
+              :src="logo"
+            >
+            <h3 class="title">
+              {{ $t('login.title') }}
+              <lang-select class="set-language" />
+            </h3>
+          </div>
+          <el-form-item prop="email">
+            <span class="svg-container">
+              <svg-icon icon-class="user" />
+            </span>
+            <el-input v-model="loginForm.email" name="email" type="text" auto-complete="on" :placeholder="$t('login.email')" />
+          </el-form-item>
+          <el-form-item prop="password">
+            <span class="svg-container">
+              <svg-icon icon-class="password" />
+            </span>
+            <el-input
+              v-model="loginForm.password"
+              name="password"
+              auto-complete="on"
+              placeholder="password"
+              :type="pwdType"
+              @keyup.enter.native="handleLogin"
+            />
+            <span class="show-pwd" @click="showPwd">
+              <svg-icon icon-class="eye" />
+            </span>
+          </el-form-item>
+          <el-form-item>
+            <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
+              {{ $t('login.logIn') }}
+            </el-button>
+          </el-form-item>
+          <div class="tips">
+            <span style="margin-right:20px;">Email: admin@laravue.dev</span>
+            <span>Password: laravue</span>
+          </div>
+        </el-form>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -44,6 +61,8 @@
 import LangSelect from '@/components/LangSelect';
 import { validEmail } from '@/utils/validate';
 import { csrf } from '@/api/auth';
+
+const logo = require('@/assets/login/logo.png').default;
 
 export default {
   name: 'Login',
@@ -76,6 +95,7 @@ export default {
       pwdType: 'password',
       redirect: undefined,
       otherQuery: {},
+      logo: logo,
     };
   },
   watch: {
@@ -150,7 +170,7 @@ $light_gray:#eee;
       height: 47px;
       &:-webkit-autofill {
         -webkit-box-shadow: 0 0 0px 1000px $bg inset !important;
-        -webkit-text-fill-color: #fff !important;
+        -webkit-text-colorfill-color: rgb(8, 7, 7) !important;
       }
     }
   }
@@ -161,76 +181,122 @@ $light_gray:#eee;
     color: #454545;
   }
 }
-
 </style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
+
 $bg:#2d3a4b;
 $dark_gray:#889aa4;
-$light_gray:#eee;
-.login-container {
-  position: fixed;
+$light_gray:rgb(7, 6, 6);
+$bgColor: #054b5d;
+$brown: #B27C66;
+$textColor:#eee;
+
+.login {
   height: 100%;
-  width: 100%;
-  background-color: $bg;
-  .login-form {
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: 520px;
-    max-width: 100%;
-    padding: 35px 35px 15px 35px;
-    margin: 120px auto;
-  }
-  .tips {
-    font-size: 14px;
-    color: #fff;
-    margin-bottom: 10px;
-    span {
-      &:first-of-type {
-        margin-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background-color: $bgColor;
+  transition: background-color .3s ease-in-out;
+  overflow: auto;
+
+  .login-container {
+    background: $bg;
+    width: 1120px;
+    min-height: 590px;
+    display: grid;
+    grid-template-columns: auto 480px;
+    transition: all .3s ease-in-out;
+    transform: scale(1);
+
+    .logo {
+      display: block;
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+    }
+
+    .login-image {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      overflow: hidden;
+      background-color: #303c4b;
+      background-image: url('../../assets/login/login_background.jpg');
+      background-position: 50%;
+      background-size: cover;
+      opacity: 1;
+      transition: opacity .3s ease-in-out,padding .2s ease-in-out;
+
+      .photo-credit {
+        justify-content: flex-end;
+        align-self: flex-end;
+        background-color: rgba(255,255,255,0.8);
+        margin: 10px;
+        padding: 5px 8px;
+
+        h4, span { margin: 0; }
       }
     }
-  }
-  .svg-container {
-    padding: 6px 5px 6px 15px;
-    color: $dark_gray;
-    vertical-align: middle;
-    width: 30px;
-    display: inline-block;
-  }
-  .title {
-    font-size: 26px;
-    color: $light_gray;
-    margin: 0px auto 40px auto;
-    text-align: center;
-    font-weight: bold;
-  }
-  .show-pwd {
-    position: absolute;
-    right: 10px;
-    top: 7px;
-    font-size: 16px;
-    color: $dark_gray;
-    cursor: pointer;
-    user-select: none;
-  }
-  .set-language {
-    color: #fff;
-    position: absolute;
-    top: 40px;
-    right: 35px;
-  }
-}
-@media screen and (orientation:landscape) and (max-width:1024px) {
-  .login-container {
-    position: relative;
-    overflow-y: auto;
+
     .login-form {
-      transform: translate(-50%, -50%);
-      left: 50%;
-      top: 50%;
-      margin: auto;
+      min-width: 320px;
+      padding: 130px 60px;
+      position: relative;
+      opacity: 1;
+      transition: opacity .3s ease-in-out,padding .2s ease-in-out;
+    }
+    .tips {
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 10px;
+      span {
+        &:first-of-type {
+          margin-right: 16px;
+        }
+      }
+    }
+    .svg-container {
+      padding: 6px 5px 6px 15px;
+      color: $dark_gray;
+      vertical-align: middle;
+      width: 30px;
+      display: inline-block;
+    }
+    .title-wrap {
+      display: block;
+      margin-bottom: 15px;
+
+      .title {
+        font-size: 24px;
+        color: $textColor;
+        margin: 0px auto 10px auto;
+        text-align: left;
+        font-weight: bold;
+      }
+      .sub-heading {
+        font-size: 14px;
+        color: $textColor;
+        padding-bottom: 15px;
+      }
+    }
+
+    .show-pwd {
+      position: absolute;
+      right: 10px;
+      top: 7px;
+      font-size: 16px;
+      color: $dark_gray;
+      cursor: pointer;
+      user-select: none;
+    }
+    .set-language {
+      color: $textColor;
+      position: absolute;
+      top: 40px;
+      right: 35px;
     }
   }
 }
