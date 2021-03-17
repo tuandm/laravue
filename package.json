@@ -1,6 +1,6 @@
 {
   "name": "laravue",
-  "version": "0.11.0",
+  "version": "0.13.1",
   "description": "A beautiful dashboard for Laravel built by VueJS",
   "author": "Tuan Duong <bacduong@gmail.com>",
   "license": "MIT",

@@ -80,7 +80,7 @@ export default {
     profile: 'Profile',
   },
   login: {
-    title: 'Login Form',
+    title: 'Log in to your dashboard',
     logIn: 'Log in',
     username: 'Username',
     password: 'Password',
