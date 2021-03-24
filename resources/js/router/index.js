@@ -132,6 +132,29 @@ export const constantRoutes = [
     ],
   },
   elementUiRoutes,
+  {
+    path: '/foo',
+    component: Layout,
+    redirect: '/foo/index',
+    name: 'foo',
+    meta: {
+      title: 'foo',
+      icon: 'star',
+    },
+    children: [
+      {
+        path: 'index', // When clicking this submenu, it will redirect to /#/foo/index
+        component: () => import('@/views/foo/Foo.vue'),
+        name: 'foo',
+        meta: { title: 'foo' }, // foo submenu
+      },
+      {
+        path: 'bar', // When clicking this submenu, it will redirect to /#/foo/bar
+        name: 'bar',
+        meta: { title: 'bar' }, // bar submenu
+      },
+    ],
+  },
 ];
 
 export const asyncRoutes = [

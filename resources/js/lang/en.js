@@ -70,6 +70,7 @@ export default {
     administrator: 'Administrator',
     users: 'Users',
     userProfile: 'User Profile',
+    foo: 'Foo',
   },
   navbar: {
     logOut: 'Log Out',
