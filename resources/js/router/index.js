@@ -43,6 +43,7 @@ import permissionRoutes from './modules/permission';
     noCache: true                if true, the page will no be cached(default is false)
     breadcrumb: false            if false, the item will hidden in breadcrumb (default is true)
     affix: true                  if true, the tag will affix in the tags-view
+    activeMenu: '/example/list'  if set path, the sidebar will highlight the path you set
   }
 **/
 
