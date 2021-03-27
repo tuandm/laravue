@@ -83,7 +83,7 @@ class User extends Authenticatable
                 return true;
             }
         }
-        return false;
+        return $this->hasDirectPermission($permission);
     }
 
     /**
