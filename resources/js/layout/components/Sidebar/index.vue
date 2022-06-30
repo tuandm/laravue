@@ -6,9 +6,9 @@
         :show-timeout="200"
         :default-active="$route.path"
         :collapse="isCollapse"
-        :background-color="variables.menuBg"
-        :text-color="variables.menuText"
-        :active-text-color="variables.menuActiveText"
+        background-color="#304156"
+        text-color="#bfcbd9"
+        active-text-color="#409EFF"
         mode="vertical"
       >
         <sidebar-item
@@ -39,6 +39,7 @@ export default {
       return this.$store.state.settings.sidebarLogo;
     },
     variables() {
+      console.log(variables);
       return variables;
     },
     isCollapse() {
@@ -47,3 +48,6 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+  @import '@/styles/variables.scss';
+</style>

@@ -139,14 +139,17 @@ module.exports = {
     'yield-star-spacing': [2, 'both'],
     'yoda': [2, 'never'],
     'prefer-const': 2,
-    'vue/max-attributes-per-line': [2, {
-      'singleline': 10,
+    'vue/multi-word-component-names': ['off', {}],
+    'vue/no-mutating-props': ['off', {}],
+    'vue/max-attributes-per-line': ['off', {
+      'singleline': {
+        'max': 1,
+      },
       'multiline': {
         'max': 1,
-        'allowFirstLine': false,
       },
     }],
-    'vue/name-property-casing': ['error', 'PascalCase'],
+    // 'vue/name-property-casing': ['error', 'PascalCase'],
     'vue/no-v-html': 'off',
     'vue/multiline-html-element-content-newline': 'off',
     'vue/singleline-html-element-content-newline': 'off',

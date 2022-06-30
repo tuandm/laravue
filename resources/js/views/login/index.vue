@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="login-container">
-      <div class="login-image">
+      <div class="login-image" :style="{ 'background-image': 'url(' + loginBackground + ')' }">
         <div class="photo-credit">
           <h4>Danang - Vietnam</h4>
           <span>Photo by Kiril Dobrev on Unsplash</span>
@@ -61,8 +61,8 @@
 import LangSelect from '@/components/LangSelect';
 import { validEmail } from '@/utils/validate';
 import { csrf } from '@/api/auth';
-
-const logo = require('@/assets/login/logo.png').default;
+import logo from '@/assets/login/logo.png';
+import loginBackground from '@/assets/login/login_background.jpg';
 
 export default {
   name: 'Login',
@@ -96,6 +96,7 @@ export default {
       redirect: undefined,
       otherQuery: {},
       logo: logo,
+      loginBackground: loginBackground,
     };
   },
   watch: {
@@ -145,6 +146,9 @@ export default {
         }
         return acc;
       }, {});
+    },
+    loginBackgroundImage() {
+      return 'url(\'' + this.loginBackground + '\')';
     },
   },
 };
@@ -224,7 +228,6 @@ $textColor:#eee;
       justify-content: flex-end;
       overflow: hidden;
       background-color: #303c4b;
-      background-image: url('../../assets/login/login_background.jpg');
       background-position: 50%;
       background-size: cover;
       opacity: 1;

@@ -62,7 +62,7 @@ export default {
 };
 </script>
 
-<style rel="stylesheet/scss" lang="scss" >
+<style rel="stylesheet/scss" lang="scss">
 .box-card-component{
   .el-card__header {
     padding: 0px!important;
@@ -102,7 +102,7 @@ export default {
     background-color: #fff;
     margin: auto;
     box-shadow: none!important;
-    /deep/ .pan-info {
+    ::v-deep .pan-info {
       box-shadow: none!important;
     }
   }
