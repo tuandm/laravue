@@ -1,3 +1,4 @@
+var path = require('path');
 const config = require('./webpack.config');
 const mix = require('laravel-mix');
 require('laravel-mix-eslint');
@@ -15,9 +16,11 @@ Mix.listen('configReady', webpackConfig => {
   const imageLoaderConfig = webpackConfig.module.rules.find(
     rule =>
       String(rule.test) ===
-      String(/(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/)
+      String(/(\.(png|jpe?g|gif|webp|avif)$|^((?!font).)*\.svg$)/)
   );
-  imageLoaderConfig.exclude = resolve('icons');
+  if (imageLoaderConfig) {
+    imageLoaderConfig.exclude = resolve('icons');
+  }
 });
 
 mix.webpackConfig(config);
@@ -50,12 +53,14 @@ mix
     'tui-editor',
     'codemirror',
   ])
+  .copy('node_modules/element-ui/lib/theme-chalk/fonts/element-icons.woff', 'public/css/fonts')
+  .copy('node_modules/element-ui/lib/theme-chalk/fonts/element-icons.ttf', 'public/css/fonts')
   .options({
     processCssUrls: false,
     postCss: [
       require('autoprefixer'),
     ],
-  });
+  }).vue();
 
 if (mix.inProduction()) {
   mix.version();
@@ -67,6 +72,6 @@ if (mix.inProduction()) {
   mix
     .sourceMaps()
     .webpackConfig({
-      devtool: 'cheap-eval-source-map', // Fastest for development
+      devtool: 'eval-cheap-source-map', // Fastest for development
     });
 }
