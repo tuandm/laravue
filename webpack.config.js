@@ -41,6 +41,6 @@ module.exports = {
   plugins: plugins,
   output: {
     filename: '[name].js',
-    chunkFilename: 'js/audit-app.[chunkhash:6].js',
+    chunkFilename: 'js/app.[chunkhash:6].js',
   },
 };
