@@ -8129,8 +8129,8 @@
   "version" "1.0.3"
 
 "squire-rte@github:seonim-ryu/Squire#fd40b4e3020845825701e9689f190bab3f4775d4":
-  "integrity" "sha512-EEiX+togdzeUkJBprLr+6GUKJbD9u9Hx6sy/n2uWSqta+wBtGqzJTbdc0VwkKJt7QXNCdgw3Pj2jefvtmevHkg=="
-  "resolved" "git+ssh://git@github.com/seonim-ryu/Squire.git"
+  "integrity" "sha512-PBFl6wvWCfw6hQ0kSqOG+3LbMkdhPPVJroZRPLeXcXJNjrBuvCJi6wtXYduS8JnPruAskFcZYfAAiTmc/CIIQQ=="
+  "resolved" "git+ssh://git@github.com/seonim-ryu/Squire.git#fd40b4e3020845825701e9689f190bab3f4775d4"
   "version" "1.9.0"
 
 "ssf@~0.11.2":
