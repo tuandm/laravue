@@ -1,13 +1,13 @@
 # Set the base image for subsequent instructions
-FROM php:7.2
+FROM php:7.3
 
 WORKDIR /var/www
 
 # Update packages
 
-RUN curl -sL https://deb.nodesource.com/setup_11.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get update \
-    && apt-get install -y nodejs netcat libmcrypt-dev libjpeg-dev libpng-dev libfreetype6-dev libbz2-dev nodejs git \
+    && apt-get install -y nodejs netcat libmcrypt-dev libjpeg-dev libpng-dev libzip-dev libfreetype6-dev libbz2-dev nodejs git \
     && apt-get clean
 
 # Install extensions
