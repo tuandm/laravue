@@ -72,6 +72,7 @@ export default {
     users: 'Tài khoản',
     userProfile: 'Tài khoản người dùng',
     rolePermission: 'Quản lý quyền truy cập',
+    foo: 'Foo in VI',
   },
   navbar: {
     logOut: 'Đăng xuất',
