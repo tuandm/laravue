@@ -4,7 +4,7 @@
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :show-timeout="200"
-        :default-active="$route.path"
+        :default-active="activeMenu"
         :collapse="isCollapse"
         background-color="#304156"
         text-color="#bfcbd9"
@@ -34,6 +34,15 @@ export default {
     ...mapGetters(['sidebar', 'permission_routers']),
     routes() {
       return this.$store.state.permission.routes;
+    },
+    activeMenu() {
+      const route = this.$route;
+      const { meta, path } = route;
+      // if set path, the sidebar will highlight the path you set
+      if (meta.activeMenu) {
+        return meta.activeMenu;
+      }
+      return path;
     },
     showLogo() {
       return this.$store.state.settings.sidebarLogo;
